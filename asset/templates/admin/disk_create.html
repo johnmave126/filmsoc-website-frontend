@@ -1,0 +1,88 @@
+<div id="disk-edit-form" class="page-form">
+	<div>
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/2x3.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Cover Picture Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="cover_url">
+		<div class="disk-side-edit multiline">
+			<label>
+				<span>Disk Type: </span>
+				<select name="disk_type">
+					<option value="A">VCD</option>
+					<option value="B" selected>DVD</option>
+				</select>
+			</label>
+			<label>
+				<span>English Name: </span>
+				<input type="text" name="title_en" placeholder="The English name of this film">
+			</label>
+			<label>
+				<span>Chinese Name: </span>
+				<input type="text" name="title_ch" placeholder="The Chinese name of this film">
+			</label>
+			<label>
+				<span>Year: </span>
+				<input type="text" name="show_year" placeholder="The year of showing">
+			</label>
+			<label>
+				<span>Tags: </span>
+				<input type="text" role="list" name="tags" placeholder="Tags, splitted by ','">
+			</label>
+			<label>
+				<span>Director's English Name:</span>
+				<input type="text" name="director_en" placeholder="English name">
+			</label>
+			<label>
+				<span>Director's Chinese Name: </span>
+				<input type="text" name="director_ch" placeholder="Chinese name">
+			</label>
+			<label>
+				<span>Actors: </span>
+				<input type="text" role="list" name="actors" placeholder="Main actors' English names, splitted by ','">
+			</label>
+		</div>
+	</div>
+	<div class="nocell">
+		<label>
+			<span>IMDB Link: http://www.imdb.com/title/</span>
+			<input type="text" name="imdb_url" maxlengt="9" placeholder="tt0000000 (tt+7 digits)">
+			<span>/</span>
+		</label>
+	</div>
+	<div class="single-table">
+		<div>
+			<label>
+				<span>Length: </span>
+				<input type="text" name="length" placeholder="Length of the film (in minutes)">
+			</label>
+			<label>
+				<span>Category: </span>
+				<select name="category">
+					<option value="I">I</option>
+					<option value="II A">II A</option>
+					<option value="II B">II B</option>
+					<option value="III">III</option>
+					<option value="" selected>Unknown</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label>
+				<div>English Description:</div>
+				<textarea name="desc_en" rows="10"></textarea>
+			</label>
+			<label>
+				<div>Chinese Description:</div>
+				<textarea name="desc_ch" rows="10"></textarea>
+			</label>
+		</div>
+	</div>
+</div>

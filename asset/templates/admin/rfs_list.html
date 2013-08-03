@@ -1,0 +1,81 @@
+<div class="rfs-view">
+    <header>
+        <h1>Regular Film Show Management</h1>
+        <div class="controls weak-rtl">
+            <button id="rfs-create-show">Create Show</button>
+            <button id="rfs-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <span>Regular Film Show State:</span>
+            <div class="filter">
+                <label>
+                    <input id="show-filter-draft" type="checkbox" filter="Draft" {{filter.indexOf('Draft') === -1?'':'checked'|safe}}>
+                    <span>Draft</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="show-filter-open" type="checkbox" filter="Open" {{filter.indexOf('Open') === -1?'':'checked'|safe}}>
+                    <span>Open</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="show-filter-pending" type="checkbox" filter="Pending" {{filter.indexOf('Pending') === -1?'':'checked'|safe}}>
+                    <span>Pending</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="show-filter-passed" type="checkbox" filter="Passed" {{filter.indexOf('Passed') === -1?'':'checked'|safe}}>
+                    <span>Passed</span>
+                </label>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="vote-column column">
+                    <div class="static-text">Vote</div>
+                </div>
+                <div class="film-column column">
+                    <div class="static-text">Film_1</div>
+                </div>
+                <div class="vote-column column">
+                    <div class="static-text">Vote</div>
+                </div>
+                <div class="film-column column">
+                    <div class="static-text">Film_2</div>
+                </div>
+                <div class="vote-column column">
+                    <div class="static-text">Vote</div>
+                </div>
+                <div class="film-column column">
+                    <div class="static-text">Film_3</div>
+                </div>
+                <div class="state-column column">
+                    <div class="static-text">State</div>
+                </div>
+                <div class="participants-column column">
+                    <div class="static-text">Participant</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="rfs-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

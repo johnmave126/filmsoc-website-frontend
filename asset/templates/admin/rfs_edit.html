@@ -1,0 +1,44 @@
+<div id="rfs-edit-form" class="page-form">
+	<div>
+		<label>
+			<span>Film 1:</span>
+			<input type="text" name="film_1" spellcheck="false" autocomplete="off" maxlength="5" {{rfs.state==='Draft'?'':'disabled'}} placeholder="Call Number" value="{{cn(rfs.film_1)|attr}}">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Film 2:</span>
+			<input type="text" name="film_2" spellcheck="false" autocomplete="off" maxlength="5" {{rfs.state==='Draft'?'':'disabled'}} placeholder="Call Number" value="{{cn(rfs.film_2)|attr}}">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Film 3:</span>
+			<input type="text" name="film_3" spellcheck="false" autocomplete="off" maxlength="5" {{rfs.state==='Draft'?'':'disabled'}} placeholder="Call Number" value="{{cn(rfs.film_3)|attr}}">
+		</label>
+	</div>
+	<div class="nocell">
+		<label>
+			<div>Remarks:</div>
+			<textarea name="remarks" placeholder="Remarks of this Regular Film Show..." rows="5">{{rfs.remarks}}</textarea>
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>State:</span>
+			<select name="state">
+				<option value="Draft" {{rfs.state=='Draft'?'selected':''|safe}}>Draft</option>
+				<option value="Open" {{rfs.state=='Open'?'selected':''|safe}}>Open</option>
+				<option value="Pending" {{rfs.state=='Pending'?'selected':''|safe}}>Pending</option>
+				<option value="Passed" {{rfs.state=='Passed'?'selected':''|safe}}>Passed</option>
+			</select>
+		</label>
+	</div>
+	<div class="info">
+		<h3>Miscellaneous Show Info</h3>
+		<div>Film 1 Vote: {{rfs.vote_cnt_1}}</div>
+		<div>Film 2 Vote: {{rfs.vote_cnt_2}}</div>
+		<div>Film 3 Vote: {{rfs.vote_cnt_3}}</div>
+		<div>Participants Count: {{rfs.participant_list.length}}</div>
+	</div>
+</div>

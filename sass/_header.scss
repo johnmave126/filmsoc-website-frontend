@@ -1,0 +1,65 @@
+/*
+ * Declare style of header.
+ */
+
+#header {
+  width: 100%;
+  height: $header-height;
+  background-color: $background;
+  position: absolute;
+}
+
+#logo {
+  height: 100px;
+  margin: 10px 0px 0px 10px;
+}
+
+#user-wrapper {
+  height: 80px;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: darken($background, 10%);
+  $border-color: darken($background, 20%);
+  border: 1px solid $border-color;
+  @include border-radius(5px);
+  padding: 5px;
+
+  & > div {
+    height: 100%;
+    text-overflow: ellipsis;
+  }
+  .user-info {
+    border-right: 1px solid $border-color;
+    overflow: hidden;
+    cursor: default;
+
+    .username {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .usertype {
+      font-size: 0.8em;
+      font-style: italic;
+      .pennalized {
+        font-weight: bold;
+        font-style: normal;
+      }
+    }
+    .userother {
+      font-size: 0.9em;
+      padding-top: 5px;
+    }
+  }
+  .user-action {
+    width: 80px;
+    float: right;
+    text-align: center;
+    &:first-child {
+      margin-top: 20px;
+    }
+  }
+}

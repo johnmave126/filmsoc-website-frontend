@@ -1,0 +1,253 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* Modified by John Tan 2013. Film Society, HKUSTSU */
+
+@import url("widgets.css");
+
+
+/* Prevent CSS from overriding the hidden property. */
+[hidden] {
+  display: none !important;
+}
+
+* {
+  outline: none;
+}
+
+body {
+  -ms-overflow-y: scroll;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-vertical;
+}
+
+body.hideflow {
+  -ms-overflow-y: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  font-family: 'Chrome Droid Sans', 'Droid Sans Fallback', 'Lucida Grande', 'Helvetica', sans-serif;
+  cursor: default;
+  margin: 0;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+}
+
+p {
+  line-height: 1.8em;
+}
+
+h1,
+h2,
+h3 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: normal;
+  /* Makes the vertical size of the text the same for all fonts. */
+  line-height: 1;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-bottom: 0.4em;
+}
+
+h3 {
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+a {
+  color: rgb(17, 85, 204);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:active {
+  color: rgb(5, 37, 119);
+}
+
+.weak-rtl {
+  text-align: right;
+}
+
+label {
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label:hover {
+  color: black;
+}
+
+#main-container {
+  width: 65%;
+  font-size: 75%;
+  display: block;
+  position: absolute;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+  left: 175px;
+  color: rgb(60, 74, 82);
+  -webkit-transition: -webkit-transform 180ms, opacity 180ms;
+  -moz-transition: -moz-transform 180ms, opacity 180ms;
+  -o-transition: -o-transform 180ms, opacity 180ms;
+  -ms-transition: -ms-transform 180ms, opacity 180ms;
+  transition: transform 180ms, opacity 180ms;
+}
+
+#main-container.loading {
+ opacity: 0;/*
+ -webkit-transform: scale(0.99) translateX(20px);
+ -moz-transform: scale(0.99) translateX(20px);
+ -o-transform: scale(0.99) translateX(20px);
+ -ms-transform: scale(0.99) translateX(20px);
+ transform: scale(0.99) translateX(20px);*/
+ margin-left: -20px;
+}
+
+#main-container header {
+  position: fixed;
+  z-index: 2;
+  background: #fff;
+  width: 65%;
+  top: 0;
+}
+
+#main-container header > h1,
+#main-container header > .controls {
+  width: 100%;
+}
+
+#main-container header h1 {
+  padding: 21px 0 13px;
+  margin: 0;
+  border-bottom: 1px solid #EEE;
+}
+
+#main-container header .corner {
+  position: absolute;
+  right: 0px;
+  top: 21px;
+}
+
+#main-container header .controls {
+  border-bottom: 1px solid #EEE;
+  padding: 13px 0;
+  overflow: hidden;
+}
+
+#main-container header .column-header {
+  margin: 0 5px;
+}
+
+#main-container .content,
+#main-container footer {
+  width: 100%;
+  z-index: 1;
+}
+
+#main-container footer {
+  height: 30px;
+  padding: 5px 0 10px 0;
+  border-top: 1px solid #EEE;
+}
+
+#main-container footer > * {
+  display: inline-block;
+}
+
+#main-container footer .lefthub,
+#main-container footer .centerhub,
+#main-container footer .righthub {
+  width: 33%;
+  position: absolute;
+}
+
+#main-container footer .lefthub {
+  left: 0;
+  text-align: left;
+}
+
+#main-container footer .centerhub {
+  left: 33%;
+  text-align: center;
+}
+
+#main-container footer .righthub {
+  right: 0;
+  text-align: right;
+}
+
+#overlay_1 {
+  z-index: 11;
+}
+
+#overlay_2 {
+  z-index: 12;
+}
+
+#loadingOverlay {
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#loadingOverlay .inline-spinner {
+  vertical-align: middle;
+}
+
+#loadingOverlay span {
+  padding: 0 7px;
+}
+
+.temp-loading {
+  padding: 5px 0;
+}
+
+.temp-loading > div {
+  padding: 0 3px;
+}
+
+.page {
+  color: #333;
+}
+
+.page list {
+  min-height: 192px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.filter {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.absolute-middle {
+  left: 50%;
+  top: 50%;
+  margin-top: -250px;
+  margin-left: -183px;
+  position: fixed;
+}
+
+.title-img {
+  width: 366px;
+  height: 500px;
+  background-image: url('title_img.png');
+}

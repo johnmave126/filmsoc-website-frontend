@@ -1,0 +1,93 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* Modified by John Tan 2013. Film Society, HKUSTSU */
+
+.bubble {
+  position: absolute;
+  white-space: normal;
+  /* Height is dynamic, width fixed. */
+  width: 300px;
+  z-index: 9999;
+}
+
+.bubble-content {
+  color: black;
+  line-height: 150%;
+  margin: 1px;
+  padding: 8px 11px 12px;
+  position: relative;
+  z-index: 3;
+}
+
+/* When the close button is there, we need more padding on the right of the
+ * bubble. */
+.bubble-close:not([hidden]) ~ .bubble-content {
+  padding-right: 22px;
+}
+
+.bubble-close {
+  height: 16px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 16px;
+  z-index: 4;
+}
+
+.bubble-close {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAiElEQVR42r2RsQrDMAxEBRdl8SDcX8lQPGg1GBI6lvz/h7QyRRXV0qUULwfvwZ1tenw5PxToRPWMC52eA9+WDnlh3HFQ/xBQl86NFYJqeGflkiogrOvVlIFhqURFVho3x1moGAa3deMs+LS30CAhBN5nNxeT5hbJ1zwmji2k+aF6NENIPf/hs54f0sZFUVAMigAAAABJRU5ErkJggg==');
+}
+
+.bubble-close:hover {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=');
+}
+
+.bubble-close:active {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAARElEQVQoz2P4z4AfMlBLAYMdwxkghgEwD1XBGTC0g0sDIaYJECVwFqoChBK4WegKkJWArSJZAQErCDqSKG/iCyhaRhYA9LDIbULDzlIAAAAASUVORK5CYII=');
+}
+
+.bubble-shadow {
+  bottom: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.bubble-arrow {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+  height: 15px;
+  position: absolute;
+  width: 15px;
+  z-index: 2;
+}
+
+.bubble-content,
+.bubble-arrow {
+  background: white;
+}
+
+.bubble-shadow,
+.bubble-arrow {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.bubble-shadow,
+.bubble-content {
+  border-radius: 6px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.auto-close-bubble {
+  position: fixed;
+}

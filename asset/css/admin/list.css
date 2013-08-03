@@ -1,0 +1,269 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* Modified by John Tan 2013. Film Society, HKUSTSU */
+
+list,
+grid {
+  display: block;
+  outline: none;
+  overflow: auto;
+  position: relative; /* Make sure that item offsets are relative to the
+                         list. */
+}
+
+list > *,
+grid > * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0);
+  /* transparent white */
+  border-radius: 2px;
+  cursor: default;
+  line-height: 20px;
+  margin: -1px 0;
+  overflow: hidden;
+  padding: 0 3px;
+  position: relative;
+  /* to allow overlap */
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-transition: 150ms background-color;
+  -o-transition: 150ms background-color;
+  -moz-transition: 150ms background-color;
+  -ms-transition: 150ms background-color;
+  transition: 150ms background-color;
+}
+
+list > * {
+  display: block;
+}
+
+grid > * {
+  display: inline-block;
+}
+
+list > [lead],
+grid > [lead] {
+  border-color: transparent;
+}
+
+list:focus > [lead],
+grid:focus > [lead] {
+  border-color: hsl(214, 91%, 65%);
+  z-index: 2;
+}
+
+list > [anchor],
+grid > [anchor] {
+
+}
+
+list:not([disabled]) > :hover,
+grid:not([disabled]) > :hover {
+  background-color: hsl(214, 91%, 97%);
+  border-color: hsl(214, 91%, 85%);
+  z-index: 1;
+}
+
+list:not([disabled]) > .hover,
+grid:not([disabled]) > .hover {
+  background-color: hsl(214, 91%, 97%);
+  border-color: hsl(214, 91%, 85%);
+  z-index: 1;
+}
+
+list > [selected],
+grid > [selected] {
+  background-color: hsl(0, 0%, 90%);
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+  rgba(255, 255, 255, 0));
+  border-color: hsl(0, 0%, 85%);
+  z-index: 2;
+}
+
+list:focus > [selected],
+grid:focus > [selected] {
+  background-color: hsl(214, 91%, 89%);
+  border-color: hsl(214, 91%, 65%);
+}
+
+list:focus > [lead][selected],
+list > [selected]:hover,
+grid:focus > [lead][selected],
+grid > [selected]:hover {
+  background-color: hsl(214, 91%, 87%);
+  border-color: hsl(214, 91%, 65%);
+}
+
+list > .spacer,
+grid > .spacer {
+  border: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+list input[type='input'],
+list input[type='password'],
+list input[type='search'],
+list input[type='text'],
+list input[type='url'],
+list button:not(.custom-appearance):not(.link-button),
+list input[type='button']:not(.custom-appearance):not(.link-button),
+list input[type='submit']:not(.custom-appearance):not(.link-button),
+list select:not(.custom-appearance):not(.link-button) {
+  line-height: normal;
+  margin: 0;
+  vertical-align: middle;
+}
+
+list > [hidden],
+grid > [hidden] {
+  display: none;
+}
+
+list > .drag-selection-border {
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 2;
+}
+
+list .static-text {
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+list .column {
+  text-align: left;
+  padding-right: 1px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+list .list-inline-button {
+  -webkit-appearance: none;
+  -webkit-transition: opacity 150ms;
+  -moz-transition: opacity 150ms;
+  -o-transition: opacity 150ms;
+  -ms-transition: opacity 150ms;
+  transition: opacity 150ms;
+  background: rgb(138, 170, 237);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  opacity: 0.7;
+  display: inline-block;
+  outline: none;
+}
+
+list .column-button {
+  display: none;
+}
+
+list div[role="listitem"]:hover .column-button {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+list div[role="listitem"].hover .column-button {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+list div[role="listitem"]:hover .list-inline-button {
+  margin-top: 0;
+  padding: 1px 6px 2px 6px;
+}
+
+list div[role="listitem"].hover .list-inline-button {
+  margin-top: 0;
+  padding: 1px 6px 2px 6px;
+}
+
+list .list-inline-button:hover {
+  opacity: 1;
+}
+
+list .list-inline-button.hover {
+  opacity: 1;
+}
+
+list .checker {
+  width: 12px;
+  height: 12px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAcklEQVQY02NgwA/YoJgoEA/Es4DYgJBCJSBeD8SboRinBiYg7kZS2IosyQ/Eakh8LySFq4FYHFlxGRBvBOJYqMRqJMU+yApNkSRAeC0Sux3dfSCTetE0wKyXxOWhMKhTYIr9CAUXyJMzgLgBagBBgDPGAI2LGdNt0T1AAAAAAElFTkSuQmCC');
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
+list > * {
+  -webkit-transition: opacity 200ms;
+  -moz-transition: opacity 200ms;
+  -o-transition: opacity 200ms;
+  -ms-transition: opacity 200ms;
+  transition: opacity 200ms;
+  opacity: 1;
+}
+
+list.content-loading > * {
+  -webkit-transition-delay: 0 !important;
+  -moz-transition-delay: 0 !important;
+  -o-transition-delay: 0 !important;
+  -ms-transition-delay: 0 !important;
+  transition-delay: 0 !important;
+
+  -webkit-transition-duration: 0 !important;
+  -moz-transition-duration: 0 !important;
+  -o-transition-duration: 0 !important;
+  -ms-transition-duration: 0 !important;
+  transition-duration: 0 !important;
+  opacity: 0;
+}
+
+list > .loading {
+  -webkit-transition-delay: 0 !important;
+  -moz-transition-delay: 0 !important;
+  -o-transition-delay: 0 !important;
+  -ms-transition-delay: 0 !important;
+  transition-delay: 0 !important;
+
+  -webkit-transition-duration: 0 !important;
+  -moz-transition-duration: 0 !important;
+  -o-transition-duration: 0 !important;
+  -ms-transition-duration: 0 !important;
+  transition-duration: 0 !important;
+  opacity: 0;
+}
+

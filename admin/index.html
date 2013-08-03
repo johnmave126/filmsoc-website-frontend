@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Interface | Film Society, HKUSTSU</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=1280, user-scalable=no">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../asset/css/admin/MANAGE_FAVICON">
+    <link rel="bookmark" type="image/png" href="../asset/css/admin/MANAGE_FAVICON">
+    <link rel="shortcut icon" type="image/png" href="../asset/css/admin/MANAGE_FAVICON">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/admin_ui_shared.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/spinner.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/overlay.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/404.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/notification.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/throbber.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/list.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/custom_view.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/logger.css">
+    <link rel="stylesheet" type="text/css" href="../asset/css/admin/bubble.css">
+
+    <!-- All Scripts are loaded synchorously at the end of body due to the following bug -->
+    <!-- https://bugzilla.mozilla.org/show_bug.cgi?id=688580 -->
+
+    <!-- Clickjacking proof -->
+    <style type="text/css">
+    body {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <!-- Clickjacking proof -->
+    <script type="text/javascript">
+    if(self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    }
+    else {
+        top.location = self.location;
+    }
+    </script>
+    <div id="notification-wrapper">
+        <div id="notification">
+            <span>&nbsp;</span>
+            <span class="link"><span class="link-color"></span></span>
+        </div>
+    </div>
+
+    <div id="overlay_1" class="overlay transparent" hidden>
+        <div id="log-view-page" class="page" hidden>
+            <div class="close-button"></div>
+            <h1>View Logs</h1>
+            <div class="content-area">
+                <h3 id="log-view-title">&nbsp;</h3>
+                <div id="log-view-header">
+                    <div class="model-column column">
+                        <div class="static-text">Section</div>
+                    </div>
+                    <div class="ref-id-column column">
+                        <div class="static-text">Object ID</div>
+                    </div>
+                    <div class="type-column column">
+                        <div class="static-text">Type</div>
+                    </div>
+                    <div class="user-column column">
+                        <div class="static-text">User</div>
+                    </div>
+                    <div class="admin-column column">
+                        <div class="static-text">Admin Involved</div>
+                    </div>
+                    <div class="content-column column">
+                        <div class="static-text">Content</div>
+                    </div>
+                </div>
+                <list id="log-view-list" class="popup-list" role="list" tabindex="0">
+                </list>
+                <h3>Filter by type</h3>
+                <div id="log-view-options">
+                </div>
+            </div>
+            <div class="action-area">
+                <div class="button-strip">
+                    <button id="close-log-view" type="submit" class="default-button">Close</button>
+              </div>
+            </div>
+        </div>
+        <div id="multiuseOverlay" class="page" hidden>
+            <div class="close-button"></div>
+            <h1>&nbsp;</h1>
+            <div class="content-area">
+            </div>
+            <div class="action-area">
+                <div class="button-strip">
+                    <button id="multiuse-button1" type="submit">&nbsp;</button>
+                    <button id="multiuse-button2" type="submit" class="default-button">&nbsp;</button>
+                    <button id="multiuse-button3" type="submit">&nbsp;</button>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay_2" class="overlay">
+        <div id="loadingOverlay" class="page">
+            <div class="content-area">
+                <div class="inline-spinner"></div><span>Loading...</span>
+            </div>
+        </div>
+        <div id="alertOverlay" class="page" hidden>
+            <h1 id="alertOverlayTitle"></h1>
+            <div class="content-area">
+                <div id="alertOverlayMessage"></div>
+            </div>
+            <div class="action-area">
+                <div class="button-strip">
+                    <button id="alertOverlayOk" type="submit"></button>
+                    <button id="alertOverlayCancel" type="reset"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="navigation">
+        <h1>Film Society, HKUSTSU</h1>
+        <ul>
+            <li controls="news">
+                <button class="custom-appearance">
+                    News
+                </button>
+            </li>
+            <li controls="member">
+                <button class="custom-appearance">
+                    Member
+                </button>
+            </li>
+            <li controls="rfs">
+                <button class="custom-appearance">
+                    Regular Film Show
+                </button>
+            </li>
+            <li controls="liba">
+                <button class="custom-appearance">
+                    VCD/DVD Library
+                </button>
+            </li>
+            <li controls="review">
+                <button class="custom-appearance">
+                    Disk Reviews
+                </button>
+            </li>
+            <li controls="ticket">
+                <button class="custom-appearance">
+                    Preview Show Tickets
+                </button>
+            </li>
+            <li controls="doc">
+                <button class="custom-appearance">
+                    Documents
+                </button>
+            </li>
+            <li controls="publication">
+                <button class="custom-appearance">
+                    Publications
+                </button>
+            </li>
+            <li controls="onesentence">
+                <button class="custom-appearance">
+                    One Sentence
+                </button>
+            </li>
+            <li controls="sponsor">
+                <button class="custom-appearance">
+                    Sponsor
+                </button>
+            </li>
+            <li controls="exco">
+                <button class="custom-appearance">
+                    Exco
+                </button>
+            </li>
+            <li class="space">
+            </li>
+            <li controls="settings">
+                <button class="custom-appearance">
+                    Site Settings
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="main-container">
+    </div>
+
+    <!-- scripts -->
+    <script type="text/javascript" src="../asset/js/util.js"></script>
+    <script type="text/javascript" src="../asset/js/event_tracker.js"></script>
+    <script type="text/javascript" src="../asset/js/cr.js"></script>
+    <script type="text/javascript" src="../asset/js/event_target.js"></script>
+    <script type="text/javascript" src="../asset/js/settings.js"></script>
+    <script type="text/javascript" src="../asset/js/template.js"></script>
+    <script type="text/javascript" src="../asset/js/model.js"></script>
+    <script type="text/javascript" src="../asset/js/pager.js"></script>
+    <script type="text/javascript" src="../asset/js/router.js"></script>
+    <script type="text/javascript" src="../asset/js/ui.js"></script>
+    <script type="text/javascript" src="../asset/js/notification.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/bubble.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/overlay.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/admin_ui_control.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/alert_overlay.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/drag_wrapper.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/uploader.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/admin_models.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/application.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/log_overlay.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/user_view.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/rfs_view.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/disk_view.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/diskreview_view.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/onesentence_view.js"></script>
+    <script type="text/javascript" src="../asset/js/admin/settings_view.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+<div class="liba-list-view">
+    <header>
+        <h1>VCD/DVD Library Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Disk..." tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="liba-create-disk">Create Disk</button>
+            <button id="liba-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <span>Disk Availability:</span>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-available" type="checkbox" filter="Available" {{filter.indexOf('Available') === -1?'':'checked'|safe}}>
+                    <span>Available</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-borrowed" type="checkbox" filter="Borrowed" {{filter.indexOf('Borrowed') === -1?'':'checked'|safe}}>
+                    <span>Borrowed</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-reserved" type="checkbox" filter="Reserved" {{filter.indexOf('Reserved') === -1?'':'checked'|safe}}>
+                    <span>Reserved</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-reservedcounter" type="checkbox" filter="ReservedCounter" {{filter.indexOf('ReservedCounter') === -1?'':'checked'|safe}}>
+                    <span>ReservedCounter</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-voting" type="checkbox" filter="Voting" {{filter.indexOf('Voting') === -1?'':'checked'|safe}}>
+                    <span>Voting</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-onshow" type="checkbox" filter="Onshow" {{filter.indexOf('Onshow') === -1?'':'checked'|safe}}>
+                    <span>Onshow</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-draft" type="checkbox" filter="Draft" {{filter.indexOf('Draft') === -1?'':'checked'|safe}}>
+                    <span>Draft</span>
+                </label>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="cover-column column">
+                </div>
+                <div class="callnumber-column column">
+                    <div class="static-text">CN</div>
+                </div>
+                <div class="name-column column">
+                    <div class="static-text">Name</div>
+                </div>
+                <div class="year-column column">
+                    <div class="static-text">Year</div>
+                </div>
+                <div class="availability-column column">
+                    <div class="static-text">Availability</div>
+                </div>
+                <div class="holder-column column">
+                    <div class="static-text">Holder</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="liba-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

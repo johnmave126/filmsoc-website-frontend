@@ -1,0 +1,15 @@
+<div id="user-wrapper">
+    <div class="user-action">
+        <div {{user.admin?'':'hidden'|safe}}><button class="link link-admin">Admin</button></div>
+        <div><button class="link link-logout">Logout</button></div>
+    </div>
+    <div class="user-info">
+        <div class="username">{{user.full_name}}</div>
+        <div class="usertype">{{table[user.member_type]}}<span class="pennalized" {{user.pennalized?'':'hidden'|safe}}>&nbsp;(Pennalized)</span></div>
+        <div class="userother">
+        	<div>Last Login: {{user.last_login?user.last_login:'Never'}}</div>
+        	<div>Membership Till: {{user.expire_at}}</div>
+        	<div>Regular Film Show Count: {{user.rfs_count}}</div>
+        </div>
+    </div>
+</div>

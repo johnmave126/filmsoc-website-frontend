@@ -1,0 +1,24 @@
+{
+	"prefix": "asset/js/",
+	"jobs": {
+		"asset/js/backend.min.js": [
+			"util.js", "event_tracker.js", "cr.js", "event_target.js",
+			"settings.js", "template.js", "model.js", "pager.js", "router.js",
+			"ui.js", "notification.js", "admin/bubble.js", "admin/overlay.js",
+			"admin/admin_ui_control.js", "admin/alert_overlay.js", "admin/drag_wrapper.js",
+			"admin/uploader.js", "admin/admin_models.js", "admin/application.js",
+			"admin/log_overlay.js", "admin/user_view.js", "admin/disk_view.js",
+			"admin/diskreview_view.js", "admin/onesentence_view.js",
+			"admin/settings_view.js", "admin/rfs_view.js", "admin/ticket_view.js"
+		],
+		"asset/js/application.min.js": [
+			"util.js", "event_tracker.js", "cr.js", "event_target.js",
+			"settings.js", "template.js", "model.js", "pager.js", "router.js",
+			"ui.js", "notification.js", "front/front_models.js",
+			"front/ui_util.js", "front/custom_select.js", "front/rand_sentence.js",
+			"front/application.js", "front/liba_view.js", "front/rfs_view.js"
+		]
+	},
+	"header": "asset/js/INFO",
+	"yuicompressor": "D:\\Program\\HKUST_FilmSoc\\website\\yuicompressor-2.4.8.jar"
+}

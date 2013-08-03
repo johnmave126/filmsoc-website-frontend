@@ -1,0 +1,51 @@
+<div class="user-search-view">
+    <header>
+        <h1>Member Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Member..." tabindex="1" autofocus value="{{query|attr}}">
+        </div>
+        <div class="controls weak-rtl">
+            <button id="user-create-member">Create Member</button>
+            <button id="user-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="name-column column">
+                    <div class="static-text">Full Name</div>
+                </div>
+                <div class="itsc-column column">
+                    <div class="static-text">ITSC</div>
+                </div>
+                <div class="stuid-column column">
+                    <div class="static-text">Student ID</div>
+                </div>
+                <div class="mobile-column column">
+                    <div class="static-text">Mobile</div>
+                </div>
+                <div class="type-column column">
+                    <div class="static-text">Member Type</div>
+                </div>
+                <div class="pennalize-column column" title="Pennalized">
+                    <div class="static-text">Pennalized</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="user-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

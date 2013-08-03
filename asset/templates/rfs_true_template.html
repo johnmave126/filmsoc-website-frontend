@@ -1,0 +1,134 @@
+<div class="rfs-show {{show.state|attr}}">
+	<div class="rfs-film-strip {{show.film_1.avail_type|attr}}" refer="1">
+		<div class="vote-bar"></div>
+		<div class="rfs-cover">
+			<div class="rfs-cover-title">
+				{{show.film_1.title_en}}<br>
+				{{show.film_1.title_ch}}
+			</div>
+		</div>
+		<div class="rfs-bottom">
+			<div class="rfs-vote-num">{{show.vote_cnt_1}} Vote<span {{show.vote_cnt_1>1?'':'hidden'|safe}}>s</span></div>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+		</div>
+	</div>
+	<div class="rfs-film-strip {{show.film_2.avail_type|attr}}" refer="2">
+		<div class="vote-bar"></div>
+		<div class="rfs-cover">
+			<div class="rfs-cover-title">
+				{{show.film_2.title_en}}<br>
+				{{show.film_2.title_ch}}
+			</div>
+		</div>
+		<div class="rfs-bottom">
+			<div class="rfs-vote-num">{{show.vote_cnt_2}} Vote<span {{show.vote_cnt_2>1?'':'hidden'|safe}}>s</span></div>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+		</div>
+	</div>
+	<div class="rfs-film-strip {{show.film_3.avail_type|attr}}" refer="3">
+		<div class="vote-bar"></div>
+		<div class="rfs-cover">
+			<div class="rfs-cover-title">
+				{{show.film_3.title_en}}<br>
+				{{show.film_3.title_ch}}
+			</div>
+		</div>
+		<div class="rfs-bottom">
+			<div class="rfs-vote-num">{{show.vote_cnt_3}} Vote<span {{show.vote_cnt_3>1?'':'hidden'|safe}}>s</span></div>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+		</div>
+	</div>
+	<div class="info-tab">
+		<div class="rfs-film-info" refer="1">
+			<h1>{{show.film_1.title_en}}&nbsp;/&nbsp;{{show.film_1.title_ch}}<span class="year">&nbsp;({{show.film_1.show_year}})</span></h1>
+
+			<div class="warning" {{show.state==='Open'&&show.film_1.category==='III'?'':'hidden'|safe}}>
+				This film is a <b>Category III</b> film. If this film wins the vote, we will need to check your <b>HK Identity Card</b> to ensure your are over <b>18 years old</b> when you enter the show.
+			</div>
+
+			<div><span class="key">Director:</span> {{show.film_1.director_en}}&nbsp;/&nbsp;{{show.film_1.director_ch}}</div>
+
+			<div><span class="key">Stars:</span> <span class="actors-wrapper"></span></div>
+
+			<div><span class="key">Category:</span> {{show.film_1.category?show.film_1.category:'Unknown'}}</div>
+
+			<div><span class="key">Tags:</span> <span class="tags-wrapper"></span></div>
+
+			<div><span class="key">Length:</span> {{show.film_1.length?show.film_1.length:"Unknown"}} Minutes</div>
+
+			<div class="disk-desc">
+				<h2>Plot Summary</h2>
+				<div class="disk-desc-en">
+					{{show.film_1.desc_en|wrap}}
+				</div>
+				<div class="disk-desc-ch">
+					{{show.film_1.desc_ch|wrap}}
+				</div>
+			</div>
+		</div>
+
+		<div class="rfs-film-info" refer="2">
+			<h1>{{show.film_2.title_en}}&nbsp;/&nbsp;{{show.film_2.title_ch}}<span class="year">&nbsp;({{show.film_2.show_year}})</span></h1>
+
+			<div class="warning" {{show.state==='Open'&&show.film_2.category==='III'?'':'hidden'|safe}}>
+				This film is a <b>Category III</b> film. If this film wins the vote, we will need to check your <b>HK Identity Card</b> to ensure your are over <b>18 years old</b> when you enter the show.
+			</div>
+
+			<div><span class="key">Director:</span> {{show.film_2.director_en}}&nbsp;/&nbsp;{{show.film_2.director_ch}}</div>
+
+			<div><span class="key">Stars:</span> <span class="actors-wrapper"></span></div>
+
+			<div><span class="key">Category:</span> {{show.film_2.category?show.film_2.category:'Unknown'}}</div>
+
+			<div><span class="key">Tags:</span> <span class="tags-wrapper"></span></div>
+
+			<div><span class="key">Length:</span> {{show.film_2.length?show.film_2.length:"Unknown"}} Minutes</div>
+
+			<div class="disk-desc">
+				<h2>Plot Summary</h2>
+				<div class="disk-desc-en">
+					{{show.film_2.desc_en|wrap}}
+				</div>
+				<div class="disk-desc-ch">
+					{{show.film_2.desc_ch|wrap}}
+				</div>
+			</div>
+		</div>
+
+		<div class="rfs-film-info" refer="3">
+			<h1>{{show.film_3.title_en}}&nbsp;/&nbsp;{{show.film_3.title_ch}}<span class="year">&nbsp;({{show.film_3.show_year}})</span></h1>
+
+			<div class="warning" {{show.state==='Open'&&show.film_3.category==='III'?'':'hidden'|safe}}>
+				This film is a <b>Category III</b> film. If this film wins the vote, we will need to check your <b>HK Identity Card</b> to ensure your are over <b>18 years old</b> when you enter the show.
+			</div>
+
+			<div><span class="key">Director:</span> {{show.film_3.director_en}}&nbsp;/&nbsp;{{show.film_3.director_ch}}</div>
+
+			<div><span class="key">Stars:</span> <span class="actors-wrapper"></span></div>
+
+			<div><span class="key">Category:</span> {{show.film_3.category?show.film_3.category:'Unknown'}}</div>
+
+			<div><span class="key">Tags:</span> <span class="tags-wrapper"></span></div>
+
+			<div><span class="key">Length:</span> {{show.film_3.length?show.film_3.length:"Unknown"}} Minutes</div>
+
+			<div class="disk-desc">
+				<h2>Plot Summary</h2>
+				<div class="disk-desc-en">
+					{{show.film_3.desc_en|wrap}}
+				</div>
+				<div class="disk-desc-ch">
+					{{show.film_3.desc_ch|wrap}}
+				</div>
+			</div>
+		</div>
+
+		<div class="rfs-remarks" selected>
+			<h1>Remarks</h1>
+			<div class="warning" {{show.state==='Pending'&&toshow.category==='III'?'':'hidden'|safe}}>
+				The film to be shown is a <b>Category III</b> film. We will need to check your <b>HK Identity Card</b> to ensure your are over <b>18 years old</b> when you enter the show.
+			</div>
+			{{show.remarks|wrap}}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+<div class="library-disk loading">
+	<div class="spinner">
+		<div class="item-0"><div></div><div></div></div>
+		<div class="item-1"><div></div><div></div></div>
+		<div class="item-2"><div></div><div></div></div>
+		<div class="item-3"><div></div><div></div></div>
+		<div class="item-4"><div></div><div></div></div>
+		<div class="item-5"><div></div><div></div></div>
+		<div class="item-6"><div></div><div></div></div>
+		<div class="item-7"><div></div><div></div></div>
+	</div>
+	<div class="rate-box loading">
+		<button class="rate-up-button" tooltip="This disk is awesome and worth watching"></button>
+		<div class="rate-num">?</div>
+		<button class="rate-down-button" tooltip="This disk is not satisfying"></button>
+	</div>
+	<div class="disk-wrapper">
+	</div>
+	<div class="diskreview-wrapper">
+		<div class="diskreview-entry-wrapper">
+			<div class="diskreview-inner-wrapper">
+				<div class="diskreview-title">Disk Reviews</div>
+				<div class="anchor">Loading Reviews</div>
+			</div>
+		</div>
+		<div class="diskreview-input-box">
+			<textarea name="review" rows="3" placeholder="Leave your feelings here..." {{user?'':'hidden'|safe}}></textarea>
+			<div class="diskreview-action" {{user?'':'hidden'|safe}}>
+				<button class="clear-button" controls="submit">Post</button>
+			</div>
+			<div class="diskreview-loggin" {{user?'hidden':''|safe}}>
+				Please login to leave comments
+			</div>
+		</div>
+	</div>
+	<div class="popup-overlay loading" hidden>
+		<div class="popup-box">
+			<div class="close-button"></div>
+			<h1>&nbsp;</h1>
+			<div class="content">
+			</div>
+			<div class="spinner">
+				<div class="item-0"><div></div><div></div></div>
+				<div class="item-1"><div></div><div></div></div>
+				<div class="item-2"><div></div><div></div></div>
+				<div class="item-3"><div></div><div></div></div>
+				<div class="item-4"><div></div><div></div></div>
+				<div class="item-5"><div></div><div></div></div>
+				<div class="item-6"><div></div><div></div></div>
+				<div class="item-7"><div></div><div></div></div>
+			</div>
+			<div class="popup-box-cover">
+			</div>
+		</div>
+	</div>
+</div>

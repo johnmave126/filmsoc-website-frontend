@@ -1,0 +1,79 @@
+#log-view-page {
+	min-width: 700px;
+  width: 80%;
+  overflow: hidden;
+}
+
+#log-view-page .content-area {
+  overflow: hidden;
+}
+
+#log-view-options {
+  background-color: #e6e6e6;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  height: 35px;
+  line-height: 35px;
+}
+
+#log-view-header .column {
+  display: inline-block;
+  padding-right: 1px;
+  font-weight: bold;
+}
+
+#log-view-page .model-column,
+#log-view-page .ref-id-column,
+#log-view-page .type-column,
+#log-view-page .user-column,
+#log-view-page .admin-column {
+  width: 7%;
+}
+
+#log-view-page .content-column {
+  width: 60%;
+}
+
+#log-view-list .list-loading {
+  text-align: center;
+  padding: 5px 0;
+}
+
+#log-view-list .list-loading > * {
+  position: relative;
+  margin: auto;
+}
+
+#log-view-list [role="listitem"] {
+  position: relative;
+  overflow: visible;
+}
+
+#log-view-list [role="listitem"]:hover:before, #log-view-list [role="listitem"].hover:before {
+  border: solid;
+  border-color: #333 transparent;
+  border-width: 0 6px 6px 6px;
+  top: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
+}
+
+#log-view-list [role="listitem"]:hover:after, #log-view-list [role="listitem"].hover:after {
+  background: #333;
+  background: rgba(0,0,0,.8);
+  border-radius: 5px;
+  top: 26px;
+  color: #fff;
+  content: attr(tooltip);
+  left: 50%;
+  -webkit-transform: translateX(-70%);
+  -moz-transform: translateX(-70%);
+  -o-transform: translateX(-70%);
+  -ms-transform: translateX(-70%);
+  transform: translateX(-70%);
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+}

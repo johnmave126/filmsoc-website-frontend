@@ -1,0 +1,132 @@
+/*
+ * Declare basic color and constants
+ */
+
+/* colors */
+$light-grey: #e7e7e7;
+$grey: #d2d2d2;
+$dark-grey: #888;
+$orange: #ebad60;
+$blue: #929bbd;
+$cyan: #8fbbaf;
+$red: #db8282;
+$purple: #c48bb9;
+$green: #a4c270;
+$dark-green: #8bab8d;
+$dark-slategray: #2c3f52;
+$black: #333;
+
+/* color related */
+$background: $light-grey;
+$link-color: rgb(17, 85, 204);
+
+/* layout constant */
+$header-height: 150px;
+$footer-height: 60px;
+$rest-space: $header-height + $footer-height;
+
+/* view related */
+$page-shift-duration: 200ms;
+
+/* transition override */
+$default-transition-function : ease-out;
+
+/* browser support */
+$legacy-support-for-ie: false;
+$legacy-support-for-ie8: false;
+$experimental-support-for-microsoft: false;
+
+/* calc mixin */
+@mixin calc($attr, $value) {
+  #{$attr}: -webkit-calc(#{$value});
+  #{$attr}: -moz-calc(#{$value});
+  #{$attr}: calc(#{$value});
+}
+
+/* deal with portrait */
+@mixin portrait {
+  @media all and (orientation: portrait) {
+    @content;
+  }
+}
+
+/* deal with centering
+ * http://css-tricks.com/centering-in-the-unknown/
+ */
+@mixin center($child) {
+  text-align: center;
+  &:before {
+    content: '';
+    height: 100%;
+    margin-right: -0.25em;
+    @include inline-block;
+  }
+  #{$child} {
+    @include inline-block;
+    text-align: left;
+    @content;
+  }
+}
+
+/* deal with force transition */
+@mixin page-shift($shift: $page-shift-duration) {
+  @include transition-delay(0 !important);
+  @include transition-duration($shift !important);
+}
+
+/* deal with shadow */
+@mixin drop-shadow {
+  @include box-shadow(0 15px 10px -10px rgba(0, 0, 0, 0.5),
+                      0 1px 4px rgba(0, 0, 0, 0.3),
+                      0 0 40px rgba(0, 0, 0, 0.1) inset);
+}
+
+@mixin base-shadow {
+  @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3),
+                      0 0 40px rgba(0, 0, 0, 0.1) inset);
+}
+
+/* display tooltip on right */
+@mixin tooltip-right {
+  &:after {
+    @include transparent;
+    @include single-transition(opacity, 150ms);
+    @include border-radius;
+    background: #444;
+    color: #ccc;
+    content: attr(tooltip);
+    padding: 5px 15px;
+    left: 100%;
+    top: 50%;
+    margin-top: -7px;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    word-wrap: break-word;
+    @include hyphens(auto);
+    width: 200%;
+    text-align: left;
+  }
+  &:hover:after {
+    @include opaque;
+  }
+  &:before {
+    @include transparent;
+    @include single-transition(opacity, 150ms);
+    width: 0;
+    height: 0;
+    border: solid;
+    border-color: transparent #444;
+    border-width: 6px 6px 6px 0;
+    left: 100%;
+    margin-left: -6px;
+    content: "";
+    top: 50%;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  &:hover:before {
+    @include opaque;
+  }
+}

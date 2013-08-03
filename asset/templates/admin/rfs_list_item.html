@@ -1,0 +1,34 @@
+<div role="listitem">
+    <div>
+        <div class="vote-column column">
+            <div class="static-text">{{rfs.vote_cnt_1}}</div>
+        </div>
+        <div class="film-column column">
+            <div class="static-text">{{rfs.film_1.title_en}}/{{rfs.film_1.title_ch}}</div>
+        </div>
+        <div class="vote-column column">
+            <div class="static-text">{{rfs.vote_cnt_2}}</div>
+        </div>
+        <div class="film-column column">
+            <div class="static-text">{{rfs.film_2.title_en}}/{{rfs.film_2.title_ch}}</div>
+        </div>
+        <div class="vote-column column">
+            <div class="static-text">{{rfs.vote_cnt_3}}</div>
+        </div>
+        <div class="film-column column">
+            <div class="static-text">{{rfs.film_3.title_en}}/{{rfs.film_3.title_ch}}</div>
+        </div>
+        <div class="state-column column">
+            <div class="static-text">{{rfs.state}}</div>
+        </div>
+        <div class="participants-column column">
+            <div class="static-text">{{rfs.participant_list.length}}</div>
+        </div>
+        <div class="column-button">
+            <button class="custom-appearance list-inline-button" control="edit">Edit</button>
+            <button class="custom-appearance list-inline-button" control="signin" {{rfs.state=='Pending'?'':'hidden'|safe}}>Sign In</button>
+            <button class="custom-appearance list-inline-button" control="viewlog">View Reated Log</button>
+            <button class="custom-appearance list-inline-button" control="delete">Delete</button>
+        </div>
+    </div>
+</div>

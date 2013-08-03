@@ -1,0 +1,26 @@
+<div id="disk-checkout-form" class="page-form">
+	<div>
+		<div>
+			<h3>Reseved Information</h3>
+			<div>Reseved By: {{disk.reserved_by?disk.reserved_by.full_name:'Nobody'}}</div>
+			<div>Student ID: {{disk.reserved_by?disk.reserved_by.student_id:'N/A'}}</div>
+			<div>ITSC: {{disk.reserved_by?disk.reserved_by.itsc:'N/A'}}</div>
+		</div>
+		<div class="multiline">
+			<label>
+				<span>Student ID: </span>
+				<input type="text" name="student_id" maxlength="8" placeholder="8 digits Student ID" value="{{disk.reserved_by?disk.reserved_by.student_id:''|attr}}" {{disk.avail_type==='Reserved'?'disabled':''|safe}}>
+			</label>
+			<label>
+				<span>University ID: </span>
+				<input type="text" name="university_id" maxlength="9" placeholder="9 digits, scannable" autofocus {{disk.avail_type==='Reserved'?'disabled':''|safe}}>
+			</label>
+			<div>Due At: {{due_at}}</div>
+		</div>
+		<input type="hidden" name="id" value="{{disk.reserved_by?disk.reserved_by.id:''|attr}}">
+	</div>
+	<div class="info" {{disk.category==='III'?'':'hidden'|safe}}>
+		<h3>Special Note</h3>
+		<div><b>This Disk is a Category III Movie. Check HKID before checking out.</b></div>
+	</div>
+</div>

@@ -1,0 +1,401 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+/*! 
+ * Main stylesheet of Film Society, HKUSTSU
+ * compiled using Compass 0.12
+ * Author: John Tan <johnmave126@gmail.com>
+ * All rights reserved.
+ */
+
+@import "compass/reset";
+@import "compass/layout";
+@import "compass/css3";
+@import "compass/css3/user-interface";
+@import "compass/css3/text-shadow";
+@import "compass/css3/opacity";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/typography";
+@import "constants";
+@import "animation";
+
+/* reset item focus style */
+a, button, input, select, textarea {
+  @include reset-focus;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Tahoma, Arial, '\5FAE\8F6F\96C5\9ED1', '\9ED1\4F53', sans-serif;
+  background-color: $light-grey;
+  @include user-select(none);
+}
+
+button.link, span.link, a {
+  background: transparent none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0 4px;
+  @include hover-link;
+  @include link-colors($link-color, $link-color, darken($link-color, 10%), $link-color, $link-color);
+  @include box-shadow(none);
+}
+
+.custom-select {
+  padding: 0.5em 2em 0.5em 0.5em;
+  background-color: $light-grey;
+  color: $black;
+  position: relative;
+  cursor: pointer;
+  @include border-radius(5px);
+  @include inline-block;
+  .custom-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 0.2em;
+    @include transparent;
+    @include single-transition(opacity, 150ms);
+    pointer-events: none;
+    & > div {
+      padding: 0.2em 0.5em;
+      border-top: 1px solid $dark-grey;
+      background-color: $light-grey;
+      @include single-transition(background-color, 150ms);
+      &:hover {
+        background-color: $orange;
+      }
+      &:first-child {
+       border: none;
+      }
+      &:last-child {
+        @include border-radius(0 0 5px 5px);
+      }
+    }
+  }
+  &:hover, &.hover{
+    .custom-options{
+      @include opaque;
+      pointer-events: all;
+    }
+  }
+  &:after {
+    content: "";
+    height: 0;
+    width: 0;
+    border: solid;
+    border-color: $black transparent;
+    border-width: 0.5em 0.5em 0 0.5em;
+    position: absolute;
+    right: 0.5em;
+    top: 0.75em;
+  }
+}
+
+.input-wrapper {
+  padding: 0.5em;
+  color: $black;
+  background-color: $light-grey;
+  @include border-radius(5px);
+  @include inline-block;
+  input[type='password'],
+  input[type='search'],
+  input[type='text'],
+  input[type='url'],
+  input[type='date'],
+  input:not([type]) {
+    @include reset-box-model;
+    @include box-shadow(none);
+    @include appearance(none);
+    @include border-radius(0);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $light-grey;
+    @include single-transition(border-color, 100ms);
+    &:focus {
+      border-color: darken($light-grey, 20%);
+    }
+  }
+}
+
+.textarea-wrapper {
+  padding: 0.5em;
+  color: $black;
+  background-color: $light-grey;
+  @include border-radius(5px);
+  margin: 0.5em 0;
+  display: block;
+  textarea {
+    @include reset-box-model;
+    @include box-shadow(none);
+    @include appearance(none);
+    @include border-radius(0);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $light-grey;
+    width: 100%;
+    @include single-transition(border-color, 100ms);
+    &:focus {
+      border-color: darken($light-grey, 20%);
+    }
+  }
+}
+
+.clear-button {
+  @include reset-box-model;
+  background: transparent;
+  color: $black;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 95%;
+  padding: 5px;
+  @include border-radius(3px);
+  @include single-transition(background-color, 200ms, linear);
+}
+
+.close-button {
+  background-image: inline-image('close-ori.png', image/png);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 14px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 14px;
+  z-index: 1;
+  cursor: pointer;
+  &:hover {
+    background-image: inline-image('close-hover.png', image/png);
+  }
+  &:active {
+    background-image: inline-image('close-active.png', image/png);
+  }
+}
+
+#onesentence {
+  @include inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1em;
+  text-align: right;
+  cursor: default;
+  z-index: 4;
+  span {
+    @include single-text-shadow(0px, 2px, 2px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $dark-grey;
+  }
+  &:after {
+    @include transparent;
+    @include single-transition(opacity, 150ms);
+    @include border-radius;
+    background: #444;
+    color: #ccc;
+    content: attr(tooltip);
+    font-style: italic;
+    padding: 5px 15px;
+    top: 26px;
+    right: 10%;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  &:hover:after {
+    @include opaque;
+  }
+  &:before {
+    @include transparent;
+    @include single-transition(opacity, 150ms);
+    width: 0;
+    height: 0;
+    border: solid;
+    border-color: #444 transparent;
+    border-width: 0 6px 6px 6px;
+    top: 20px;
+    content: "";
+    right: 30%;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  &:hover:before {
+    @include opaque;
+  }
+}
+
+#content-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: $footer-height;
+  top: $header-height;
+  $wrap-color: #222;
+
+  & > * {
+    @include portrait {display: none;}
+  }
+
+  &:before {
+    position:absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    content:"";
+    z-index: 3;
+    @include single-box-shadow($wrap-color, 0, 0, 18px);
+  }
+  .dummy-wrapper {
+    width: 100%;
+    height: 100%;
+    //Styling notfound page
+    @include center(".error-bubble") {
+      max-width: 60%;
+      background-color: $blue;
+      padding: 30px;
+      @include translateY(0);
+      @include single-transition(transform, $page-shift-duration, ease-out);
+      @include border-radius(5px);
+      cursor: default;
+
+      .oops {
+        color: $grey;
+        font-weight: bold;
+        font-size: 300%;
+        @include single-text-shadow(1px, 1px, 2px, false, darken($grey, 50%));
+      }
+      .error-text {
+        margin-top: 10px;
+        font-size: 130%;
+        color: $light-grey;
+        text-align: right;
+        q {
+          font-size: 80%;
+          color: lighten(black, 20%);
+          font-style: italic;
+        }
+      }
+
+      &:before {
+        width: 0;
+        height: 0;
+        border: solid;
+        border-color: $blue transparent;
+        border-width: 30px 30px 0 30px;
+        top: 100%;
+        content: "";
+        right: 10%;
+        position: absolute;
+        z-index: 1;
+        @include skewX(-50deg);
+      }
+    }
+  }
+  &.loading .error-bubble {
+    @include translateY(100%);
+  }
+}
+
+#orientation-wrapper {
+  display: none;
+  text-align: center;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  width: 60%;
+  height: 400px;
+  min-width: 120px;
+  margin-top: -200px;
+  font-size: 200%;
+  background-color: lighten($background, 5%);
+  border: 2px solid darken($background, 10%);
+  z-index: 20;
+  @include border-radius(5px);
+  @include portrait {display: block;}
+}
+
+.loading {
+  pointer-events: none;
+}
+
+@include keyframes(spinner-opacity) {
+  0% {
+    @include opacity(.25);
+  }
+  0.01% {
+    @include opacity(.25);
+  }
+  0.02% {
+    @include opacity(1);
+  }
+  10.01% {
+    @include opacity(.25);
+  }
+  100% {
+    @include opacity(.25);
+  }
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  $duration: 1.6s;
+  & > div {
+    //Needle
+    position: absolute;
+    top: -2px;
+    @include opacity(.25);
+    @include animation(spinner-opacity $duration linear infinite);
+    div {
+      position: absolute;
+      width: 12px;
+      height: 6px;
+      @include transform-origin(0%, 50%);
+      @include border-radius(4px);
+
+      &:nth-child(1) {
+        top: 4px;
+        background-color: rgb(0, 0, 0);
+        @include single-box-shadow(rgb(0, 0, 0), 0px, 0px, 4px);
+      }
+
+      &:nth-child(2) {
+        background-color: rgb(100, 100, 100);
+        @include single-box-shadow(rgba(0, 0, 0, 0.0980392), 0px, 0px, 1px);
+      }
+    }
+  }
+  //Generate 8 needles
+  @for $i from 0 to 8 {
+    .item-#{$i} {
+      @include animation-delay($i * $duration / 8);
+      div {
+        @include simple-transform(false, $i * 45deg, 9px);
+      }
+    }
+    $i: $i + 1;
+  }
+}
+
+/* Imports */
+@import "navigation";
+@import "header";
+@import "dvd_library";
+@import "regular_film_show";

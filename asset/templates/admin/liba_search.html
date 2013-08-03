@@ -1,0 +1,50 @@
+<div class="liba-search-view">
+    <header>
+        <h1>VCD/DVD Library Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Disk..." value="{{query|attr}}" tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="liba-create-disk">Create Disk</button>
+            <button id="liba-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="cover-column column">
+                </div>
+                <div class="callnumber-column column">
+                    <div class="static-text">CN</div>
+                </div>
+                <div class="name-column column">
+                    <div class="static-text">Name</div>
+                </div>
+                <div class="year-column column">
+                    <div class="static-text">Year</div>
+                </div>
+                <div class="availability-column column">
+                    <div class="static-text">Availability</div>
+                </div>
+                <div class="holder-column column">
+                    <div class="static-text">Holder</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="liba-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

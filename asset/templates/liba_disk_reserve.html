@@ -1,0 +1,42 @@
+<div class="library-disk-reserve">
+	<div class="reserve-warning" {{disk.category==='III'?'':'hidden'}}>
+		This film is a <b>Category III</b> film. We will need to check your <b>HK Identity Card</b> to ensure your are over <b>18 years old</b> when checking out.
+	</div>
+	<div class="reserve-delivery">
+		<h2>Deliver the Disk</h2>
+		<div class="input custom-select" name="hall">
+			<span class="default">Select Hall</span>
+			<div class="custom-options">
+				<div value="1">Hall I</div>
+				<div value="2">Hall II</div>
+				<div value="3">Hall III</div>
+				<div value="4">Hall IV</div>
+				<div value="5">Hall V</div>
+				<div value="6">Hall VI</div>
+				<div value="7">Hall VII</div>
+				<div value="8">Hall VIII</div>
+				<div value="9">Hall IX</div>
+			</div>
+		</div>
+		<div class="input-wrapper">
+			<input type="text" placeholder="Room Number..." name="room" maxlength="4">
+		</div>
+		<div>
+			<div class="textarea-wrapper">
+				<textarea name="remarks" placeholder="Please leave here anything you would like us to know. e.g. Preferred time, Alternative location, etc.." rows="3"></textarea>
+			</div>
+		</div>
+		<div class="reserve-action">
+			<button class="clear-button" controls="deliver">Request Delivery</button>
+		</div>
+	</div>
+	<div class="reserve-counter">
+		<h2>Or Retrieve at Counter</h2>
+		<div class="reserve-tips">
+			We have counter 17:00-18:30 at LG5 on weekdays. You can retrieve your disk during such time. Please note that your reservation will only be kept for <b>Two Days</b>.
+		</div>
+		<div class="reserve-action">
+			<button class="clear-button" controls="reserve">Reserve</button>
+		</div>
+	</div>
+</div>

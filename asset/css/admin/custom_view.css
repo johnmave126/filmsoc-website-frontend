@@ -1,0 +1,298 @@
+#main-container list > * {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  min-height: 27px;
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+
+#main-container list div[role="listitem"] > div {
+  padding: 0 5px;
+}
+
+#main-container .controls .column {
+  display: inline-block;
+  padding-right: 1px;
+}
+
+/* Member */
+#main-container .user-list-view .content {
+  margin-top: 188px;
+}
+
+#main-container .user-search-view .content {
+  margin-top: 146px;
+}
+
+#main-container .user-list-view .name-column,
+#main-container .user-search-view .name-column {
+  width: 30%;
+}
+
+#main-container .user-list-view .itsc-column,
+#main-container .user-list-view .type-column,
+#main-container .user-list-view .stuid-column,
+#main-container .user-list-view .mobile-column,
+#main-container .user-search-view .itsc-column,
+#main-container .user-search-view .type-column,
+#main-container .user-search-view .stuid-column,
+#main-container .user-search-view .mobile-column {
+  width: 15%;
+}
+
+#main-container .user-list-view .pennalize-column,
+#main-container .user-search-view .pennalize-column {
+  width: 5%;
+}
+
+/* Regular Film Show */
+#main-container .rfs-view .content {
+  margin-top: 188px;
+}
+
+#main-container .rfs-view .film-column {
+  width: 20%;
+}
+
+#main-container .rfs-view .vote-column,
+#main-container .rfs-view .state-column {
+  width: 5%;
+}
+
+#main-container .rfs-view list .vote-column {
+  text-align: right;
+}
+
+#main-container .rfs-view .participants-column {
+  width: 10%;
+}
+
+/* DVD Liba */
+#main-container .liba-list-view .content {
+  margin-top: 188px;
+}
+
+#main-container .liba-search-view .content {
+  margin-top: 146px;
+}
+
+#main-container .liba-list-view .cover-column,
+#main-container .liba-search-view .cover-column,
+#main-container .liba-list-view .callnumber-column,
+#main-container .liba-search-view .callnumber-column,
+#main-container .liba-list-view .year-column,
+#main-container .liba-search-view .year-column,
+#main-container .liba-list-view .holder-column,
+#main-container .liba-search-view .holder-column {
+  width: 7%;
+}
+
+#main-container .liba-list-view .cover-column img,
+#main-container .liba-search-view .cover-column img {
+  width: 100%;
+  vertical-align: middle;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#main-container .liba-list-view .name-column,
+#main-container .liba-search-view .name-column {
+  width: 50%;
+}
+
+#main-container .liba-list-view .availability-column,
+#main-container .liba-search-view .availability-column {
+  width: 10%;
+}
+
+.page-form .disk-side-edit {
+  min-width: 300px;
+}
+
+#disk-edit-form input[name="imdb_url"] {
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  padding-bottom: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
+#disk-edit-form input[name="imdb_url"]:focus {
+  border-color: #555;
+}
+
+#disk-edit-form input[name="length"] {
+  min-width: 170px;
+}
+
+#disk-edit-form input[name="actors"] {
+  min-width: 250px;
+}
+
+#disk-edit-form div.single-table > div > * {
+  width: 50%;
+}
+
+/* Disk Review */
+#main-container .review-view .content {
+  margin-top: 146px;
+}
+
+#main-container .review-view .disk-column {
+  width: 6%;
+}
+
+#main-container .review-view .user-column {
+  width: 10%;
+}
+
+#main-container .review-view .content-column {
+  width: 80%;
+  overflow: hidden;
+  white-space: normal;
+}
+
+/* One Sentence */
+#main-container .ons-view .content {
+  margin-top: 146px;
+}
+
+#main-container .ons-view .film-column {
+  width: 30%;
+}
+
+#main-container .ons-view .content-column {
+  width: 60%;
+}
+
+/* SiteSettings */
+.front-drop {
+  min-width: 400px;
+  text-align: center;
+}
+
+.front-drop .cover-container {
+  min-height: 200px;
+}
+
+.front-drop .drag-notifier {
+  left: 50%;
+  top: 50%;
+}
+
+#main-container .settings-view .content {
+  margin-top: 53px;
+}
+
+#main-container .settings-view section > * {
+  padding: 0.7em;
+}
+
+/* Other */
+.page-form > div,
+.page-form > div.single-table > div {
+  display: table-row;
+  width: 100%;
+}
+
+.page-form > div > *,
+.page-form > div.single-table > div > * {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0.7em;
+}
+
+.page-form > div.single-table {
+  display: table;
+}
+
+.page-form > div.nocell {
+  display: block;
+}
+
+.page-form > div.nocell > * {
+  display: block;
+}
+
+.page-form label > span,
+.page-form label > div {
+  min-width: 140px;
+}
+
+.page-form textarea {
+  resize: none;
+  min-width: 100%;
+}
+
+.page-form .info {
+  display: block;
+}
+
+.page-form .info > div {
+  display: block;
+  padding: 4px 0;
+}
+
+.page-form .multiline > * {
+  display: block;
+  padding-bottom: 0.7em;
+}
+
+.cover-container > img {
+  width: 100%;
+}
+
+.drag-notifier {
+  position: absolute;
+  border: 1px solid #888;
+  background-color: #eee;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  min-width: 100px;
+  font-size: 30px;
+}
+
+.progressbar-track {
+  height: 1em;
+  min-width: 80px;
+  display: inline-block;
+  border: 1px solid #bbb;
+}
+
+.progressbar-bar {
+  height: 100%;
+  background-color: #6787e3;
+}
+
+.progressbar-progress {
+  font-weight: bold;
+}
+
+.cover-container {
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+}
+
+.cover-drop {
+  min-width: 200px;
+  text-align: center;
+}
+
+.cover-drop .drag-notifier {
+  margin-top: -150px;
+  margin-left: 50px;
+}

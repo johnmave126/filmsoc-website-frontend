@@ -1,0 +1,342 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* Modified by John Tan 2013. Film Society, HKUSTSU */
+
+/* The shield that overlays the background. */
+.overlay {
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-flex-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -moz-flex-pack: center;
+  box-pack: center;
+  -webkit-transition: 200ms opacity;
+  -moz-transition: 200ms opacity;
+  -o-transition: 200ms opacity;
+  -ms-transition: 200ms opacity;
+  transition: 200ms opacity;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.75);
+  bottom: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex-box;
+  left: 0;
+  overflow: auto;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  font-size: 75%;
+}
+
+/* Used to slide in the overlay. */
+.overlay.transparent {
+  -webkit-animation-duration: 200ms;
+  animation-duration: 200ms;
+
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+
+  -webkit-animation-name: hideoverlay;
+  -moz-animation-name: hideoverlay;
+  -ms-animation-name: hideoverlay;
+  -o-animation-name: hideoverlay;
+  animation-name: hideoverlay;
+}
+
+/* keyframes used to hide the overlay */
+@-webkit-keyframes hideoverlay {
+ 0% {
+  opacity: 1;
+ }
+ 100% {
+  opacity: 0;
+ }
+}
+
+/* keyframes used to hide the overlay */
+@keyframes hideoverlay {
+ 0% {
+  opacity: 1;
+ }
+ 100% {
+  opacity: 0;
+ }
+}
+
+/* Used to slide in the overlay. */
+.overlay.transparent .page {
+  /* TODO(flackr): Add perspective(500px) rotateX(5deg) when accelerated
+  * compositing is enabled on chrome:// pages. See http://crbug.com/116800. */
+  -webkit-transform: scale(0.99) translateY(-20px);
+  -moz-transform: scale(0.99) translateY(-20px);
+  -o-transform: scale(0.99) translateY(-20px);
+  -ms-transform: scale(0.99) translateY(-20px);
+  transform: scale(0.99) translateY(-20px);
+}
+
+/* The foreground dialog. */
+.overlay .page {
+  border-radius: 3px;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-flex-orient: vertical;
+  box-orient: vertical;
+  -webkit-transition: 200ms -webkit-transform;
+  -moz-transition: 200ms -moz-transform;
+  -o-transition: 200ms -o-transform;
+  -ms-transition: 200ms -ms-transform;
+  transition: 200ms transform;
+  background: white;
+  box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0,0,0,0.15);
+  color: #333;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex-box;
+  min-width: 400px;
+  padding: 0;
+  position: relative;
+  z-index: 0;
+}
+
+/* If the options page is loading don't do the transition. */
+.loading .overlay,
+.loading .overlay .page {
+  -webkit-transition-duration: 0 !important;
+  -moz-transition-duration: 0 !important;
+  -o-transition-duration: 0 !important;
+  -ms-transition-duration: 0 !important;
+  transition-duration: 0 !important;
+}
+
+/* keyframes used to pulse the overlay */
+@-webkit-keyframes pulse {
+ 0% {
+   -webkit-transform: scale(1);
+ }
+ 40% {
+   -webkit-transform: scale(1.02);
+  }
+ 60% {
+   -webkit-transform: scale(1.02);
+  }
+ 100% {
+   -webkit-transform: scale(1);
+ }
+}
+
+/* keyframes used to pulse the overlay */
+@keyframes pulse {
+0% {
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+ 40% {
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+ }
+ 60% {
+    -moz-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+ }
+ 100% {
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+ }
+}
+
+.overlay .page.pulse {
+  -webkit-animation-duration: 180ms;
+  animation-duration: 180ms;
+
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+
+  -webkit-animation-name: pulse;
+  -moz-animation-name: pulse;
+  -ms-animation-name: pulse;
+  -o-animation-name: pulse;
+  animation-name: pulse;
+
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+  -o-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+
+.overlay .page > .close-button {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAUklEQVR4XqXPYQrAIAhAYW/gXd8NJxTopVqsGEhtf+L9/ERU2k/HSMFQpKcYJeNFI9Be0LCMij8cYyjj5EHIivGBkwLfrbX3IF8PqumVmnDpEG+eDsKibPG2JwAAAABJRU5ErkJggg==');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 14px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 14px;
+  z-index: 1;
+}
+
+.overlay .page > .close-button:hover {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAnUlEQVR4XoWQQQ6CQAxFewjkJkMCyXgJPMk7AiYczyBeZEAX6AKctGIaN+bt+trk9wtGQc/IkhnoKGxqqiWxOSZalapWFZ6VrIUDExsN0a5JRBq9LoVOR0eEQMoEhKizXhhsn0p1sCWVo7CwOf1RytPL8CPvwuBUoHL6ugeK30CVD1TqK7V/hdpe+VNChhOzV8xWny/+xosHF8578W/Hmc1OOC3wmwAAAABJRU5ErkJggg==');
+}
+
+.overlay .page > .close-button:active {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAnElEQVR4Xn2QQQqDQAxFcwjrQR6MoDC9hD2RBY9XrL3IaLuwXWg1BgldlLfLS0LyBYWMlp5ppaMh26uqqEksjoFapapZhWfetHBiYKEi2nQiUul0LjRaOiME0kpAiFprhc76C9Vhb1LZCxOL06aUt5fhRz6PtbawcPpuBxGPgwp/UK6vlP4VSnvlfwgbF0avGC0+F/yDDy9uXLHgv9HQnE67Dt6aAAAAAElFTkSuQmCC');
+}
+
+.overlay .page h1 {
+  padding-bottom: 24px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #333;
+  /* 120% of the body's font-size of 84% is 16px. This will keep the relative
+  * size between the body and these titles consistent. */
+  font-size: 120%;
+  /* TODO(flackr): Pages like sync-setup and delete user collapse the margin
+  * above the top of the page. Use padding instead to make sure that the
+  * headers of these pages have the correct spacing, but this should not be
+  * necessary. See http://crbug.com/119029. */
+  margin: 0;
+  padding: 14px 17px 14px;
+  text-shadow: white 0 1px 2px;
+}
+
+.overlay .page .content-area {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  box-flex: 1;
+  overflow: auto;
+  padding: 6px 17px 6px;
+  position: relative;
+}
+
+.overlay .page .action-area {
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-flex-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -moz-flex-pack: end;
+  box-pack: end;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex-box;
+  padding: 14px 17px;
+}
+
+.overlay .page .action-area-right {
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex-box;
+}
+
+.overlay .page .button-strip {
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-flex-orient: horizontal;
+  box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex-box;
+}
+
+.overlay .page .button-strip > button {
+  margin-left: 10px;
+  display: block;
+}
+
+.overlay .page .button-strip > .default-button:not(:focus) {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay .page.hiding {
+  display: block !important;
+  -webkit-animation-duration: 180ms;
+  animation-duration: 180ms;
+
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+
+  -webkit-animation-name: hiding;
+  -moz-animation-name: hiding;
+  -ms-animation-name: hiding;
+  -o-animation-name: hiding;
+  animation-name: hiding;
+
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+  -o-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+/* keyframes used to hide the overlay */
+@-webkit-keyframes hiding {
+ 0% {
+  -webkit-transform: scale(1);
+  opacity: 1;
+ }
+ 100% {
+  -webkit-transform: scale(0.8);
+  opacity: .8;
+ }
+}
+
+/* keyframes used to hide the overlay */
+@keyframes hiding {
+0% {
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+ 100% {
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: .8;
+ }
+}
+
+/* On OSX 10.7, hidden scrollbars may prevent the user from realizing that the
+ * overlay contains scrollable content. To resolve this, style the scrollbars on
+ * OSX so they are always visible. See http://crbug.com/123010. */
+

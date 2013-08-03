@@ -1,0 +1,18 @@
+<div class="list-item">
+	<div class="disk-wrapper">
+		<div class="disk-cover">
+			<div class="disk-cover-border">
+			</div>
+		</div>
+		<div class="disk-info">
+			<div class="disk-title">
+				{{disk.title_en}}<br>
+				{{disk.title_ch}}
+			</div>
+			<div class="disk-state {{disk.avail_type|attr}}">
+				{{disk.avail_type=="ReservedCounter"?"Reserved":disk.avail_type}}
+			</div>
+			<button class="disk-detail-button">View Detail</button>
+		</div>
+	</div>
+</div>

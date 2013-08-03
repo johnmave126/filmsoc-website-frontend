@@ -1,0 +1,30 @@
+<div role="listitem">
+    <div>
+        <div class="cover-column column">
+            <img src="../asset/css/square.png" alt="">
+        </div>
+        <div class="callnumber-column column">
+            <div class="static-text">{{cn}}</div>
+        </div>
+        <div class="name-column column">
+            <div class="static-text">{{disk.title_en}}/{{disk.title_ch}}</div>
+        </div>
+        <div class="year-column column">
+            <div class="static-text">{{disk.show_year}}</div>
+        </div>
+        <div class="availability-column column">
+            <div class="static-text">{{disk.avail_type}}</div>
+        </div>
+        <div class="holder-column column">
+            <div class="static-text">{{if(disk.hold_by)disk.hold_by.itsc;else if(disk.reserved_by)disk.reserved_by.itsc;}}</div>
+        </div>
+        <div class="column-button">
+            <button class="custom-appearance list-inline-button" control="edit">Edit</button>
+            <button class="custom-appearance list-inline-button" control="checkout" {{if(disk.avail_type!=='Available'&&disk.avail_type!=='Reserved'&&disk.avail_type!=='ReservedCounter')'hidden';|safe}}>Check Out</button>
+            <button class="custom-appearance list-inline-button" control="checkin" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Check In</button>
+            <button class="custom-appearance list-inline-button" control="renew" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Renew</button>
+            <button class="custom-appearance list-inline-button" control="viewlog">View Reated Log</button>
+            <button class="custom-appearance list-inline-button" control="delete">Delete</button>
+        </div>
+    </div>
+</div>

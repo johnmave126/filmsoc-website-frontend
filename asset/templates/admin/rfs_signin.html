@@ -1,0 +1,19 @@
+<div id="rfs-signin-form" class="page-form">
+	<div>
+		<div class="multiline">
+			<label>
+				<span>Student ID: </span>
+				<input type="text" name="student_id" maxlength="8" placeholder="8 digits Student ID">
+			</label>
+			<label>
+				<span>University ID: </span>
+				<input type="text" name="university_id" maxlength="9" placeholder="9 digits, scannable" autofocus>
+			</label>
+		</div>
+		<input type="hidden" name="id">
+	</div>
+	<div class="info" {{toshow.category==='III'?'':'hidden'|safe}}>
+		<h3>Special Note</h3>
+		<div><b>The film to show is a Category III Movie. Check HKID before signing in.</b></div>
+	</div>
+</div>

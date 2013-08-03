@@ -1,0 +1,40 @@
+#notfound-wrapper {
+  overflow: hidden;
+  text-align: center;
+  margin-top: 200px;
+}
+
+#notfound-box {
+  margin: auto;
+  max-width: 540px;
+  min-width: 200px;
+  background-color: #fbfbfb;
+  border: 1px solid #AAA;
+  border-bottom: 1px solid #888;
+  border-radius: 3px;
+  color: black;
+  box-shadow: 0px 2px 2px #AAA;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#notfound-content {
+  margin: 20px 20px 20px 25px;
+}
+
+#notfound-box h1 {
+  color: #666;
+  margin: 10px 0px 25px 0px;
+  font-weight: normal;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.notfound-img {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAWUlEQVRo3u3U0Q0AERRFQT2+/mvZLQEhm8vOJP6IQ0JrAABkqapndgjfET4zJ+IAvwqPOMDIbR4fHvVYrwn/aq1w4cIXNu/9HsJ3hY+GCvc4TwpfGcIBAIK87I1OwILpQqsAAAAASUVORK5CYII=');
+  width: 46px;
+  height: 46px;
+  margin: auto;
+}

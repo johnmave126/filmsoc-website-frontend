@@ -1,0 +1,204 @@
+/*
+ * Declare style of Regular Film Show.
+ */
+
+#content-wrapper {
+	.rfs-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .rfs-content-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .rfs-show {
+        width: 90%;
+        margin: 0 5%;
+        height: 100%;
+
+        .rfs-film-strip {
+          position: relative;
+          float: left;
+          margin-right: 1%;
+          margin-top: 0;
+          width: 20%;
+          height: 100%;
+          padding: 1em 2em;
+          background-color: darken($dark-grey, 20%);
+          color: white;
+          @include base-shadow;
+          @include box-sizing(border-box);
+          @include single-transition(margin-top, $page-shift-duration);
+
+          .vote-bar {
+            position: absolute;
+            bottom: 0;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: $green;
+            @include single-transition(top, 400ms, ease-out, $page-shift-duration + 300ms);
+          }
+
+          .rfs-cover {
+            cursor: pointer;
+            position: absolute;
+            top: 1em;
+            left: 2em;
+            right: 2em;
+            bottom: 5em;
+            overflow: hidden;
+            background-size: cover;
+            &:before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              @include background-image(linear-gradient(top, 
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 38.2%,
+                rgba(0, 0, 0, 0.8) 100%
+              ));
+              z-index: 1;
+            }
+            .rfs-cover-title {
+              position: absolute;
+              bottom: 1em;
+              text-align: right;
+              right: 0.2em;
+              z-index: 2;
+            }
+          }
+
+          .rfs-bottom {
+            padding: 0.5em;
+            position: absolute;
+            overflow: hidden;
+            height: 4em;
+            bottom: 1em;
+            left: 2em;
+            right: 2em;
+            text-align: center;
+            @include box-sizing(border-box);
+
+            .rfs-vote-num {
+              font-size: 1.3em;
+              font-weight: bold;
+            }
+            .rfs-vote-button {
+              background-color: $blue;
+              margin-top: 0.3em;
+              width: 50%;
+              &:hover, &:active {
+                background-color: lighten($blue, 10%);
+              }
+            }
+          }
+        }
+
+        &.Pending {
+          .rfs-film-strip .vote-bar {
+            display: none;
+          }
+
+          .rfs-film-strip.Onshow {
+            background-color: $green;
+          }
+
+          .rfs-film-strip:not(.Onshow) {
+            @include scale(0.9);
+            background-color: $red;
+
+            &:before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              background-color: rgba(0, 0, 0, .5);
+              z-index: 3;
+              pointer-events: none;
+            }
+          }
+        }
+
+        .info-tab {
+          overflow: hidden;
+          height: 100%;
+          margin-top: 0;
+          padding: 1em;
+          background-color: darken($dark-grey, 20%);
+          color: white;
+          @include base-shadow;
+          @include single-text-shadow(0, 1px, 2px, false, $black);
+          @include box-sizing(border-box);
+          @include single-transition(margin-top, $page-shift-duration);
+          & > div[selected] {
+            display: block;
+          }
+          & > div:not([selected]) {
+            display: none;
+          }
+          p {
+            line-height: 1.3em;
+            padding: 0.5em 0;
+          }
+          h1 {
+            font-size: 1.5em;
+            padding-bottom: 0.5em;
+          }
+          h2 {
+            font-size: 1.2em;
+            padding-top: 0.2em;
+          }
+
+          .warning {
+            color: $black;
+            background-color: $orange;
+            padding: 0.5em 1em;
+            @include border-radius(3px);
+            b {
+              color: red;
+              font-weight: bold;
+            }
+          }
+
+          .rfs-film-info {
+            .year, .key {
+              color: $light-grey;
+            }
+            & > div {
+              margin-bottom: 0.3em;
+            }
+            p {
+              padding: 0.2em 0;
+            }
+          }
+        }
+      }
+    }
+
+    & > .spinner {
+      display: none;
+    }
+    &.loading {
+      & > .spinner {
+        display: block;
+      }
+
+      .rfs-content-wrapper .rfs-show {
+        .rfs-film-strip, .info-tab {
+          margin-top: 100%;
+        }
+      }
+    }
+  }
+  &.loading .rfs-wrapper .rfs-content-wrapper .rfs-show {
+    .rfs-film-strip, .info-tab {
+      margin-top: 100% !important;
+      @include page-shift;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div role="listitem" class="loading" tooltip="{{log.created_at}}">
+    <div>
+        <div class="model-column column">
+            <div class="static-text">{{log.model}}</div>
+        </div>
+        <div class="ref-id-column column">
+            <div class="static-text">{{log.model_refer}}</div>
+        </div>
+        <div class="type-column column">
+            <div class="static-text">{{log.Type}}</div>
+        </div>
+        <div class="user-column column">
+            <div class="static-text">{{log.user_affected?log.user_affected.itsc:'null'}}</div>
+        </div>
+        <div class="admin-column column">
+            <div class="static-text">{{log.admin_involved?log.admin_involved.itsc:'null'}}</div>
+        </div>
+        <div class="content-column column">
+            <div class="static-text">{{log.content|nowrap}}</div>
+        </div>
+    </div>
+</div>

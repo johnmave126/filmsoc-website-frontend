@@ -17,3 +17,7 @@ pickle-email-*.html
 
 #sublime-text 2
 *.sublime*
+sftp-config.json
+
+#project
+A_LETTER_TO_HACKER

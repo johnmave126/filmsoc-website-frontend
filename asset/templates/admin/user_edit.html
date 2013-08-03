@@ -1,0 +1,63 @@
+<div id="user-edit-form" class="page-form">
+	<div>
+		<label>
+			<span>Full Name:</span>
+			<input type="text" disabled name="full_name" value="{{user.full_name|attr}}">
+		</label>
+		<label>
+			<span>ITSC:</span>
+			<input type="text" name="itsc" value="{{user.itsc|attr}}" spellcheck="false" autocomplete="off">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Student ID:</span>
+			<input type="text" name="student_id" value="{{user.student_id|attr}}" maxlength="8" placeholder="8 digits">
+		</label>
+		<label>
+			<span>University ID:</span>
+			<input type="text" name="university_id" value="{{user.university_id|attr}}" maxlength="9" placeholder="9 digits, scannable">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Mobile:</span>
+			<input type="text" name="mobile" value="{{user.mobile|attr}}" maxlength="8" placeholder="8 digits, HK mobile">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Member Type:</span>
+			<select name="member_type">
+				<option value="Full" {{user.member_type=='Full'?'selected':''|safe}}>Full Member</option>
+				<option value="OneSem" {{user.member_type=='OneSem'?'selected':''|safe}}>One Semester</option>
+				<option value="OneYear" {{user.member_type=='OneYear'?'selected':''|safe}}>One Year</option>
+				<option value="TwoYear" {{user.member_type=='TwoYear'?'selected':''|safe}}>Two Year</option>
+				<option value="ThreeYear" {{user.member_type=='ThreeYear'?'selected':''|safe}}>Three Year</option>
+				<option value="Honour" {{user.member_type=='Honour'?'selected':''|safe}}>Honour Member</option>
+				<option value="Assoc" {{user.member_type=='Assoc'?'selected':''|safe}}>Associate Member</option>
+				<option value="Assoc" {{user.member_type=='Expired'?'selected':''|safe}}>Expired</option>
+			</select>
+		</label>
+		<label>
+			<span>Expire At:</span>
+			<input type="date" name="expire_at" value="{{user.expire_at|attr}}">
+		</label>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" name="pennalized" {{user.pennalized?'checked':''|safe}}>
+			<span>Pennalized</span>
+		</label>
+		<label>
+			<input type="checkbox" name="admin" {{user.admin?'checked':''|safe}}>
+			<span>Admin</span>
+		</label>
+	</div>
+	<div class="info">
+		<h3>Miscellaneous User Info</h3>
+		<div>Login count: {{user.login_count}}</div>
+		<div>Regular Film Show count: {{user.rfs_count}}</div>
+		<div>Created At: {{user.join_at}}</div>
+	</div>
+</div>

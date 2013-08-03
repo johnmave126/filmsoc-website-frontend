@@ -1,0 +1,48 @@
+<div id="user-create-form" class="page-form">
+	<div>
+		<label>
+			<span>ITSC:</span>
+			<input type="text" name="itsc" spellcheck="false" autocomplete="off">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Student ID:</span>
+			<input type="text" name="student_id" maxlength="8" placeholder="8 digits">
+		</label>
+		<label>
+			<span>University ID:</span>
+			<input type="text" name="university_id" maxlength="9" placeholder="9 digits, scannable">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Mobile:</span>
+			<input type="text" name="mobile" maxlength="8" placeholder="8 digits, HK mobile">
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Member Type:</span>
+			<select name="member_type">
+				<option value="Full" selected>Full Member</option>
+				<option value="OneSem">One Semester</option>
+				<option value="OneYear">One Year</option>
+				<option value="TwoYear">Two Year</option>
+				<option value="ThreeYear">Three Year</option>
+				<option value="Honour">Honour Member</option>
+				<option value="Assoc">Associate Member</option>
+			</select>
+		</label>
+		<label>
+			<span>Expire At:</span>
+			<input type="date" name="expire_at" value="{{((new Date).getFullYear()+4)+'-09-01'|attr}}">
+		</label>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" name="admin">
+			<span>Admin</span>
+		</label>
+	</div>
+</div>

@@ -1,0 +1,942 @@
+/*
+ * Declare style of DVD library.
+ */
+
+$left-panel-width: 300px;
+
+#content-wrapper {
+  .library-wrapper {
+  	width: 100%;
+    height: 100%;
+
+
+    .disk-state {
+      font-weight: bold;
+      &.Available {
+        color: $green;
+        &.darken-state {
+          color: darken($green, 20%);
+        }
+      }
+      &.Reserved, &.ReservedCounter {
+        color: $blue;
+        &.darken-state {
+          color: darken($blue, 20%);
+        }
+      }
+      &.Borrowed {
+        color: $red;
+        &.darken-state {
+          color: darken($red, 20%);
+        }
+      }
+      &.Onshow, &.Voting {
+        color: $purple;
+        &.darken-state {
+          color: darken($purple, 20%);
+        }
+      }
+      &.Draft {
+        color: $light-grey;
+        &.darken-state {
+          color: darken($grey, 20%);
+        }
+      }
+    }
+
+    .left-panel {
+      float: left;
+      width: $left-panel-width;
+      height: 100%;
+      background: inline-image('ntlPtrn.jpg', image/jpeg);
+      text-align: center;
+      @include translateX(0);
+      @include single-transition(transform, $page-shift-duration);
+      
+      $padding-length: 10px;
+      .wrapper {
+        position: absolute;
+        top: 28px;
+        bottom: 0;
+        $parent-padding: 18px;
+        left: $parent-padding;
+        right: $parent-padding;
+        $actual-width: $left-panel-width - 2 * $parent-padding;
+        & > * {
+          text-align: left;
+          padding: $padding-length;
+          width: $actual-width - 2 * $padding-length ;
+          @include border-radius(5px);
+        }
+
+        .library-search {
+          margin-top: 14px;
+          height: 30px;
+          background-color: $background;
+          line-height: 30px;
+
+          input[name="search_term"] {
+            @include reset-box-model;
+            @include box-shadow(none);
+            @include appearance(none);
+            @include border-radius(0);
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            width: $actual-width - 2 * $padding-length - 30px;
+            border-bottom: 1px solid $background;
+            @include single-transition(border-color, 100ms);
+            &:focus {
+              border-color: darken($background, 20%);
+            }
+          }
+
+          button.search_button {
+            @include reset-box-model;
+            vertical-align: middle;
+            background-color: transparent;
+            background-image: inline-image('sb1.png', image/png);
+            background-repeat: no-repeat;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            &:hover {
+              background-image: inline-image('sb2.png', image/png);
+            }
+            &:active {
+              background-image: inline-image('sb3.png', image/png);
+            }
+          }
+
+
+          .search-suggestion {
+            position: absolute;
+            left: 0;
+            right: 0;
+            background-color: $grey;
+            border: 1px solid $grey;
+            z-index: 1;
+            color: white;
+            @include border-radius(5px);
+            .suggest-item {
+              display: block;
+              margin: 7px;
+              cursor: pointer;
+              background-color: darken($grey, 20%);
+              padding-bottom: 22%;
+              @include opacity(1);
+              @include border-radius(3px);
+              @include transition(background-color 150ms, margin-top 150ms ease-out, opacity, 150ms);
+              &.selected {
+                background-color: $orange;
+              }
+              &.loading {
+                margin-top: -20px;
+                @include opacity(0);
+              }
+
+              .item-cover {
+                position: absolute;
+                width: 18%;
+                margin-left: 5px;
+                margin-top: 1%;
+                padding-bottom: 20%;
+                background: transparent;
+                background-size: cover;
+                background-position: center center;
+                @include inline-block;
+              }
+              .item-info {
+                position: absolute;
+                left: 25%;
+                right: 5px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                line-height: normal;
+                overflow: hidden;
+                q {
+                  color: $light-grey;
+                  font-size: 80%;
+                }
+              }
+            }
+          }
+        }
+
+        .search-tips {
+          margin-top: 5px;
+          margin-bottom: 15px;
+          background-color: $green;
+          color: lighten(black, 30%);
+          cursor: default;
+          u {
+            text-decoration: underline;
+            cursor: auto;
+            @include user-select(text);
+          }
+          &:focus {
+            background-color: $blue;
+          }
+        }
+
+        .library-button {
+          margin-top: 10px;
+          border: none;
+          background-color: darken($dark-grey, 20%);
+          cursor: pointer;
+          height: 12%;
+          min-height: 50px;
+          overflow: hidden;
+          text-align: right;
+          font-size: x-large;
+          color: $light-grey;
+          background-image: inline-image('pin.png', image/png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-origin: content-box;
+          /* hack width */
+          width: $actual-width;
+          @include transition(background-color 120ms, opacity 250ms);
+          opacity: 1;
+          &:nth-of-type(1) {
+            @include transition-delay(0ms, 350ms);
+          }
+          &:nth-of-type(2) {
+            @include transition-delay(0ms, 150ms);
+          }
+          &:nth-of-type(3) {
+            @include transition-delay(0ms, 250ms);
+          }
+
+          &:hover {
+            background-color: darken($dark-grey, 10%);
+          }
+        }
+      }
+    }
+    .right-panel {
+      overflow: hidden;
+      height: 100%;
+      position: relative;
+      $panel-switch: 200ms;
+
+      .library-list {
+        width: 100%;
+        height: 100%;
+        $shift-duration: 300ms;
+
+        .list-item-wrapper {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 8%;
+          right: 8%;
+
+          .list-item {
+            position: absolute;
+            $t: 100%;
+            width: $t/3;
+            height: $t/2;
+            @include translateX(0);
+            @include single-transition(transform, $shift-duration, ease-out);
+
+            @include center(".disk-wrapper") {
+              height: 0;
+              width: 80%;
+              padding-bottom: 80%;
+              @media all and (min-aspect-ratio: 2/1) {
+                width: 70%;
+                padding-bottom: 70%;
+              }
+              margin-left: 10%;
+              position: relative;
+              $flip-duration: 400ms;
+              @include transform-style(preserve-3d);
+              @include perspective(1700px);
+              @include drop-shadow;
+              .disk-cover {
+                position: absolute;
+                left: 5%;
+                margin-top: 5%;
+                width: 90%;
+                height: 0;
+                padding-bottom: 90%;
+                @include transition-property(left, margin-top, width, padding-bottom);
+                @include transition-duration($flip-duration);
+                @include transition-timing-function(ease-out);
+                .disk-cover-border {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  top: 0;
+                  bottom: 0;
+                  @include border-radius(100%);
+                  border: 10px solid rgba(255, 255, 255, .2);
+                  background-size: cover;
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  background-clip: border-box;
+                  background-origin: border-box;
+                }
+              }
+              .disk-info {
+                position: absolute;
+                right: 0;
+                width: 50%;
+                top: 0;
+                bottom: 0;
+                opacity: 0;
+                padding: 5px;
+                background-color: darken($dark-slategray, 5%);
+                @include rotateY(90deg);
+                @include apply-origin(center right 0, false);
+                @include backface-visibility(hidden);
+                @include transition(opacity $flip-duration/4, transform $flip-duration);
+                @include transition-delay(3 * $flip-duration/4, 0);
+                @include transition-timing-function(ease-out);
+                @include box-sizing(padding-box);
+
+                .disk-title {
+                  color: white;
+                  font-size: 104%;
+                  line-height: normal;
+                  @include user-select(text);
+                }
+                .disk-state {
+                  margin-top: 5px;
+                  cursor: default;
+                }
+                .disk-detail-button {
+                  @include reset-box-model;
+                  background: transparent;
+                  color: darken($dark-grey, 20%);
+                  position: absolute;
+                  z-index: 2;
+                  bottom: 5px;
+                  cursor: pointer;
+                  font-weight: bold;
+                  font-size: 95%;
+                  padding: 5px;
+                  left: 8px;
+                  right: 8px;
+                  @include border-radius(3px);
+                  @include single-transition(background-color, 200ms, linear);
+                }
+              }
+
+              &.hover {
+                .disk-cover {
+                  left: 3%;
+                  margin-top: 28%;
+                  width: 40%;
+                  padding-bottom: 40%;
+                }
+                .disk-info {
+                  opacity: 1;
+                  @include rotateY(0deg);
+                  @include transition-delay(0, 0);
+                }
+              }
+
+              &:hover {
+                @extend .hover;
+              }
+            }
+
+            &.at_left {
+              @include translateX(-400%);
+            }
+            &.at_right {
+              @include translateX(400%);
+            }
+
+            $colors: ($orange $blue $cyan $purple $dark-green $red);
+            $delays: (0 2/8 4/8 1/8 3/8 5/8);
+            @for $i from 0 to 6 {
+              &.item-#{$i} {
+                .disk-wrapper {
+                  $color: nth($colors, $i + 1);
+                  background-color: $color;
+                  .disk-info {
+                    .disk-detail-button {
+                      background-color: $color;
+                      &:hover {
+                        background-color: lighten($color, 10%);
+                      }
+                    }
+                  }
+                }
+                @include transition-delay(nth($delays, $i + 1) * $shift-duration + 1ms);
+              }
+            }
+
+            @for $i from 0 to 3 {
+              &.item-#{$i}, &.item-#{$i + 3} {
+                left: $i * $t / 3;
+              }
+              &.item-#{$i + 3} {
+                top: $t / 2;
+              }
+              $i: $i + 1;
+            }
+          }
+
+          .library-notfound {
+            position: absolute;
+            text-align: center;
+            color: lighten($dark-grey, 10%);
+            font-weight: bold;
+            width: 100%;
+            height: 100%;
+            cursor: default;
+            @include opacity(1);
+            @include single-transition(opacity, $shift-duration);
+
+            @include center("& > div") {
+              font-size: 130%;
+              white-space: nowrap;
+            }
+
+            &.loading {
+              @include opacity(0);
+            }
+          }
+        }
+
+        .nav_button {
+          @include reset-box-model;
+          position: absolute;
+          height: 90%;
+          top: 5%;
+          bottom: 5%;
+          width: 5%;
+          color: darken($background, 15%);
+          background: transparent;
+          font-size: xx-large;
+          font-weight: bold;
+          cursor: pointer;
+          @include border-radius(5px);
+          @include transition(background-color 100ms, color 100ms);
+          &:hover {
+            color: darken($background, 25%);
+            background: darken($background, 15%);
+          }
+        }
+
+        .prev-button {
+          @extend .nav_button;
+          left: 2%;
+        }
+
+        .next-button {
+          @extend .nav_button;
+          right: 2%;
+        }
+
+        & > .spinner {
+          display: none;
+          z-index: 2;
+        }
+        &.loading > .spinner {
+          display: block;
+        }
+      }
+
+      .library-disk {
+        width: 100%;
+        height: 100%;
+
+        .rate-box {
+          width: 5%;
+          margin-top: 2%;
+          margin-left: 5%;
+          text-align: center;
+          @include single-transition(margin-top, $panel-switch, ease-out);
+
+          .rate-up-button, .rate-down-button {
+            @include reset-box-model;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            background: transparent;
+            background-size: cover;
+            display: block;
+            cursor: pointer;
+            position: relative;
+            @include tooltip-right;
+          }
+          .rate-up-button {
+            background-image: inline-image("up-button.png", image/png);
+          }
+          .rate-down-button {
+            background-image: inline-image("down-button.png", image/png);
+          }
+
+          .rate-num {
+            @include reset-box-model;
+            font-size: 150%;
+            font-weight: bold;
+            color: $dark-grey;
+            cursor: default;
+            &.positive {
+              color: $orange;
+              &:before {
+                content: "+";
+              }
+            }
+            &.negative {
+              color: $grey;
+            }
+          }
+
+          &.loading {
+            margin-top: 150%;
+          }
+        }
+
+        .disk-wrapper {
+          position: absolute;
+          left: 15%;
+          right: 30%;
+          top: 0;
+          bottom: 0;
+          @include transform-style(preserve-3d);
+          @include perspective(1700px);
+          .disk-detail {
+            width: 100%;
+            height: 100%;
+            padding: 1em;
+            overflow-y: auto;
+            background-color: darken($background, 10%);
+            color: $black;
+            @include box-sizing(border-box);
+            @include base-shadow;
+            @include apply-origin(120% 80% 0, false);
+            @include opaque;
+            @include transform(rotateX(0) rotateY(0));
+            @include transition(opacity 400ms, transform 400ms);
+            @include transition-delay(0, 0);
+            @include user-select(text);
+            .disk-title {
+              margin-top: 1em;
+              font-size: 150%;
+              font-weight: bold;
+              .year {
+                color: lighten($black, 30%);
+              }
+            }
+            .disk-brief {
+              margin-top: 10px;
+              .disk-cover {
+                $width: 35%;
+                width: $width;
+                height: 0;
+                padding: 0;
+                padding-bottom: $width * 3/2;
+                @include inline-block;
+                vertical-align: top;
+
+                background: transparent;
+                background-size: contain;
+                background-position: center top;
+                background-repeat: no-repeat;
+              }
+              .disk-info-1 {
+                width: 60%;
+                padding: 0px 10px;
+                @include box-sizing(border-box);
+                @include inline-block;
+                vertical-align: top;
+                text-align: left;
+                line-height: 1.3em;
+                .key {
+                  color: lighten($black, 10%);
+                }
+                .link {
+                  text-align: left;
+                }
+
+                .tags-wrapper, .actors-wrapper {
+                  span {
+                    padding: 0;
+                  }
+                  .space:before {
+                    content: ", ";
+                  }
+                }
+              }
+            }
+            .disk-action {
+              text-align: right;
+              margin-top: 1em;
+              button {
+                @include reset-box-model;
+                background: transparent;
+                color: $black;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 95%;
+                padding: 5px;
+                background-color: $blue;
+                @include border-radius(3px);
+                @include single-transition(background-color, 200ms, linear);
+                &:hover, &:active {
+                  background-color: lighten($blue, 10%);
+                }
+              }
+            }
+            .disk-desc {
+              margin-top: 1em;
+              h3 {
+                font-size: 110%;
+                font-weight: bold;
+              }
+              .disk-desc-en, .disk-desc-ch {
+                position: relative;
+                line-height: 1.5em;
+                padding: 0.5em;
+                @include box-sizing(border-box);
+                p {
+                  padding: 0.5em 0;
+                }
+              }
+              .disk-desc-en {
+                float: left;
+                width: 50%;
+                &:after {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  width: 1px;
+                  left: 100%;
+                  background-color: $dark-grey;
+                }
+              }
+              .disk-desc-ch {
+                overflow: hidden;
+                &:before {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  width: 1px;
+                  left: 0%;
+                  background-color: $dark-grey;
+                }
+              }
+            }
+          }
+        }
+
+        .diskreview-wrapper {
+          position: absolute;
+          left: 80%;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background-color: $grey;
+          @include opaque;
+          @include single-transition(opacity, $panel-switch);
+
+          .diskreview-entry-wrapper {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 6em;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            .diskreview-inner-wrapper {
+              width: 100%;
+              min-height: 100%;
+              overflow: hidden;
+              border-right: 1px solid $dark-grey;
+              @include box-sizing(border-box);
+              .diskreview-title {
+                padding: 0.5em;
+                font-weight: bold;
+                border-bottom: 1px solid $dark-grey;
+                cursor: default;
+              }
+              .diskreview-entry {
+                padding: 0.5em;
+                border-bottom: 1px solid $dark-grey;
+                @include opaque;
+                @include single-transition(opacity, 150ms);
+                .diskreview-time {
+                  font-size: 0.7em;
+                }
+                .diskreview-content p{
+                  line-height: 1.2em;
+                  padding: 0.3em 0;
+                }
+                &.loading {
+                  @include transparent;
+                }
+              }
+              .anchor {
+                padding: 0.5em 0;
+                text-align: center;
+                @include single-text-shadow(0px, 1px, 2px);
+                cursor: default;
+              }
+            }
+          }
+
+          .diskreview-input-box {
+            position: absolute;
+            width: 100%;
+            height: 6em;
+            bottom: 0;
+            border-top: 2px solid $dark-grey;
+            textarea {
+              @include reset-box-model;
+              @include box-shadow(none);
+              @include appearance(none);
+              @include border-radius(0);
+              @include box-sizing(border-box);
+              padding: 0.5em;
+              background: transparent;
+              border: none;
+              border-bottom: 1px solid $grey;
+              width: 100%;
+              @include single-transition(border-color, 100ms);
+              resize: none;
+              &:focus {
+                border-color: $dark-grey;
+              }
+            }
+            .diskreview-action {
+              text-align: right;
+              button {
+                margin-right: 0.5em;
+                background-color: $dark-grey;
+                &:hover, &:active {
+                  background-color: lighten($dark-grey, 10%);
+                }
+              }
+            }
+            .diskreview-loggin {
+              text-align: center;
+              @include single-text-shadow(0px, 1px, 2px);
+              cursor: default;
+            }
+          }
+        }
+
+        .popup-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(255, 255, 255, 0.75);
+          z-index: 1;
+          @include opaque;
+          @include single-transition(opacity, 200ms);
+
+          @include center(".popup-box") {
+            position: relative;
+            width: 60%;
+            left: 20%;
+            background-color: lighten($black, 10%);
+            color: $light-grey;
+            padding: 1em;
+            @include box-sizing(border-box);
+            @include border-radius(5px);
+            @include single-transition(margin-top, 200ms);
+            @include drop-shadow;
+
+            .library-disk-reserve {
+              .reserve-warning {
+                color: $black;
+                background-color: $orange;
+                padding: 0.5em 1em;
+                @include border-radius(3px);
+                b {
+                  color: red;
+                  font-weight: bold;
+                }
+              }
+
+              .reserve-delivery {
+                padding: 0.5em 0;
+
+                input[name="room"] {
+                  width: 8em;
+                }
+                textarea[name="remarks"] {
+                  resize: none;
+                }
+              }
+
+              .reserve-counter {
+                border-top: 1px solid $light-grey;
+                padding: 0.5em 0;
+              }
+
+              .reserve-action {
+                text-align: right;
+              }
+            }
+
+            .library-disk-renew {
+              .renew-tips {
+                padding: 0.5em 0;
+                b {
+                  color: $red;
+                  font-weight: bold;
+                }
+              }
+              .renew-action {
+                text-align: right;
+              }
+            }
+
+            & > .spinner {
+              display: none;
+              z-index: 2;
+            }
+            & > .popup-box-cover {
+              display: none;
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 0;
+              bottom: 0;
+              pointer-events: all;
+              z-index: 1;
+            }
+            &.loading {
+              & > .spinner {
+                display: block;
+              }
+              & > .popup-box-cover {
+                display: block;
+              }
+            }
+            h1 {
+              font-size: 1.3em;
+            }
+            h2 {
+              font-weight: bold;
+              margin: 0.5em 0;
+            }
+            button {
+              background-color: $green;
+              &:hover, &:active {
+                background-color: lighten($green, 10%);
+              }
+            }
+          }
+
+          &.loading {
+            @include transparent;
+            .popup-box {
+              margin-top: 100%;
+            }
+          }
+        }
+
+        & > .spinner {
+          display: none;
+          z-index: 2;
+        }
+        &.loading {
+          & > .spinner {
+            display: block;
+          }
+
+          .disk-wrapper .disk-detail{
+            @include transparent;
+            @include transform(rotateX(-30deg) rotateY(5deg));
+          }
+
+          .diskreview-wrapper {
+            @include transparent;
+          }
+        }
+      }
+
+      &.loading {
+        .library-list {
+          .list-item {
+            @include transform(translateX(400%) !important);
+            @include page-shift($panel-switch);
+          }
+        }
+
+        .library-disk {
+          .rate-box {
+            margin-top: 150%;
+            @include page-shift($panel-switch);
+          }
+
+          .disk-wrapper .disk-detail{
+            @include transparent;
+            @include transform(rotateX(-30deg) rotateY(5deg));
+            @include page-shift($panel-switch);
+          }
+
+          .diskreview-wrapper {
+            @include transparent;
+            @include page-shift($panel-switch);
+          }
+
+          .popup-overlay {
+            @include transparent;
+            @include page-shift($panel-switch);
+            .popup-box {
+              margin-top: 100%;
+              @include page-shift($panel-switch);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.loading {
+    .library-wrapper {
+      .left-panel {
+        @include translateX(-$left-panel-width);
+        .library-button {
+          opacity: 0 !important;
+          @include page-shift;
+        }
+      }
+      .right-panel {
+        .library-list .list-item {
+          @include transform(translateX(400%) !important);
+          @include page-shift;
+        }
+
+        .library-disk {
+          .rate-box {
+            margin-top: 150% !important;
+            @include page-shift;
+          }
+          .disk-wrapper .disk-detail {
+            @include transparent;
+            @include transform(rotateX(-30deg) rotateY(5deg) !important);
+            @include page-shift;
+          }
+
+          .diskreview-wrapper {
+            @include transparent;
+            @include page-shift;
+          }
+
+          .popup-overlay {
+            @include transparent;
+            @include page-shift;
+            .popup-box {
+              margin-top: 100% !important;
+              @include page-shift;
+            }
+          }
+        }
+      }
+    }
+  }
+}

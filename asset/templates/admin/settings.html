@@ -1,0 +1,66 @@
+<div class="settings-view">
+    <header>
+        <h1>Site Settings</h1>
+    </header>
+    <div class="content">
+        <section>
+        	<h3>Service State</h3>
+        	<div>
+        		<label>
+        			<span>VCD/DVD Library</span>
+        			<select name="liba_state">
+        				<option value="Open" {{model.getField('liba_state').value==='Open'?'selecteed':''|safe}}>Open</option>
+        				<option value="Closed" {{model.getField('liba_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+        			</select>
+                </label>
+                <button type="submit" control="liba_state">Submit</button>
+            </div>
+            <div>
+                <label>
+                    <span>Regular Film Show</span>
+                    <select name="rfs_state">
+                        <option value="Open" {{model.getField('rfs_state').value==='Open'?'selecteed':''|safe}}>Open</option>
+                        <option value="Closed" {{model.getField('rfs_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+                    </select>
+                </label>
+                <button type="submit" control="rfs_state">Submit</button>
+            </div>
+            <div>
+                <label>
+                    <span>Preview Show Tickets</span>
+                    <select name="pst_state">
+                        <option value="Open" {{model.getField('pst_state').value==='Open'?'selecteed':''|safe}}>Open</option>
+                        <option value="Closed" {{model.getField('pst_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+                    </select>
+                </label>
+                <button type="submit" control="pst_state">Submit</button>
+            </div>
+        </section>
+        <section>
+            <h3>VCD/DVD Library Settings</h3>
+            <div>
+                <label>
+                    <span>Due Date</span>
+                    <input type="date" name="due_date" value="{{model.getField('due_date').value|attr}}">
+                </label>
+                <button type="submit" control="due_date">Submit</button>
+            </div>
+        </section>
+        <section>
+            <h3>Cover Image</h3>
+            <div>   
+                <div class="front-drop">
+                    <div class="cover-container">
+                        <div class="drag-notifier" hidden>Drop...</div>
+                        <img alt="">
+                    </div>
+                    <div>Drag Cover Image Over Here</div>
+                    <div class="progressbar-track" hidden>
+                        <div class="progressbar-bar"></div>
+                    </div>
+                    <span class="progressbar-progress" hidden></span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

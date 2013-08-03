@@ -1,0 +1,102 @@
+<div class="user-list-view">
+    <header>
+        <h1>Member Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Member..." tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="user-create-member">Create Member</button>
+            <button id="user-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <span>Member Type:</span>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-full" type="checkbox" filter="Full" {{filter.indexOf('Full') === -1?'':'checked'|safe}}>
+                    <span>Full</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-onesem" type="checkbox" filter="OneSem" {{filter.indexOf('OneSem') === -1?'':'checked'|safe}}>
+                    <span>One Semester</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-oneyear" type="checkbox" filter="OneYear" {{filter.indexOf('OneYear') === -1?'':'checked'|safe}}>
+                    <span>One Year</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-twoyear" type="checkbox" filter="TwoYear" {{filter.indexOf('TwoYear') === -1?'':'checked'|safe}}>
+                    <span>Two Year</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-threeyear" type="checkbox" filter="ThreeYear" {{filter.indexOf('ThreeYear') === -1?'':'checked'|safe}}>
+                    <span>Three Year</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-honour" type="checkbox" filter="Honour" {{filter.indexOf('Honour') === -1?'':'checked'|safe}}>
+                    <span>Honour</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-assoc" type="checkbox" filter="Assoc" {{filter.indexOf('Assoc') === -1?'':'checked'|safe}}>
+                    <span>Associate</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="user-filter-assoc" type="checkbox" filter="Expired" {{filter.indexOf('Expired') === -1?'':'checked'|safe}}>
+                    <span>Expired</span>
+                </label>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="name-column column">
+                    <div class="static-text">Full Name</div>
+                </div>
+                <div class="itsc-column column">
+                    <div class="static-text">ITSC</div>
+                </div>
+                <div class="stuid-column column">
+                    <div class="static-text">Student ID</div>
+                </div>
+                <div class="mobile-column column">
+                    <div class="static-text">Mobile</div>
+                </div>
+                <div class="type-column column">
+                    <div class="static-text">Member Type</div>
+                </div>
+                <div class="pennalize-column column">
+                    <div class="static-text">Pennalized</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="user-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>
