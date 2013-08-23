@@ -1,0 +1,152 @@
+/*
+ * Declare style of Document.
+ */
+
+#content-wrapper {
+  $left-panel-width: 300px;
+  .doc-wrapper {
+  	width: 100%;
+    height: 100%;
+    .left-panel {
+      float: left;
+      width: $left-panel-width;
+      height: 100%;
+      text-align: center;
+      overflow-y: auto;
+      @extend .black-img-bg;
+      @include translateX(0);
+      @include single-transition(transform, $page-shift-duration);
+      
+      $padding-length: 10px;
+      .doc-list-wrapper {
+        position: absolute;
+        top: 28px;
+        bottom: 0;
+        $parent-padding: 18px;
+        left: $parent-padding;
+        right: $parent-padding;
+        $actual-width: $left-panel-width - 2 * $parent-padding;
+        & > * {
+          text-align: left;
+          padding: $padding-length;
+          width: $actual-width - 2 * $padding-length ;
+          @include border-radius(5px);
+        }
+
+        button {
+          margin-top: 10px;
+          border: none;
+          background-color: darken($dark-grey, 20%);
+          cursor: pointer;
+          min-height: 50px;
+          overflow: hidden;
+          text-align: right;
+          font-size: x-large;
+          color: $light-grey;
+          background-image: inline-image('doc.png', image/png);
+          background-repeat: no-repeat;
+          background-size: 50px 50px;
+          @include background-origin(padding-box);
+          @include background-clip(padding-box);
+          padding-left: 150px;
+          /* hack width */
+          width: $actual-width;
+          padding-left: 50px;
+          @include transition(background-color 150ms, opacity 150ms);
+          @include opaque;
+
+          &:hover {
+            background-color: darken($dark-grey, 10%);
+          }
+
+          &.loading {
+            @include transparent;
+          }
+        }
+      }
+    }
+    .right-panel {
+      overflow: hidden;
+      height: 100%;
+      position: relative;
+      $panel-switch: 200ms;
+
+
+      .doc-content-wrapper {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: 0;
+        top: 0;
+        .doc-detail {
+          width: 100%;
+          height: 100%;
+          padding: 1em;
+          overflow: hidden;
+          background-color: darken($background, 10%);
+          color: $black;
+          @include box-sizing(border-box);
+          @include base-shadow;
+          @include apply-origin(120% 80% 0, false);
+          @include opaque;
+          @include transform(rotateX(0) rotateY(0));
+          @include transition(opacity 400ms, transform 400ms);
+          @include transition-delay(0, 0);
+          @include user-select(text);
+
+          header {
+            .doc-title {
+              font-size: 150%;
+              font-weight: bold;
+            }
+            height: 3em;
+          }
+
+          .doc-content {
+            position: absolute;
+            top: 4em;
+            bottom: 1em;
+            left: 1em;
+            right: 1em;
+            .doc-file {
+              width: 100%;
+              height: 100%;
+              border: none;
+            }
+          }
+        }
+      }
+
+      & > .spinner {
+        display: none;
+        z-index: 2;
+      }
+      &.loading {
+        & > .spinner {
+          display: block;
+        }
+
+        .doc-content-wrapper .doc-detail {
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+          @include page-shift($panel-switch);
+        }
+      }
+    }
+  }
+
+  &.loading {
+    .doc-wrapper {
+      .left-panel {
+        @include translateX(-$left-panel-width);
+      }
+      .right-panel {
+        .doc-content-wrapper .doc-detail {
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+          @include page-shift;
+        }
+      }
+    }
+  }
+}

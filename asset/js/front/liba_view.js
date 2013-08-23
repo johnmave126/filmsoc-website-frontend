@@ -97,7 +97,7 @@ cr.define('cr.view.library', function() {
       });
       overlay.querySelector('.close-button').addEventListener('click', function() {
         cr.dispatchSimpleEvent(overlay, 'close', true, true);
-      })
+      });
 
     });
     cr.ui.template.register('liba_disk_detail.html', function(param) {

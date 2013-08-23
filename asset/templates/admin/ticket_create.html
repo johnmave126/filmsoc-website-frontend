@@ -1,0 +1,86 @@
+<div id="ticket-edit-form" class="page-form">
+	<div>
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/2x3.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Cover Picture Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="cover_url">
+		<div class="ticket-side-edit multiline">
+			<label>
+				<span>English Name: </span>
+				<input type="text" name="title_en" placeholder="The English name of this film">
+			</label>
+			<label>
+				<span>Chinese Name: </span>
+				<input type="text" name="title_ch" placeholder="The Chinese name of this film">
+			</label>
+			<label>
+				<span>Show Time: </span>
+				<input type="text" name="show_time" placeholder="yyyy-mm-dd hh:mm:ss">
+			</label>
+			<label>
+				<span>Language: </span>
+				<input type="text" name="language">
+			</label>
+			<label>
+				<span>Subtitle: </span>
+				<input type="text" name="subtitle">
+			</label>
+			<label>
+				<span>Director's English Name:</span>
+				<input type="text" name="director_en" placeholder="English name">
+			</label>
+			<label>
+				<span>Director's Chinese Name: </span>
+				<input type="text" name="director_ch" placeholder="Chinese name">
+			</label>
+			<label>
+				<span>Actors: </span>
+				<input type="text" role="list" name="actors" placeholder="Main actors' English names, splitted by ','">
+			</label>
+			<label>
+				<span>Apply Deadline: </span>
+				<input type="text" name="apply_deadline" placeholder="yyyy-mm-dd hh:mm:ss">
+			</label>
+		</div>
+	</div>
+	<div class="single-table">
+		<div>
+			<label>
+				<span>Length: </span>
+				<input type="text" name="length" placeholder="Length of the film (in minutes)">
+			</label>
+			<label>
+				<span>Quantity: </span>
+				<input type="text" name="quantity" placeholder="Number of tickets available">
+			</label>
+		</div>
+		<div>
+			<label>
+				<span>Venue: </span>
+				<input type="text" name="venue" placeholder="Venue of the film">
+			</label>
+			<label>
+				<span>Remarks: </span>
+				<textarea name="remarks" rows="4"></textarea>
+			</label>
+		</div>
+		<div>
+			<label>
+				<div>English Description:</div>
+				<textarea name="desc_en" rows="10"></textarea>
+			</label>
+			<label>
+				<div>Chinese Description:</div>
+				<textarea name="desc_ch" rows="10"></textarea>
+			</label>
+		</div>
+	</div>
+</div>

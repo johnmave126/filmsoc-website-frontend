@@ -7,14 +7,14 @@ cr.define('cr.ui.template', function() {
 
   var templates = {},
       BBHandler = [
-    {pattern: /\[b\](.*?)\[\/b\]/ig, repl: '<b>$1</b>'},
-    {pattern: /\[i\](.*?)\[\/i\]/ig, repl: '<em>$1</em>'},
-    {pattern: /\[u\](.*?)\[\/u\]/ig, repl: '<u>$1</u>'},
-    {pattern: /\[big\](.*?)\[\/big\]/ig, repl: '<big>$1</big>'},
-    {pattern: /\[small\](.*?)\[\/small\]/ig, repl: '<small>$1</small>'},
-    {pattern: /\[color=([a-zA-Z]*|\#?[0-9a-fA-F]{6})\](.*?)\[\/color\]/ig, repl: '<span style="color:$1">$2</span>'},
-    {pattern: /\[link\=\s*((?:(?:ftp|https?):\/\/)?(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::\d+)?(?:\/?|[\/?]\S+))\s*\](.+)\[\/link\]/ig, repl: '<a href="$1">$2</a>'},
-    {pattern: /\[img\=\s*((?:(?:ftp|https?):\/\/)?(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::\d+)?(?:\/?|[\/?]\S+))\s*\](.+)\[\/img\]/ig, repl: '<img src="$1" alt="$2" title="$2">'},
+    {pattern: /\[b\](.+?)\[\/b\]/ig, repl: '<b>$1</b>'},
+    {pattern: /\[i\](.+?)\[\/i\]/ig, repl: '<em>$1</em>'},
+    {pattern: /\[u\](.+?)\[\/u\]/ig, repl: '<u>$1</u>'},
+    {pattern: /\[big\](.+?)\[\/big\]/ig, repl: '<big>$1</big>'},
+    {pattern: /\[small\](.+?)\[\/small\]/ig, repl: '<small>$1</small>'},
+    {pattern: /\[color=([a-zA-Z]*|\#?[0-9a-fA-F]{6})\](.+?)\[\/color\]/ig, repl: '<span style="color:$1">$2</span>'},
+    {pattern: /\[link\=\s*((?:(?:ftp|https?):\/\/)?(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::\d+)?(?:\/?|[\/?]\S+?))\s*\](.+?)\[\/link\]/ig, repl: '<a href="$1" rel="nofollow" target="_blank">$2</a>'},
+    {pattern: /\[img\=\s*((?:(?:ftp|https?):\/\/)?(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::\d+)?(?:\/?|[\/?]\S+?))\s*\](.*?)\[\/img\]/ig, repl: '<img src="$1" alt="$2" title="$2">'},
   ];
 
   /**
@@ -23,7 +23,25 @@ cr.define('cr.ui.template', function() {
    * @return {string} The escaped string.
    */
   function escapeWrap(value) {
-    return '<p>' + value.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace('\'', '&#x27;').replace('/', '&#x2F;').replace('\n', '</p><p>') + '</p>';
+    return '<p>' + value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\n/g, '</p><p>') + '</p>';
+  }
+
+  /**
+   * Escape a string between tags. With newline rendered as <br>
+   * @param {string} value The string to escape.
+   * @return {string} The escaped string.
+   */
+  function escapePreWrap(value) {
+    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace('\n', '<br>');
+  }
+
+  /**
+   * Escape a string between tags. With newline preserved
+   * @param {string} value The string to escape.
+   * @return {string} The escaped string.
+   */
+  function escapePre(value) {
+    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
   }
 
   /**
@@ -32,7 +50,7 @@ cr.define('cr.ui.template', function() {
    * @return {string} The escaped string.
    */
   function escapeAttr(value) {
-    return value.replace('"', '&quot;').replace('\'', '&#x27;');
+    return value.replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
   }
 
   /**
@@ -41,7 +59,7 @@ cr.define('cr.ui.template', function() {
    * @return {string} The escaped string.
    */
   function escapeHTML(value) {
-    return value.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace('\'', '&#x27;').replace('/', '&#x2F;').replace('\n', ' ');
+    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace('\n', ' ');
   }
 
   /**
@@ -50,7 +68,7 @@ cr.define('cr.ui.template', function() {
    * @return {string} The escaped string.
    */
   function escapeBBCode(value) {
-    value = escapeHTML(value);
+    value = escapeWrap(value);
     //Run through BBCode
     for (var i = 0; i < BBHandler.length; i++) {
       var dup_value;
@@ -101,6 +119,8 @@ cr.define('cr.ui.template', function() {
           case 'attr': escaper = escapeAttr; break;
           case 'bbcode': escaper = escapeBBCode; break;
           case 'wrap': escaper = escapeWrap; break;
+          case 'pre': escaper = escapePre; break;
+          case 'prewrap': escaper = escapePreWrap; break;
           default: break;
         }
       }
@@ -185,6 +205,7 @@ cr.define('cr.ui.template', function() {
     register: register,
     registerBBCode: registerBBCode,
     escapeAttr: escapeAttr,
+    escapeBBCode: escapeBBCode,
   };
 
 });

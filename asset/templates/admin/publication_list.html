@@ -1,0 +1,62 @@
+<div class="publication-list-view">
+    <header>
+        <h1>Publication Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Publication..." tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="publication-create-publication">Create Publication</button>
+            <button id="publication-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <span>Publication Type:</span>
+            <div class="filter">
+                <label>
+                    <input id="publication-filter-magazine" type="checkbox" filter="Magazine" {{filter.indexOf('Magazine') === -1?'':'checked'|safe}}>
+                    <span>Magazine</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="publication-filter-mircromagazine" type="checkbox" filter="MicroMagazine" {{filter.indexOf('MicroMagazine') === -1?'':'checked'|safe}}>
+                    <span>MicroMagazine</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
+                    <input id="publication-filter-podcast" type="checkbox" filter="Podcast" {{filter.indexOf('Podcast') === -1?'':'checked'|safe}}>
+                    <span>Podcast</span>
+                </label>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="cover-column column">
+                </div>
+                <div class="title-column column">
+                    <div class="static-text">Title</div>
+                </div>
+                <div class="type-column column">
+                    <div class="static-text">Type</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="publication-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

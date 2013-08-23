@@ -42,6 +42,10 @@ html, body {
   @include user-select(none);
 }
 
+body.dragging {
+  cursor: w-resize;
+}
+
 button.link, span.link, a {
   background: transparent none;
   border: none;
@@ -196,7 +200,7 @@ button.link, span.link, a {
   span {
     @include single-text-shadow(0px, 2px, 2px);
     white-space: nowrap;
-    text-overflow: ellipsis;
+    @include ellipsis;
     color: $dark-grey;
   }
   &:after {
@@ -399,3 +403,9 @@ button.link, span.link, a {
 @import "header";
 @import "dvd_library";
 @import "regular_film_show";
+@import "preview_show_ticket";
+@import "document";
+@import "sponsor";
+@import "home";
+@import "aboutus";
+@import "publication";

@@ -1,0 +1,14 @@
+<div id="news-form" class="page-form">
+	<div>
+		<label>
+			<span>Title:</span>
+			<input type="text" name="title" placeholder="Title of the news" value="{{news.title|attr}}">
+		</label>
+	</div>
+	<div class="nocell">
+		<label>
+			<div>Content:</div>
+			<textarea name="content" spellcheck="false" placeholder="The content" rows="15">{{news.content|pre}}</textarea>
+		</label>
+	</div>
+</div>

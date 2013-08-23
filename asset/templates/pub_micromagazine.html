@@ -1,0 +1,13 @@
+<div class="publication-detail">
+	<header>
+		<h2 class="publication-title">
+			{{publication.title}}
+		</h2>
+		<div class="publication-action">
+			<a href="{{publication.ext_doc_url|attr}}" target="_blank" alt="View in New Window">View in New Window</a>
+		</div>
+	</header>
+	<div class="publication-content">
+		<iframe class="publication-file" src="{{publication.ext_doc_url|attr}}" sandbox="allow-scripts allow-same-origin"></iframe>
+	</div>
+</div>

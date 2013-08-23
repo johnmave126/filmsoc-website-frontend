@@ -1,0 +1,18 @@
+<div class="aboutus-detail">
+	<div class="abousus-top-info">
+		<div class="aboutus-image"></div>
+		<div class="aboutus-brief-info">
+			<div class="aboutus-position">{{exco.position}}</div>
+			<div class="aboutus-name">
+				{{exco.name_ch}}<br>
+				{{exco.name_en}}
+			</div>
+			<div class="aboutus-contact">
+				Email: <a href="mailto:{{exco.email|attr}}" alt="Mail to {{exco.position|attr}}" target="_blank">{{exco.email}}</a>
+			</div>
+		</div>
+	</div>
+	<div class="aboutus-descript">
+		{{exco.descript|bbcode}}
+	</div>
+</div>

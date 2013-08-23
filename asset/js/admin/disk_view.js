@@ -371,9 +371,15 @@ cr.define('cr.view.liba', function() {
    * @param {Object} disk The disk object
    */
   function checkin_disk(disk) {
+    var today = new Date,
+        t_start = Date.parse([today.getFullYear(), pad(today.getMonth() + 1, 2), pad(today.getDate(), 2)].join('-') + 'T00:00:00.000+08:00'),
+        t_due = Date.parse(toISODate(disk.due_at)),
+        day = 1000 * 60 * 60 * 24;
     alertOverlay.setValues(
       'Confirm Checkin',
-      'Check the disk ' + cn(disk) +' before confirming!',
+      'Check the disk ' + cn(disk) +' before confirming!\n' + 
+      'Due at: ' + disk.due_at + 
+      ((t_start > t_due) ? ("\nOverdue! Raw due day: " + Math.ceil((t_start - t_due) / day) + " days") : ""),
       'Check in',
       'Cancel',
       function() {

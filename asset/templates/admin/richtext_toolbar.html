@@ -1,0 +1,59 @@
+<div class="richtext-toolbar">
+	<div class="bar">
+		<div>
+			<span controls="bold">B</span>
+			<span controls="italics">I</span>
+			<span controls="underline">U</span>
+			<span controls="big">Larger</span>
+			<span controls="small">Smaller</span>
+		</div>
+		<div>
+			<span controls="link">Link</span>
+			<span controls="color">Color</span>
+			<span controls="img">Image</span>
+		</div>
+		<div>
+			<span controls="inlinedisk">Inline Disk</span>
+			<span controls="disk">Disk</span>
+			<span controls="rfs">Regular Film Show</span>
+			<span controls="ticket">Preview Show Ticket</span>
+		</div>
+		<span controls="preview">Preview</span>
+	</div>
+	<div class="link-adder" hidden>
+		<label><span>URL: </span><input type="text" name="url" disabled></label>
+		<button controls="ok">OK</button><button controls="cancel">Cancel</button>
+	</div>
+	<div class="colorpicker" hidden>
+		<div class="colorpicker-wrapper cp-default"></div>
+		<input type="hidden" name="color" disabled>
+		<div class="sample">Lorem ipsum dolor sit amet</div>
+		<button controls="ok">OK</button><button controls="cancel">Cancel</button>
+	</div>
+	<div class="image-adder" hidden>
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/square.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Picture Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="url" disabled>
+		<button controls="ok">OK</button><button controls="cancel">Cancel</button>
+	</div>
+
+	<div class="id-adder" hidden>
+		<input type="text" name="itemid" placeholder="ID of the item" disabled>
+		<button controls="ok">OK</button><button controls="cancel">Cancel</button>
+	</div>
+
+	<div class="preview" hidden>
+		<button class="link-button" controls="edit">Back To Edit</button>
+		<div class="preview-wrapper clearfix">
+		</div>
+	</div>
+</div>

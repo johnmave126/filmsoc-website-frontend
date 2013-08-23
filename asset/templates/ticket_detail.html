@@ -1,0 +1,50 @@
+<div class="ticket-detail">
+	<h2 class="ticket-title">
+		{{ticket.title_en}}&nbsp;/&nbsp;{{ticket.title_ch}}
+	</h2>
+	<div class="ticket-brief">
+		<div class="ticket-cover">
+		</div>
+		<div class="ticket-info-1">
+
+			<div><span class="key">Director:</span> {{ticket.director_en}}&nbsp;/&nbsp;{{ticket.director_ch}}</div>
+
+			<div><span class="key">Stars:</span> {{ticket.actors.join(', ')}}</div>
+
+			<div><span class="key">Length:</span> {{ticket.length?ticket.length:"Unknown"}} Minutes</div>
+
+			<div><span class="key">Language:</span> {{ticket.language?ticket.language:"Unknown"}}</div>
+
+			<div><span class="key">Subtitle:</span> {{ticket.subtitle?ticket.subtitle:"Unknown"}}</div>
+
+			<div><span class="key">Time:</span> {{ticket.show_time?ticket.show_time:"Unknown"}}</div>
+
+			<div><span class="key">Venue:</span> {{ticket.venue?ticket.venue:"Unknown"}}</div>
+
+			<div><span class="key">Apply Deadline:</span> {{ticket.apply_deadline}}</div>
+ 
+			<div><span class="key">Quantity:</span> {{ticket.quantity}}</div>
+
+		</div>
+	</div>
+	<div class="ticket-action">
+		<button controls="apply" {{ticket.state==='Open'&&user?'':'hidden'|safe}}>Apply For Ticket</button>
+	</div>
+	<div class="ticket-applicants-wrapper" {{ticket.state==='Closed'?'':'hidden'|safe}}>
+		<h3>Successful Applicants</h3>
+		<div class="ticket-applicants">{{ticket.successful_applicant|prewrap}}</div>
+	</div>
+	<div class="ticket-remarks-wrapper">
+		<h3>Remarks</h3>
+		<div class="ticket-remarks">{{ticket.remarks?ticket.remarks:"No remarks yet"|wrap}}</div>
+	</div>
+	<div class="ticket-desc">
+		<h3>Plot</h3>
+		<div class="ticket-desc-en">
+			{{ticket.desc_en|wrap}}
+		</div>
+		<div class="ticket-desc-ch">
+			{{ticket.desc_ch|wrap}}
+		</div>
+	</div>
+</div>

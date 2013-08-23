@@ -1,0 +1,47 @@
+<div class="ticket-search-view">
+    <header>
+        <h1>Preview Show Ticket Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Ticket..." value="{{query|attr}}"  tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="ticket-create-ticket">Create Ticket</button>
+            <button id="ticket-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="cover-column column">
+                </div>
+                <div class="name-column column">
+                    <div class="static-text">Name</div>
+                </div>
+                <div class="quantity-column column">
+                    <div class="static-text">Quantity</div>
+                </div>
+                <div class="state-column column">
+                    <div class="static-text">State</div>
+                </div>
+                <div class="deadline-column column">
+                    <div class="static-text">Deadline</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="ticket-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

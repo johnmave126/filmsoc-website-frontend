@@ -24,7 +24,6 @@ $current-width: 19.5%;
     height: 100%;
     line-height: $footer-height;
     text-align: center;
-    text-overflow: ellipsis;
     text-decoration: none;
     cursor: pointer;
     background-color: $dark-grey;
@@ -50,10 +49,10 @@ $current-width: 19.5%;
     @extend .navigator_base;
     overflow: hidden;
   }
-  & > a.selected {
+  & > .navigator.selected {
     width: $current-width;
   }
-  &:hover > a.selected {
+  &:hover > .navigator.selected {
     width: (100% - $current-width) / 7;
   }
 }

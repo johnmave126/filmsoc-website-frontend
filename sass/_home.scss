@@ -1,0 +1,188 @@
+/*
+ * Declare style of Regular Film Show.
+ */
+
+#content-wrapper {
+  .news-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .news-content-wrapper {
+      width: 100%;
+      height: 100%;
+      @include perspective(1700px);
+      @include transform-style(preserve-3d);
+      .home-wrapper {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-bottom: 2em;
+        @include box-sizing(border-box);
+
+        & > * {
+          width: 80%;
+          margin: 0 auto;
+        }
+
+        .home-cover-wrapper {
+          margin-bottom: 2em;
+          @include opaque;
+          @include translateY(0);
+          @include transition(opacity 250ms, transform 250ms);
+          .home-cover {
+            width: 100%;
+          }
+        }
+
+        .news-list-wrapper {
+          min-height: 50%;
+          @include transition(opacity, transform);
+          h1 {
+            font-size: 2em;
+            color: $dark-grey;
+            margin-bottom: 1em;
+          }
+          .news-list {
+            width: 100%;
+            @include perspective(1700px);
+            .home-list-item {
+              width: 100%;
+              margin-bottom: 0.5em;
+              padding: 1em 0.5em;
+              background-color: $dark-grey;
+              cursor: pointer;
+              @include transform-origin(center, center, 0, false);
+              @include backface-visibility(hidden);
+              @include rotateY(0);
+              @include border-radius(5px);
+              @include base-shadow;
+              @include transition(background-color 150ms, transform 300ms, opacity 300ms);
+
+              .news-item-date {
+                color: $light-grey;
+                padding-right: 1em;
+                float: left;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 1.7em;
+              }
+              .news-item-title {
+                color: white;
+                overflow: hidden;
+                border-left: 1px solid $grey;
+                padding-left: 1em;
+                overflow: hidden;
+                font-size: 1.3em;
+                @include ellipsis;
+              }
+
+              &:hover, &:active {
+                background-color: lighten($dark-grey, 5%);
+              }
+
+              &.loading {
+                @include rotateY(-180deg);
+                &:before {
+                  @include rotateY(0);
+                }
+              }
+
+              &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background-color: $dark-grey;
+                @include transform-origin(center, center, 0, false);
+                @include backface-visibility(hidden);
+                @include rotateY(180deg);
+                @include border-radius(5px);
+              }
+            }
+
+            .anchor {
+              width: 100%;
+              padding: 0.5em 0;
+              text-align: center;
+              background-color: $grey;
+              color: $black;
+              border: 1px solid $dark-grey;
+              cursor: default;
+              @include border-radius(5px);
+              @include base-shadow;
+            }
+          }
+        }
+
+        &.scrolling {
+          pointer-events: none;
+        }
+      }
+
+      .news-detail-wrapper {
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 1em;
+        overflow-y: auto;
+        color: $black;
+        @include box-sizing(border-box);
+        @include base-shadow;
+        @include apply-origin(120% 80% 0, false);
+        @include opaque;
+        @include transform(rotateX(0) rotateY(0));
+        @include transition(opacity 400ms, transform 400ms);
+        @include transition-delay(0, 0);
+        @include user-select(text);
+
+        .news-title {
+          padding-top: 0.5em;
+          font-size: 2em;
+        }
+
+        .news-datetime {
+          font-style: italic;
+          color: $dark-grey;
+        }
+
+        .news-content {
+          @extend .better-clearfix;
+          @extend .richtext;
+        }
+      }
+    }
+
+    & > .spinner {
+      display: none;
+    }
+    &.loading {
+      & > .spinner {
+        display: block;
+      }
+
+      .news-content-wrapper {
+        .home-wrapper {
+          .home-cover-wrapper{
+            @include transparent;
+            @include translateY(-4em);
+            @include page-shift(200ms);
+          }
+          .news-list-wrapper {
+            @include transparent;
+            @include translateY(4em);
+            @include page-shift(200ms);
+          }
+        }
+
+        .news-detail-wrapper {
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+          @include page-shift(200ms);
+        }
+      }
+    }
+  }
+}

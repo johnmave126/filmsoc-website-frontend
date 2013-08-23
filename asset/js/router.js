@@ -10,7 +10,11 @@ cr.define('routerManager', function() {
    * @return {string} Current hash without leading #.
    */
   function getHash() {
-    return location.hash.substr(1);
+    var hash = location.hash.substr(1);
+    if (hash.charAt(0) == '!') {
+      hash = hash.substr(1);
+    }
+    return hash;
   }
 
   /**
@@ -123,8 +127,9 @@ cr.define('routerManager', function() {
       return;
     }
     var historyFunction = !replace ? window.history.pushState :
-                                     window.history.replaceState;
-    historyFunction.call(window.history, {}, '', '#' + url);
+                                     window.history.replaceState,
+        prefix = this.prefix == 0 ? '#' : '#!';
+    historyFunction.call(window.history, {}, '', prefix + url);
     if (!custom) {
       this.parseHash();
     }
@@ -156,6 +161,7 @@ cr.define('routerManager', function() {
     pushState: pushState,
     register: register,
     parseHash: parseHash,
+    prefix: 0,
   };
 });
 

@@ -1,0 +1,22 @@
+<div class="richtext-item-wrapper rich-pointer loading">
+	<div class="richtext-disk-cover">
+	</div>
+	<div class="richtext-disk-detail">
+		<div class="richtext-category">
+			Preview Show Ticket
+		</div>
+		<div class="richtext-disk-title">
+			{{ticket.title_en}}<br>
+			{{ticket.title_ch}}
+		</div>
+		<div class="richtext-disk-entry">
+			Director: {{ticket.director_en}} / {{ticket.director_ch}}
+		</div>
+		<div class="richtext-disk-entry">
+			Actors: {{ticket.actors.join(', ')}}
+		</div>
+		<div class="richtext-disk-entry">
+			Length: {{ticket.length}} min
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<div id="doc-form" class="page-form">
+	<div>
+		<label>
+			<span>Title:</span>
+			<input type="text" name="title" placeholder="Title of the document" value="{{doc.title|attr}}">
+		</label>
+	</div>
+	<div class="nocell">
+		<div class="file-drop">
+			<div class="file-container">
+				<img src="../asset/css/square.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag File Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="doc_url" value="{{doc.doc_url?doc.doc_url.id:''|attr}}">
+		<a class="dn_link" href="{{base_url}}{{doc.doc_url?doc.doc_url.url:''|attr}}?force_download=true&dn_name={{doc.doc_url?doc.doc_url.name:''|attr}}" {{doc.doc_url?'':'hidden'|safe}}>Download</a>
+	</div>
+</div>

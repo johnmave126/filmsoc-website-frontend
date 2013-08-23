@@ -1,0 +1,44 @@
+<div id="exco-form" class="page-form">
+	<div>
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/3x4.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Rotating Picture Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="img_url" value="{{exco.img_url?exco.img_url.id:''|attr}}">
+		<div class="exco-side-edit multiline">
+			<label>
+				<span>Position: </span>
+				<input type="text" name="position" value="{{exco.position|attr}}" disabled>
+			</label>
+			<label>
+				<span>English Name: </span>
+				<input type="text" name="name_en" placeholder="English name of Exco" value="{{exco.name_en|attr}}">
+			</label>
+			<label>
+				<span>Chinese Name: </span>
+				<input type="text" name="name_ch" placeholder="Chinese name of Exco" value="{{exco.name_ch|attr}}">
+			</label>
+			<label>
+				<span>Email: </span>
+				<input type="text" name="email" placeholder="Contacting email" value="{{exco.email|attr}}">
+			</label>
+			<label>
+				<span>Hall Allocation: </span>
+				<input type="text" name="hall_allocate" placeholder="Halls of DVD delivery" value="{{exco.hall_allocate|attr}}">
+			</label>
+		</div>
+	</div>
+	<div class="nocell">
+		<label>
+			<div>Self Introduction:</div>
+			<textarea name="descript" rows="10" placeholder="Say something">{{exco.descript|pre}}</textarea>
+		</label>
+	</div>
+</div>

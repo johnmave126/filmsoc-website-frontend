@@ -1,0 +1,42 @@
+<div class="news-view">
+    <header>
+        <h1>News Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search News..." tabindex="1" autofocus value="{{query|attr}}">
+        </div>
+        <div class="controls weak-rtl">
+            <button id="news-create-news">Create News</button>
+            <button id="news-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="title-column column">
+                    <div class="static-text">Title</div>
+                </div>
+                <div class="time-column column">
+                    <div class="static-text">Publish Time</div>
+                </div>
+                <div class="content-column column">
+                    <div class="static-text">Content</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="news-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

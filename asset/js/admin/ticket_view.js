@@ -167,39 +167,8 @@ cr.define('cr.view.ticket', function() {
     });
     cr.ui.overlay.showOverlay(overlay);
     cr.model.PreviewShowTicket.get(id, function(obj) {
-      var form = cr.ui.template.render_template('admin/ticket_edit.html', {ticket: obj, cn: cn(obj)});
+      var form = cr.ui.template.render_template('admin/ticket_edit.html', {ticket: obj});
       content.appendChild(form);
-      if (obj.state === 'Draft') {
-        var button1 = $('multiuse-button1');
-        button1.textContent = "Publish";
-        button1.removeAttribute('hidden');
-        overlay.eventTracker.add(button1, 'click', function() {
-          cr.ui.showLoading();
-          var payload = Application.collectForm(content);
-          if (payload['cover_url'] === 'uploading') {
-            alertOverlay.setValues(
-              'Warning',
-              'Cover is still uploading',
-              'OK',
-              null,
-              function() {
-                cr.dispatchSimpleEvent($('alertOverlay'), 'cancelOverlay');
-              },
-              null
-            );
-            cr.ui.hideLoading();
-            cr.ui.overlay.showOverlay($('alertOverlay'));
-            return;
-          }
-          payload['state'] = 'Open';
-          cr.model.PreviewShowTicket.put(id, payload, true, function() {
-            cr.ui.hideLoading();
-            cr.dispatchSimpleEvent(overlay, 'cancelOverlay');
-            history.go();
-            cr.ui.showNotification('Saved', 'dismiss');
-          });
-        });
-      }
       overlay.eventTracker.add(button2, 'click', function() {
         cr.ui.showLoading();
         var payload = Application.collectForm(content);
@@ -339,7 +308,7 @@ cr.define('cr.view.ticket', function() {
       list_container.classList.add("content-loading");
       list_container.innerHTML = "";
       for (var i = 0; i < obj_list.length; i++) {
-        var listitem = cr.ui.template.render_template("admin/ticket_list_item.html", {ticket: obj_list[i], cn: cn(obj_list[i])});
+        var listitem = cr.ui.template.render_template("admin/ticket_list_item.html", {ticket: obj_list[i]});
         list_container.appendChild(listitem);
       }
       if (this.has_prev) {
@@ -436,7 +405,7 @@ cr.define('cr.view.ticket', function() {
       list_container.classList.add("content-loading");
       list_container.innerHTML = "";
       for (var i = 0; i < obj_list.length; i++) {
-        var listitem = cr.ui.template.render_template("admin/ticket_list_item.html", {ticket: obj_list[i], cn: cn(obj_list[i])});
+        var listitem = cr.ui.template.render_template("admin/ticket_list_item.html", {ticket: obj_list[i]});
         list_container.appendChild(listitem);
       }
       if (this.has_prev) {

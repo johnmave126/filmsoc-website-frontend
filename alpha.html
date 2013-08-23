@@ -9,6 +9,7 @@ ______ _ _             _____            _      _
                                                     __/ |
                                                    |___/ 
 -->
+<!-- You can view the License File at http://ihome.ust.hk/asset/js/LICENSE -->
 <html>
 <head>
     <title>Film Society, HKUSTSU</title>
@@ -33,6 +34,7 @@ ______ _ _             _____            _      _
 
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="asset/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/ellipsis.css">
     <link rel="stylesheet" type="text/css" href="asset/css/notification.css">
     <link rel="stylesheet" type="text/css" href="asset/css/scrollbar.css">
 
@@ -77,7 +79,18 @@ ______ _ _             _____            _      _
                 </div>
             </div>
         </div>
-        <div id="content-wrapper"></div>
+        <div id="content-wrapper">
+            <div class="spinner">
+                <div class="item-0"><div></div><div></div></div>
+                <div class="item-1"><div></div><div></div></div>
+                <div class="item-2"><div></div><div></div></div>
+                <div class="item-3"><div></div><div></div></div>
+                <div class="item-4"><div></div><div></div></div>
+                <div class="item-5"><div></div><div></div></div>
+                <div class="item-6"><div></div><div></div></div>
+                <div class="item-7"><div></div><div></div></div>
+            </div>
+        </div>
         <div id="orientation-wrapper">
             <img src="asset/css/rotate.png" alt="Please rotate device">
             <p>Please rotate your device to landscape mode.</p>
@@ -85,17 +98,20 @@ ______ _ _             _____            _      _
         <div id="footer-helper"></div>
     </div>
     <div id="footer">
-        <a class="navigator selected" controls="news" href="#">Home</a>
-        <a class="navigator" controls="show" href="#show/">Regular Film Show</a>
-        <a class="navigator" controls="library" href="#library/">VCD/DVD Library</a>
-        <a class="navigator" controls="ticket" href="#ticket/">Preview Show Tickets</a>
-        <a class="navigator" controls="doc" href="#doc/">Documents</a>
-        <a class="navigator" controls="pub" href="#pub/">Publications</a>
-        <a class="navigator" controls="sponsor" href="#sponsor/">Sponsors</a>
-        <a class="navigator-last" controls="about" href="#about/">About Us</a>
+        <a class="navigator selected" controls="news" href="#!home">Home</a>
+        <a class="navigator" controls="show" href="#!show/">Regular Film Show</a>
+        <a class="navigator" controls="library" href="#!library/">VCD/DVD Library</a>
+        <a class="navigator" controls="ticket" href="#!ticket/">Preview Show Tickets</a>
+        <a class="navigator" controls="document" href="#!document/">Documents</a>
+        <a class="navigator" controls="publication" href="#!publication/">Publications</a>
+        <a class="navigator" controls="sponsor" href="#!sponsor/">Sponsors</a>
+        <a class="navigator-last" controls="about" href="#!about/">About Us</a>
     </div>
 
     <!-- scripts -->
+    <script type="text/javascript" src="asset/js/front/ziggurat.js"></script>
+    <script type="text/javascript" src="asset/js/application.min.js"></script>
+    <!--
     <script type="text/javascript" src="asset/js/util.js"></script>
     <script type="text/javascript" src="asset/js/event_tracker.js"></script>
     <script type="text/javascript" src="asset/js/cr.js"></script>
@@ -107,12 +123,21 @@ ______ _ _             _____            _      _
     <script type="text/javascript" src="asset/js/router.js"></script>
     <script type="text/javascript" src="asset/js/ui.js"></script>
     <script type="text/javascript" src="asset/js/notification.js"></script>
+    <script type="text/javascript" src="asset/js/custom_bbcode.js"></script>
+    <script type="text/javascript" src="asset/js/rotate.js"></script>
     <script type="text/javascript" src="asset/js/front/front_models.js"></script>
     <script type="text/javascript" src="asset/js/front/ui_util.js"></script>
     <script type="text/javascript" src="asset/js/front/custom_select.js"></script>
+    <script type="text/javascript" src="asset/js/front/scroller.js"></script>
     <script type="text/javascript" src="asset/js/front/rand_sentence.js"></script>
     <script type="text/javascript" src="asset/js/front/application.js"></script>
     <script type="text/javascript" src="asset/js/front/liba_view.js"></script>
     <script type="text/javascript" src="asset/js/front/rfs_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/ticket_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/document_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/sponsor_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/home_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/aboutus_view.js"></script>
+    <script type="text/javascript" src="asset/js/front/publication_view.js"></script>-->
 </body>
 </html>

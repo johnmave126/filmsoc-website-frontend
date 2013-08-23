@@ -30,7 +30,7 @@
 
   & > div {
     height: 100%;
-    text-overflow: ellipsis;
+    @include ellipsis;
   }
   .user-info {
     border-right: 1px solid $border-color;

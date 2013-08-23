@@ -76,11 +76,14 @@ cr.define('Application', function() {
     //Hook navigations
     $('footer').addEventListener('click', function(e) {
       //Use proxy
-      var control = e.target.getAttribute('href').substr(1);
+      var control = e.target.getAttribute('href').substr(2);
       routerManager.pushState(control, false, false);
       e.preventDefault();
       e.stopPropagation();
     }, true);
+
+    //Set router
+    routerManager.prefix = 1;
   }
 
   /**
@@ -106,19 +109,12 @@ cr.define('Application', function() {
   }
 
   /**
-  * Start page of Admin Interface
-  */
-  function startPage() {
-    var img = new Image();
-    //Do nothing
-  }
-
-  /**
   * Handle not found error.
   */
   function notFoundHandler() {
     var content = cr.ui.template.render_template("error_page.html", {text: 'Oops... 404 Page Not Found.'});
     cr.view.name = "404";
+    document.title = "404 Page Not Found | Film Society, HKUSTSU";
     cr.ui.replaceContent(content);
   }
 
@@ -145,7 +141,6 @@ cr.define('Application', function() {
 
   return {
     initialization: initialization,
-    startPage: startPage,
     collectForm: collectForm,
   };
 });

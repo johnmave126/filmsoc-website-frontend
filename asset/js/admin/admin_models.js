@@ -140,6 +140,8 @@ cr.define('cr.model', function() {
     'create_log',
   ];
 
+  News.types = ['create', 'edit', 'delete'];
+
   Document.fields = [
     'id',
     'title',
@@ -147,14 +149,19 @@ cr.define('cr.model', function() {
     'create_log',
   ];
 
+  Document.types = ['create', 'edit', 'delete'];
+
   Publication.fields = [
     'id',
     'Type',
     'title',
     'cover_url',
     'doc_url',
+    'ext_doc_url',
     'create_log',
   ];
+
+  Publication.types = ['create', 'edit', 'delete'];
 
   Sponsor.fields = [
     'id',
@@ -162,6 +169,8 @@ cr.define('cr.model', function() {
     'img_url',
     'create_log',
   ];
+
+  Sponsor.types = ['create', 'edit', 'delete'];
 
   Exco.fields = [
     'id',

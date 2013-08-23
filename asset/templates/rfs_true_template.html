@@ -9,7 +9,7 @@
 		</div>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_1}} Vote<span {{show.vote_cnt_1>1?'':'hidden'|safe}}>s</span></div>
-			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>
 		</div>
 	</div>
 	<div class="rfs-film-strip {{show.film_2.avail_type|attr}}" refer="2">
@@ -22,7 +22,7 @@
 		</div>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_2}} Vote<span {{show.vote_cnt_2>1?'':'hidden'|safe}}>s</span></div>
-			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>
 		</div>
 	</div>
 	<div class="rfs-film-strip {{show.film_3.avail_type|attr}}" refer="3">
@@ -35,7 +35,7 @@
 		</div>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_3}} Vote<span {{show.vote_cnt_3>1?'':'hidden'|safe}}>s</span></div>
-			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'?'':'hidden'|safe}}>Vote</button>
+			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>
 		</div>
 	</div>
 	<div class="info-tab">

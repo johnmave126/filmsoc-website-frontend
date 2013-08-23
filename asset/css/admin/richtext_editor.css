@@ -1,0 +1,257 @@
+/**
+ * Rich Text Editor
+ */
+.richtext-toolbar .bar {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.5em 0.3em;
+  background-color: #888;
+  color: white;
+  border-radius: 2px;
+  font-family: monospace;
+  position: relative;
+}
+
+.richtext-toolbar .bar > div {
+  line-height: 2.5em;
+  border-bottom: 1px solid #bbb;
+}
+
+.richtext-toolbar .bar > div > span {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.1em 0.5em;
+  margin: 0 0.2em;
+  background-color: #aaa;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.richtext-toolbar .bar > div > span:hover {
+  background-color: #555;
+}
+
+.richtext-toolbar .bar > div > span[controls="bold"] {
+  font-weight: bold;
+}
+
+.richtext-toolbar .bar > div > span[controls="italics"] {
+  font-style: italic;
+}
+
+.richtext-toolbar .bar > div > span[controls="underline"] {
+  text-decoration: underline;
+}
+
+.richtext-toolbar .bar > div > span[controls="big"] {
+  font-size: large;
+}
+
+.richtext-toolbar .bar > div > span[controls="small"] {
+  font-size: small;
+}
+
+.richtext-toolbar .bar > span[controls="preview"] {
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+  font-size: large;
+  cursor: pointer;
+}
+
+.richtext-toolbar .bar > span[controls="preview"]:hover {
+  text-decoration: underline;
+}
+
+.richtext-toolbar .link-adder,
+.richtext-toolbar .colorpicker,
+.richtext-toolbar .image-adder,
+.richtext-toolbar .id-adder {
+  padding: 1em;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+}
+
+.richtext-toolbar .image-adder {
+  max-width: 50%;
+}
+
+.richtext-toolbar .preview {
+  display: block;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 1em;
+}
+
+.richtext-toolbar .preview > span[controls="edit"] {
+  cursor: pointer;
+}
+
+.richtext-toolbar .preview > span[controls="edit"]:hover {
+  text-decoration: underline;
+}
+
+.richtext-toolbar .preview > .preview-wrapper {
+  font-family: sans-serif;
+  white-space: normal;
+}
+
+.richtext-toolbar .preview > .preview-wrapper p {
+  line-height: 1.2em;
+  padding: 0.4em 0;
+  margin: 0;
+}
+
+.richtext-toolbar .preview > .preview-wrapper b {
+  font-weight: bold;
+}
+
+.richtext-toolbar .preview > .preview-wrapper em {
+  font-style: italic;
+}
+
+.richtext-toolbar .preview > .preview-wrapper u {
+  text-decoration: underline;
+}
+
+.richtext-toolbar .preview > .preview-wrapper big {
+  font-size: large;
+}
+
+.richtext-toolbar .preview > .preview-wrapper small {
+  font-size: small;
+}
+
+.richtext-toolbar .preview > .preview-wrapper img {
+  display: block;
+  max-width: 70%;
+  max-height: 70%;
+  margin: 0.5em auto;
+}
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper {
+  width: 70%;
+  height: 0;
+  padding: 0;
+  margin: 0.2em auto;
+  padding-bottom: 40%;
+  position: relative;
+  border-radius: 5px;
+  background-color: #888;
+  color: white;
+
+  -webkit-transition: background-color 200ms;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -ms-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper.rich-pointer {
+  cursor: pointer;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper:hover {
+  background-color: #aaa;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-disk-cover {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  bottom: 1em;
+  right: 60%;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-disk-detail {
+  position: absolute;
+  top: 1em;
+  left: 40%;
+  bottom: 1em;
+  right: 1em;
+  margin-left: 1em;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 1em;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-disk-detail .richtext-category,
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-title {
+  font-size: 200%;
+  color: #ccc;
+  margin-bottom: 1em;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-disk-detail .richtext-disk-title {
+  font-size: 150%;
+  margin-bottom: 0.5em;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-disk-detail .richtext-disk-entry {
+  margin-top: 0.2em;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-detail {
+  position: absolute;
+  top: 4em;
+  left: 1em;
+  right: 1em;
+  bottom: 1em;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-detail .richtext-rfs-item {
+  float: left;
+  width: 31%;
+  margin: 0 1.16666666666666666666666665%;
+  height: 100%;
+  cursor: pointer;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-detail .richtext-rfs-item:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.2%, rgba(0, 0, 0, 0.8) 100% );
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.2%, rgba(0, 0, 0, 0.8) 100% );
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.2%, rgba(0, 0, 0, 0.8) 100% );
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.2%, rgba(0, 0, 0, 0.8) 100% );
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 38.2%, rgba(0, 0, 0, 0.8) 100% );
+  z-index: 1;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-detail .richtext-rfs-item .rfs-cover-title {
+  position: absolute;
+  bottom: 1em;
+  text-align: right;
+  right: 0.2em;
+  z-index: 2;
+}
+
+.richtext-toolbar .preview > .preview-wrapper .richtext-item-wrapper .richtext-rfs-title {
+  position: absolute;
+  top: 0.5em;
+  left: 1em;
+  right: 1em;
+}

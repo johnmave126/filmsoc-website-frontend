@@ -1,0 +1,105 @@
+<div id="ticket-edit-form" class="page-form">
+	<div>
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/2x3.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Cover Picture Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="cover_url" value="{{ticket.cover_url?ticket.cover_url.id:''|attr}}">
+		<div class="ticket-side-edit multiline">
+			<label>
+				<span>State: </span>
+				<select name="state">
+					<option value="Draft" {{ticket.state==='Draft'?'selected':''|safe}}>Draft</option>
+					<option value="Open" {{ticket.state==='Open'?'selected':''|safe}}>Open</option>
+					<option value="Closed" {{ticket.state==='Closed'?'selected':''|safe}}>Closed</option>
+				</select>
+			</label>
+			<label>
+				<span>English Name: </span>
+				<input type="text" name="title_en" placeholder="The English name of this film" value="{{ticket.title_en|attr}}">
+			</label>
+			<label>
+				<span>Chinese Name: </span>
+				<input type="text" name="title_ch" placeholder="The Chinese name of this film" value="{{ticket.title_ch|attr}}">
+			</label>
+			<label>
+				<span>Show Time: </span>
+				<input type="text" name="show_time" placeholder="yyyy-mm-dd hh:mm:ss" value="{{ticket.show_time|attr}}">
+			</label>
+			<label>
+				<span>Language: </span>
+				<input type="text" name="language" value="{{ticket.language|attr}}">
+			</label>
+			<label>
+				<span>Subtitle: </span>
+				<input type="text" name="subtitle" value="{{ticket.subtitle|attr}}">
+			</label>
+			<label>
+				<span>Director's English Name:</span>
+				<input type="text" name="director_en" placeholder="English name" value="{{ticket.director_en|attr}}">
+			</label>
+			<label>
+				<span>Director's Chinese Name: </span>
+				<input type="text" name="director_ch" placeholder="Chinese name" value="{{ticket.director_ch|attr}}">
+			</label>
+			<label>
+				<span>Actors: </span>
+				<input type="text" role="list" name="actors" placeholder="Main actors' English names, splitted by ','" value="{{ticket.actors.join(', ')|attr}}">
+			</label>
+			<label>
+				<span>Apply Deadline: </span>
+				<input type="text" name="apply_deadline" placeholder="yyyy-mm-dd hh:mm:ss" value="{{ticket.apply_deadline|attr}}">
+			</label>
+		</div>
+	</div>
+	<div class="single-table">
+		<div>
+			<label>
+				<span>Length: </span>
+				<input type="text" name="length" placeholder="Length of the film (in minutes)" value="{{ticket.length|attr}}">
+			</label>
+			<label>
+				<span>Quantity: </span>
+				<input type="text" name="quantity" placeholder="Number of tickets available" value="{{ticket.quantity|attr}}">
+			</label>
+		</div>
+		<div>
+			<label>
+				<span>Venue: </span>
+				<input type="text" name="venue" placeholder="Venue of the film" value="{{ticket.venue|attr}}">
+			</label>
+			<label>
+				<span>Remarks: </span>
+				<textarea name="remarks" rows="4">{{ticket.remarks}}</textarea>
+			</label>
+		</div>
+		<div>
+			<label>
+				<div>English Description:</div>
+				<textarea name="desc_en" rows="10">{{ticket.desc_en}}</textarea>
+			</label>
+			<label>
+				<div>Chinese Description:</div>
+				<textarea name="desc_ch" rows="10">{{ticket.desc_ch}}</textarea>
+			</label>
+		</div>
+	</div>
+	<div class="nocell">
+		<label>
+			<div>Successful applicants:</div>
+			<textarea name="successful_applicant" rows="10" placeholder="The list of successful applicants. Censor the id by yourself.">{{ticket.successful_applicant|pre}}</textarea>
+		</label>
+	</div>
+	<div class="info">
+		<h3>Miscellaneous Ticket Info</h3>
+		<div>ID: {{ticket.id}}</div>
+		<div>Created At: {{ticket.create_log.created_at}}</div>
+	</div>
+</div>

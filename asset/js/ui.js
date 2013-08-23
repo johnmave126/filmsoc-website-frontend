@@ -254,3 +254,16 @@ cr.define('cr.ui', function() {
     }
   }
 })();
+
+//Support requestAnimationFrame
+(function() {
+  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
+                              function(callback) {
+                                //Fallback to setTimeout
+                                setTimeout(function() {
+                                  callback(Date.now());
+                                }, 30);
+                              };
+  window.requestAnimationFrame = requestAnimationFrame;
+})();

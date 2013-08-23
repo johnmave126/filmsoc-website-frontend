@@ -1,0 +1,291 @@
+/*
+ * Declare style of Preview Show Ticket.
+ */
+
+#content-wrapper {
+  $left-panel-width: 25%;
+  .ticket-wrapper {
+    width: 100%;
+    height: 100%;
+
+    .left-panel {
+      @extend .black-img-bg;
+      width: $left-panel-width;
+      height: 100%;
+      position: absolute;
+      left: 5%;
+      top: 0;
+      overflow-y: auto;
+      text-align: center;
+      @include translateY(0);
+      @include single-transition(transform, 300ms, ease-out);
+      @include single-transition(transform, 300ms, cubic-bezier(0.5, 1.5, 0.5, 1));
+      .ticket-list-wrapper {
+        @include box-sizing(border-box);
+        padding: 2em 1em 0 1em;
+
+        .ticket-item {
+          background-color: darken(white, 5%);
+          @include box-sizing(border-box);
+          height: 7em;
+          padding: 0.5em;
+          border: 1px solid rgba(0, 0, 0, .4);
+          @include transform-origin(1em, center, false, false); 
+        }
+
+        .ticket-list-item {
+          position: relative;
+          cursor: pointer;
+          @extend .ticket-item;
+          left: 0;
+          @include opaque;
+          @include transition(left 150ms ease-out, opacity 150ms);
+          margin-bottom: 2em;
+
+          .ticket-item-wrapper {
+            @extend .ticket-item;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            @include bend-drop-shadow(darken(white, 5%));
+            @include rotate(0);
+            @include transition(transform 150ms);
+
+            .item-cover {
+              width: 20%;
+              float: left;
+              border-right: 3px solid $dark-grey;
+              height: 6em;
+              @include background-size(cover);
+            }
+
+            .item-info {
+              overflow: hidden;
+              height: 6em;
+              padding: 0.3em 0.2em;
+              @include box-sizing(border-box);
+            }
+
+            .item-state {
+              position: absolute;
+              right: 0.5em;
+              bottom: 0.5em;
+              padding: 0.3em 0.5em;
+              font-family: monospace;
+              font-size: 2em;
+              font-weight: bold;
+              pointer-events: none;
+              color: $red;
+              border: 2px solid $red;
+              @include rotate(-5deg);
+
+              &.Closed {
+                color: $dark-grey;
+                border: 2px solid $dark-grey;
+              }
+            }
+          }
+
+          &:hover, &:active, &[selected] {
+            .ticket-item-wrapper {
+              @include rotate(-5deg);
+            }
+          }
+
+          &.loading {
+            left: -100%;
+            @include transparent;
+          }
+        }
+
+        .anchor {
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+
+    .right-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 35%;
+      right: 5%;
+
+      .ticket-detail-wrapper {
+        width: 100%;
+        height: 100%;
+        @include transform-style(preserve-3d);
+        @include perspective(1700px);
+
+        .ticket-detail {
+          width: 100%;
+          height: 100%;
+          padding: 1em 3em;
+          overflow-y: auto;
+          background-color: darken($background, 10%);
+          color: $black;
+          @include box-sizing(border-box);
+          @include base-shadow;
+          @include apply-origin(120% 80% 0, false);
+          @include opaque;
+          @include transform(rotateX(0) rotateY(0));
+          @include transition(opacity 400ms, transform 400ms);
+          @include transition-delay(0, 0);
+          @include user-select(text);
+          .ticket-title {
+            margin-top: 1em;
+            font-size: 150%;
+            font-weight: bold;
+          }
+          .ticket-brief {
+            margin-top: 10px;
+            .ticket-cover {
+              $width: 35%;
+              width: $width;
+              height: 0;
+              padding: 0;
+              padding-bottom: $width * 3/2;
+              @include inline-block;
+              vertical-align: top;
+
+              background: transparent;
+              @include background-size(contain);
+              background-position: center top;
+              background-repeat: no-repeat;
+            }
+            .ticket-info-1 {
+              width: 60%;
+              padding: 0px 10px;
+              @include box-sizing(border-box);
+              @include inline-block;
+              vertical-align: top;
+              text-align: left;
+              line-height: 1.3em;
+              .key {
+                color: lighten($black, 10%);
+              }
+            }
+          }
+          .ticket-action {
+            text-align: right;
+            margin-top: 1em;
+            button {
+              @include reset-box-model;
+              background: transparent;
+              color: $black;
+              cursor: pointer;
+              font-weight: bold;
+              font-size: 95%;
+              padding: 5px;
+              background-color: $blue;
+              @include border-radius(3px);
+              @include single-transition(background-color, 200ms, linear);
+              &:hover, &:active {
+                background-color: lighten($blue, 10%);
+              }
+            }
+          }
+          .ticket-applicants-wrapper, .ticket-remarks-wrapper {
+            margin-top: 1em;
+          }
+          .ticket-desc {
+            margin-top: 1em;
+            .ticket-desc-en, .ticket-desc-ch {
+              position: relative;
+              line-height: 1.5em;
+              padding: 0.5em;
+              @include box-sizing(border-box);
+              p {
+                padding: 0.5em 0;
+              }
+            }
+            .ticket-desc-en {
+              float: left;
+              width: 50%;
+              &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                left: 100%;
+                background-color: $dark-grey;
+              }
+            }
+            .ticket-desc-ch {
+              overflow: hidden;
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                left: 0%;
+                background-color: $dark-grey;
+              }
+            }
+          }
+
+          h3 {
+            font-size: 110%;
+            font-weight: bold;
+          }
+        }
+      }
+
+
+      & > .spinner {
+        display: none;
+        z-index: 2;
+      }
+      &.loading {
+        & > .spinner {
+          display: block;
+        }
+
+        .ticket-detail-wrapper .ticket-detail{
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+        }
+      }
+    }
+
+    .popup-overlay .ticket-apply{
+      .ticket-apply-num {
+        text-align: center;
+        padding: 0.5em 0;
+      }
+      .apply-action {
+        text-align: right;
+      }
+    }
+  }
+
+  &.loading {
+    .ticket-wrapper {
+      .left-panel {
+        @include translateY(-100%);
+        @include transition-timing-function(ease-in);
+        @include page-shift;
+      }
+
+      .right-panel .ticket-detail-wrapper .ticket-detail{
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg) !important);
+          @include page-shift;
+      }
+
+      .popup-overlay {
+        @include transparent;
+        @include page-shift;
+        .popup-box {
+          margin-top: 100% !important;
+          @include page-shift;
+        }
+      }
+    }
+  }
+}

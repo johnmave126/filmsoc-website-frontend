@@ -1,0 +1,38 @@
+<div class="sponsor-view">
+    <header>
+        <h1>Sponsor Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Sponsor..." value="{{query|attr}}" tabindex="1" autofocus>
+        </div>
+        <div class="controls weak-rtl">
+            <button id="sponsor-create-sponsor">Create Sponsor</button>
+            <button id="sponsor-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="img-column column">
+                </div>
+                <div class="name-column column">
+                    <div class="static-text">Name</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="sponsor-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -101,3 +101,26 @@ body::-webkit-scrollbar-corner {
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0,0,0,.14);
 }
+
+.light-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.5);
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,.2),inset -1px 0 0 rgba(255,255,255,.07);
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,.45);
+    box-shadow: inset 1px 1px 1px rgba(255,255,255,.15);
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255,255,255,.35);
+    box-shadow: inset 1px 1px 3px rgba(255,255,255,.1);
+}
+
+.light-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(255,255,255,.1);
+}
+
+.light-scrollbar::-webkit-scrollbar-track:hover {
+    background-color: rgba(255,255,255,.135);
+}

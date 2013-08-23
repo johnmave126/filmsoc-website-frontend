@@ -1,0 +1,36 @@
+<div class="doc-view">
+    <header>
+        <h1>Document Management</h1>
+        <div class="corner">
+            <input type="search" autocomplete="off" placeholder="Search Document..." tabindex="1" autofocus value="{{query|attr}}">
+        </div>
+        <div class="controls weak-rtl">
+            <button id="doc-create-doc">Create Document</button>
+            <button id="doc-view-log">View Logs</button>
+        </div>
+        <div class="controls">
+            <div class="column-header">
+                <div class="title-column column">
+                    <div class="static-text">Document Title</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <list id="doc-list-list" role="list" tabindex="2">
+        </list>
+    </div>
+    <footer>
+        <div>
+            <div class="lefthub">
+                <button id="page-prev" class="link-button">&lt;&lt;Prev</button>
+            </div>
+            <div class="centerhub">
+                <span>&nbsp;</span>
+            </div>
+            <div class="righthub">
+                <button id="page-next" class="link-button">Next&gt;&gt;</button>
+            </div>
+        </div>
+    </footer>
+</div>

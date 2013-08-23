@@ -1,0 +1,22 @@
+<div class="richtext-item-wrapper rich-pointer loading">
+	<div class="richtext-disk-cover">
+	</div>
+	<div class="richtext-disk-detail">
+		<div class="richtext-category">
+			Disk
+		</div>
+		<div class="richtext-disk-title">
+			{{disk.title_en}}<br>
+			{{disk.title_ch}}
+		</div>
+		<div class="richtext-disk-entry">
+			Director: {{disk.director_en}} / {{disk.director_ch}}
+		</div>
+		<div class="richtext-disk-entry">
+			Actors: {{disk.actors.join(', ')}}
+		</div>
+		<div class="richtext-disk-entry">
+			Tags: {{disk.tags.join(', ')}}
+		</div>
+	</div>
+</div>

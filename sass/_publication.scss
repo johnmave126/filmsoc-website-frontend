@@ -1,0 +1,323 @@
+/*
+ * Declare style of Publication.
+ */
+
+@include keyframes(podcast-cover) {
+  0% {
+    @include rotate(0deg);
+  }
+  100% {
+    @include rotate(360deg);
+  }
+}
+
+#content-wrapper {
+  .publication-wrapper {
+  	width: 100%;
+    height: 100%;
+    $left-width: 20%;
+    .left-panel {
+      position: absolute;
+      left: 5%;
+      width: $left-width;
+      height: 100%;
+      text-align: center;
+      @include perspective(0px);
+      @include transform-style(preserve-3d);
+      @include apply-origin(center center, false);
+      @include transform(translateX(0) rotateY(0));
+      @include opaque;
+      @include transition(transform 300ms, opacity $page-shift-duration);
+      
+      .publication-face {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.5em;
+        @include box-sizing(border-box);
+        @include backface-visibility(hidden);
+
+        .top-navigation {
+          margin-bottom: 1em;
+          color: $black;
+          font-weight: bold;
+          cursor: default;
+          @extend .better-clearfix;
+          .btn-rotate-left, .btn-rotate-right {
+            @include reset-box-model;
+            background: transparent;
+            cursor: pointer;
+            color: $black;
+            font-weight: bold;
+            vertical-align: middle;
+            font-size: 100%;
+          }
+          .btn-rotate-left {
+            float: left;
+          }
+          .btn-rotate-right {
+            float: right;
+          }
+        }
+
+        .publication-list-wrapper {
+          position: absolute;
+          top: 3.5em;
+          bottom: 0.5em;
+          left: 10%;
+          right: 10%;
+          overflow-x: hidden;
+          overflow-y: auto;
+
+          .publication-list-item {
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            margin-bottom: 0.5em;
+            position: relative;
+            cursor: pointer;
+            .publication-cover {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              left: 0;
+              top: 0;
+              border: 2px solid transparent;
+              @include background-size(cover);
+              @include border-radius(5px);
+              @include background-clip(padding-box);
+              @include transition(border-color 150ms);
+              background-position: center center;
+
+              .publication-title {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                text-align: right;
+                background-color: rgba(30, 30, 30, .7);
+                color: white;
+                padding: 0.2em;
+                @include border-radius(0 0 5px 5px);
+              }
+            }
+
+            &:hover, &:active, &[selected] {
+              .publication-cover {
+                border-color: white;
+              }
+            }
+          }
+
+          .anchor {
+            background-color: rgba(30, 30, 30, .7);
+            color: white;
+            margin-bottom: 0.5em;
+            @include border-radius(4px);
+            padding: 0.5em;
+          }
+        }
+      }
+
+      .top-face {
+        @extend .publication-face;
+        background-color: $orange;
+        @include transform(translateZ(1px));
+        .publication-magazine-list-wrapper {
+          @extend .publication-list-wrapper;
+        }
+      }
+      .left-face {
+        @extend .publication-face;
+        @include apply-origin(center right, false);
+        @include transform(translateX(-100%) rotateY(-120deg));
+        background-color: $blue;
+        .publication-micromagazine-list-wrapper {
+          @extend .publication-list-wrapper;
+        }
+      }
+      .right-face {
+        @extend .publication-face;
+        @include apply-origin(center left, false);
+        @include transform(translateX(100%) rotateY(120deg));
+        background-color: $cyan;
+        .publication-podcast-list-wrapper {
+          @extend .publication-list-wrapper;
+        }
+      }
+
+    }
+    .right-panel {
+      left: $left-width + 5%;
+      width: 100% - ($left-width + 5%);
+      height: 100%;
+      position: absolute;
+      $panel-switch: 200ms;
+
+
+      .publication-content-wrapper {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: 0;
+        top: 0;
+        .publication-detail {
+          width: 100%;
+          height: 100%;
+          padding: 1em;
+          overflow: hidden;
+          background-color: darken($background, 10%);
+          color: $black;
+          @include box-sizing(border-box);
+          @include base-shadow;
+          @include apply-origin(120% 80% 0, false);
+          @include opaque;
+          @include transform(rotateX(0) rotateY(0));
+          @include transition(opacity 400ms, transform 400ms);
+          @include transition-delay(0, 0);
+          @include user-select(text);
+
+          header {
+            .publication-title {
+              font-size: 150%;
+              font-weight: bold;
+            }
+            height: 3em;
+          }
+
+          .publication-content {
+            position: absolute;
+            top: 4em;
+            bottom: 1em;
+            left: 1em;
+            right: 1em;
+            .publication-file {
+              width: 100%;
+              height: 100%;
+              border: none;
+            }
+
+            .publication-podcast {
+              width: 100%;
+              height: 100%;
+              border: none;
+              text-align: center;
+
+              .podcast-control-wrapper {
+                width: 35%;
+                height: 0;
+                padding-bottom: 35%;
+                margin: 1em auto;
+                position: relative;
+                .podcast-cover {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  top: 0;
+                  bottom: 0;
+                  border: 6px solid rgba(255, 255, 255, .7);
+                  @include background-size(cover);
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  @include border-radius(100%);
+                  @include background-clip(border-box);
+                  @include background-origin(border-box);
+                  @include box-sizing(border-box);
+                  @include animation(podcast-cover 10s linear infinite);
+                  @include animation-play-state(paused);
+                }
+
+                .podcast-play {
+                  position: absolute;
+                  $size: 30%;
+                  width: $size;
+                  height: $size;
+                  top: (100% - $size) / 2;
+                  left: (100% - $size) / 2;
+                  @include border-radius(100%);
+                  background-color: rgba(0, 0, 0, .7);
+                  background-image: inline-image('podcast-play.png', image/png);
+                  @include background-size(cover);
+                  background-position: center center;
+                  cursor: pointer;
+
+                  & > .spinner {
+                    display: none;
+                    & > div div {
+                      &:nth-child(1) {
+                        top: 4px;
+                        background-color: rgb(100, 100, 100);
+                        @include single-box-shadow(rgb(255, 255, 255), 0px, 0px, 4px);
+                      }
+
+                      &:nth-child(2) {
+                        background-color: rgb(255, 255, 255);
+                        @include single-box-shadow(rgba(255, 255, 255, 0.0980392), 0px, 0px, 1px);
+                      }
+                    }
+                  }
+
+                  &.loading {
+                    background-image: none;
+                    & > .spinner {
+                      display: block;
+                    }
+                  }
+                }
+
+                .podcast-time {
+                  @include user-select(none);
+                  cursor: default;
+                }
+
+                &.playing {
+                  .podcast-cover {
+                    @include animation-play-state(running);
+                  }
+
+                  .podcast-play {
+                    background-image: inline-image('podcast-pause.png', image/png);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      & > .spinner {
+        display: none;
+        z-index: 2;
+      }
+      &.loading {
+        & > .spinner {
+          display: block;
+        }
+
+        .publication-content-wrapper .publication-detail {
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+          @include page-shift($panel-switch);
+        }
+      }
+    }
+  }
+
+  &.loading {
+    .publication-wrapper {
+      .left-panel {
+        @include transparent;
+        @include page-shift;
+      }
+      .right-panel {
+        .publication-content-wrapper .publication-detail {
+          @include transparent;
+          @include transform(rotateX(-30deg) rotateY(5deg));
+          @include page-shift;
+        }
+      }
+    }
+  }
+}

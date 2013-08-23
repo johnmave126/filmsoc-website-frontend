@@ -228,7 +228,10 @@ cr.define('cr.ui.overlay', function() {
     overlay.addEventListener('MSAnimationEnd', listener, false);
     overlay.addEventListener('oAnimationEnd', listener, false);
     overlay.addEventListener('animationend', listener, false);
-    overlay.classList.add('transparent');
+    overlay.classList.remove('transparent');
+    setTimeout(function() {
+      overlay.classList.add('transparent')
+    }, 0);
   }
 
   return {

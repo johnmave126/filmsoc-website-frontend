@@ -2,9 +2,8 @@
  * Declare style of DVD library.
  */
 
-$left-panel-width: 300px;
-
 #content-wrapper {
+  $left-panel-width: 300px;
   .library-wrapper {
   	width: 100%;
     height: 100%;
@@ -48,8 +47,8 @@ $left-panel-width: 300px;
       float: left;
       width: $left-panel-width;
       height: 100%;
-      background: inline-image('ntlPtrn.jpg', image/jpeg);
       text-align: center;
+      @extend .black-img-bg;
       @include translateX(0);
       @include single-transition(transform, $page-shift-duration);
       
@@ -142,7 +141,7 @@ $left-panel-width: 300px;
                 margin-top: 1%;
                 padding-bottom: 20%;
                 background: transparent;
-                background-size: cover;
+                @include background-size(cover);
                 background-position: center center;
                 @include inline-block;
               }
@@ -151,7 +150,7 @@ $left-panel-width: 300px;
                 left: 25%;
                 right: 5px;
                 white-space: nowrap;
-                text-overflow: ellipsis;
+                @include ellipsis;
                 line-height: normal;
                 overflow: hidden;
                 q {
@@ -193,7 +192,7 @@ $left-panel-width: 300px;
           background-image: inline-image('pin.png', image/png);
           background-repeat: no-repeat;
           background-size: contain;
-          background-origin: content-box;
+          @include background-origin(content-box);
           /* hack width */
           width: $actual-width;
           @include transition(background-color 120ms, opacity 250ms);
@@ -244,7 +243,7 @@ $left-panel-width: 300px;
               height: 0;
               width: 80%;
               padding-bottom: 80%;
-              @media all and (min-aspect-ratio: 2/1) {
+              @media all and (min-aspect-ratio: 17/9) {
                 width: 70%;
                 padding-bottom: 70%;
               }
@@ -275,8 +274,9 @@ $left-panel-width: 300px;
                   background-size: cover;
                   background-position: center center;
                   background-repeat: no-repeat;
-                  background-clip: border-box;
-                  background-origin: border-box;
+                  @include background-clip(border-box);
+                  @include background-origin(border-box);
+                  @include box-sizing(border-box);
                 }
               }
               .disk-info {
@@ -333,7 +333,7 @@ $left-panel-width: 300px;
                 }
                 .disk-info {
                   opacity: 1;
-                  @include rotateY(0deg);
+                  @include rotateY(0.01deg);
                   @include transition-delay(0, 0);
                 }
               }
@@ -459,7 +459,7 @@ $left-panel-width: 300px;
             height: 0;
             padding-bottom: 100%;
             background: transparent;
-            background-size: cover;
+            @include background-size(cover);
             display: block;
             cursor: pointer;
             position: relative;
@@ -537,7 +537,7 @@ $left-panel-width: 300px;
                 vertical-align: top;
 
                 background: transparent;
-                background-size: contain;
+                @include background-size(contain);
                 background-position: center top;
                 background-repeat: no-repeat;
               }
@@ -725,27 +725,7 @@ $left-panel-width: 300px;
         }
 
         .popup-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(255, 255, 255, 0.75);
-          z-index: 1;
-          @include opaque;
-          @include single-transition(opacity, 200ms);
-
-          @include center(".popup-box") {
-            position: relative;
-            width: 60%;
-            left: 20%;
-            background-color: lighten($black, 10%);
-            color: $light-grey;
-            padding: 1em;
-            @include box-sizing(border-box);
-            @include border-radius(5px);
-            @include single-transition(margin-top, 200ms);
-            @include drop-shadow;
+          .popup-box {
 
             .library-disk-reserve {
               .reserve-warning {
@@ -791,49 +771,6 @@ $left-panel-width: 300px;
               .renew-action {
                 text-align: right;
               }
-            }
-
-            & > .spinner {
-              display: none;
-              z-index: 2;
-            }
-            & > .popup-box-cover {
-              display: none;
-              position: absolute;
-              left: 0;
-              right: 0;
-              top: 0;
-              bottom: 0;
-              pointer-events: all;
-              z-index: 1;
-            }
-            &.loading {
-              & > .spinner {
-                display: block;
-              }
-              & > .popup-box-cover {
-                display: block;
-              }
-            }
-            h1 {
-              font-size: 1.3em;
-            }
-            h2 {
-              font-weight: bold;
-              margin: 0.5em 0;
-            }
-            button {
-              background-color: $green;
-              &:hover, &:active {
-                background-color: lighten($green, 10%);
-              }
-            }
-          }
-
-          &.loading {
-            @include transparent;
-            .popup-box {
-              margin-top: 100%;
             }
           }
         }

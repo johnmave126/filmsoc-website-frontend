@@ -20,6 +20,7 @@ pickle-email-*.html
 sftp-config.json
 
 #project
+.htaccess
 A_LETTER_TO_HACKER
 asset/css/screen.css
 asset/css/ie.css

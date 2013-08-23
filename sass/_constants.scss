@@ -16,6 +16,9 @@ $dark-green: #8bab8d;
 $dark-slategray: #2c3f52;
 $black: #333;
 
+$osu-blue: #3e86de;
+$osu-orange: #e96800;
+
 /* color related */
 $background: $light-grey;
 $link-color: rgb(17, 85, 204);
@@ -86,6 +89,39 @@ $experimental-support-for-microsoft: false;
                       0 0 40px rgba(0, 0, 0, 0.1) inset);
 }
 
+@mixin bend-drop-shadow($bg: #fff) {
+  @include box-shadow(none);
+  z-index: auto;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    bottom: 13px;
+    left: 3px;
+    width: 50%;
+    height: 20%;
+    @include box-shadow(0 15px 10px rgba(0,0,0,0.7));
+    @include rotate(-3deg);
+  }
+  &:after {
+    right: 3px;
+    left: auto;
+    @include rotate(3deg);
+  }
+  & > :first-child:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $bg;
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(0, 0, 0, 0.1) inset);
+  }
+}
+
 /* display tooltip on right */
 @mixin tooltip-right {
   &:after {
@@ -128,5 +164,229 @@ $experimental-support-for-microsoft: false;
   }
   &:hover:before {
     @include opaque;
+  }
+}
+
+.black-img-bg {
+  background: inline-image('ntlPtrn.jpg', image/jpeg);
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+  @include opaque;
+  @include single-transition(opacity, 200ms);
+
+  @include center(".popup-box") {
+    position: relative;
+    width: 60%;
+    background-color: lighten($black, 10%);
+    color: $light-grey;
+    padding: 1em;
+    @include box-sizing(border-box);
+    @include border-radius(5px);
+    @include single-transition(margin-top, 200ms);
+    @include drop-shadow;
+    & > .spinner {
+      display: none;
+      z-index: 2;
+    }
+    & > .popup-box-cover {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: all;
+      z-index: 1;
+    }
+    &.loading {
+      & > .spinner {
+        display: block;
+      }
+      & > .popup-box-cover {
+        display: block;
+      }
+    }
+    h1 {
+      font-size: 1.3em;
+    }
+    h2 {
+      font-weight: bold;
+      margin: 0.5em 0;
+    }
+    button {
+      background-color: $green;
+      &:hover, &:active {
+        background-color: lighten($green, 10%);
+      }
+    }
+  }
+  &.loading {
+    @include transparent;
+    .popup-box {
+      margin-top: 100%;
+    }
+  }
+}
+
+.better-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.richtext {
+  padding: 0.5em 0;
+  p {
+    line-height: 1.3em;
+    padding: 0.3em 0;
+    margin: 0;
+  }
+  b {
+    font-weight: bold;
+  }
+  em {
+    font-style: italic;
+  }
+  u {
+    text-decoration: underline;
+  }
+  big {
+    font-size: x-large;
+  }
+  small {
+    font-size: small;
+  }
+  img {
+    display: block;
+    max-width: 70%;
+    max-height: 70%;
+    margin: 0.5em auto;
+  }
+
+  .richtext-item-wrapper {
+    width: 70%;
+    height: 0;
+    padding: 0;
+    margin: 0.2em auto;
+    padding-bottom: 40%;
+    position: relative;
+    background-color: darken($dark-grey, 20%);
+    color: white;
+    @include user-select(none);
+    @include opaque;
+    @include border-radius(5px);
+    @include transition(opacity 200ms, background-color 200ms);
+
+    .title-wrapper {
+      font-size: 200%;
+      color: $grey;
+      margin-bottom: 1em;
+    }
+
+    .richtext-disk-cover {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      bottom: 1em;
+      right: 60%;
+      @include background-size(cover);
+    }
+
+    .richtext-disk-detail {
+      position: absolute;
+      top: 1em;
+      left: 40%;
+      bottom: 1em;
+      right: 1em;
+      margin-left: 1em;
+      padding: 0 1em;
+      @include box-sizing(border-box);
+
+      .richtext-category {
+        @extend .title-wrapper;
+      }
+
+      .richtext-disk-title {
+        font-size: 150%;
+        margin-bottom: 0.5em;
+      }
+
+      .richtext-disk-entry {
+        margin-top: 0.2em;
+      }
+    }
+
+    .richtext-rfs-title {
+      @extend .title-wrapper;
+      cursor: default;
+      position: absolute;
+      top: 0.5em;
+      left: 1em;
+      right: 1em;
+    }
+
+    .richtext-rfs-detail {
+      position: absolute;
+      top: 4em;
+      left: 1em;
+      right: 1em;
+      bottom: 1em;
+
+      .richtext-rfs-item {
+        float: left;
+        width: (100% / 3) - 2%;
+        margin: 0 1%;
+        height: 100%;
+        cursor: pointer;
+        @include background-size(cover);
+        overflow: hidden;
+        position: relative;
+
+        .rfs-cover-title {
+          position: absolute;
+          bottom: 1em;
+          text-align: right;
+          right: 0.2em;
+          z-index: 2;
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          @include background-image(
+            linear-gradient(top, 
+              rgba(0, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0) 38.2%,
+              rgba(0, 0, 0, 0.8) 100%
+            )
+          );
+          z-index: 1;
+        }
+      }
+    }
+
+
+    &:hover, &:active {
+      background-color: $dark-grey;
+    }
+
+    &.rich-pointer {
+      cursor: pointer;
+    }
+    &.loading {
+      @include transparent;
+    }
   }
 }

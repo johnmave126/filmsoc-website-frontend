@@ -4,6 +4,8 @@
 
 cr.define('cr', function() {
   'use strict';
+  var dirty_listening = [];
+
   /**
    * Constructor for BaseModel singleton.
    * Construct a base model class and handle fundamental operation.
@@ -235,30 +237,51 @@ cr.define('cr', function() {
      */
     setup: function(refresh) {
       if (refresh) {
-        var delay = 6 * 60 * 1000;
-        var refresh_dirty = (function() {
-          var r = new APIRequest(this, 'GET', '/dirty/', true);
-          r.onerror = function(e) {
-            if (e.recObj.errno !== 403) {
-              setTimeout(refresh_dirty, delay);
-            }
-          };
-          r.onload = (function(e) {
-            for (var i = 0; i < e.recObj.dirty.length; i++) {
-              if (this._cache[e.recObj.dirty[i]]) {
-                this._cache[e.recObj.dirty[i]].dirty--;
-              }
-            }
-          }).bind(this);
-          r.send();
-        }).bind(this);
-        setTimeout(refresh_dirty, delay);
+        addDirty(this);
       }
     },
+  }
+
+  /**
+   * Add a model to retrieve dirty info.
+   * @param {BaseModel} model The model to register
+   */
+  function addDirty(model) {
+    dirty_listening.push(model);
+  }
+
+  /**
+   * Init dirty utility.
+   */
+  function ModelInit() {
+    var delay = 6 * 60 * 1000;
+    var refresh_dirty = function() {
+      var r = new APIRequest({name: 'dirty'}, 'GET', '/', true);
+      r.onerror = function(e) {
+        if (e.recObj.errno !== 403) {
+          setTimeout(refresh_dirty, delay);
+        }
+      };
+      r.onload = function(e) {
+        for (var i = 0; i < dirty_listening.length; i++) {
+          var model = dirty_listening[i],
+              list = e.recObj[model.name];
+          for (var j = 0; list && j < list.length; j++) {
+            model._cache[list[i]] && (model._cache[list[i]].dirty--);
+          }
+        }
+        setTimeout(refresh_dirty, delay);
+      };
+      r.send();
+    };
+    setTimeout(refresh_dirty, delay);
   }
 
   return {
     BaseModel: BaseModel,
     APIRequest: APIRequest,
+    ModelInit: ModelInit,
   };
 });
+
+cr.ModelInit();

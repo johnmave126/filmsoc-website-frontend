@@ -127,6 +127,7 @@ cr.define('cr.model', function() {
     'title',
     'cover_url',
     'doc_url',
+    'ext_doc_url',
     'create_log',
   ];
 

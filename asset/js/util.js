@@ -8,6 +8,9 @@
 
 //Modified by John Tan 2013, Film Society, HKUSTSU
 
+//Timezone setting
+var tz_info = "+08:00";
+
 /**
  * @fileoverview Assertion support.
  */
@@ -243,6 +246,15 @@ function superCall(instance, func) {
 }
 
 /**
+ * Convert a date string from server to ISO Specified format.
+ * @param {string} dateString The date string from server.
+ * @return {string} The ISO specified format string.
+ */
+function toISODate(dateString) {
+  return dateString.replace(' ', 'T') + '.000' + tz_info;
+}
+
+/**
  * Deep copy an object.
  * @param {Object} obj The object to copy.
  * @return {Object} A new object copied.
@@ -318,3 +330,7 @@ function deepCopy(src) {
     };
   }
 })();
+
+String.prototype.splice = function( idx, rem, s ) {
+  return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+};

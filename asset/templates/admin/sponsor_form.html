@@ -1,0 +1,22 @@
+<div id="sponsor-form" class="page-form">
+	<div>
+		<label>
+			<span>Name:</span>
+			<input type="text" name="name" placeholder="Name of the sponsor" value="{{sponsor.name|attr}}">
+		</label>
+	</div>
+	<div class="nocell">
+		<div class="cover-drop">
+			<div class="cover-container">
+				<img src="../asset/css/square.png" alt="">
+				<div class="drag-notifier" hidden>Drop...</div>
+			</div>
+			<div>Drag Image Over Here</div>
+			<div class="progressbar-track" hidden>
+				<div class="progressbar-bar"></div>
+			</div>
+			<span class="progressbar-progress" hidden></span>
+		</div>
+		<input type="hidden" name="img_url" value="{{sponsor.img_url?sponsor.img_url.id:''|attr}}">
+	</div>
+</div>
