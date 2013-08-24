@@ -3,7 +3,8 @@
  */
 
 cr.define('cr.view.publication', function() {
-  var name = 'publication';
+  var name = 'publication',
+      isIOS = /(ipad|iphone|ipod)/i.exec(navigator.userAgent);
 
   /**
    * Initialization of this view.
@@ -59,20 +60,25 @@ cr.define('cr.view.publication', function() {
           played = node.querySelector('.podcast-time .podcast-played'),
           control_wrapper = node.querySelector('.podcast-control-wrapper'),
           play_cover = control_wrapper.querySelector('.podcast-cover'),
-          play_control = control_wrapper.querySelector('.podcast-play');
+          play_control = control_wrapper.querySelector('.podcast-play'),
+          first_load = false;
       play_cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + param.publication.cover_url.url + ')';
       play_control.addEventListener('click', function() {
         if (this.classList.contains('loading')) {
           return;
         }
-        if (player.ended) {
+        if (!first_load && isIOS) {
+          player.load();
+          play_control.classList.add('loading');
+          return;
+        }
+
+        else if (player.ended) {
           player.currentTime = 0;
           player.play();
-          control_wrapper.classList.add('playing');
         }
         else if (player.paused) {
           player.play();
-          control_wrapper.classList.add('playing');
         }
         else {
           player.pause();
@@ -80,13 +86,20 @@ cr.define('cr.view.publication', function() {
         }
       });
 
+      player.addEventListener('play', function() {
+        control_wrapper.classList.add('playing');
+        if (!first_load && isIOS) {
+          first_load =  true;
+          node.querySelector('.podcast-time .podcast-duration').textContent = pad(~~(this.duration / 60), 2) + ':' + pad((~~(this.duration)) % 60, 2);
+        }
+      });
+
       player.addEventListener('canplay', function() {
         player.play();
         play_control.classList.remove('loading');
-        control_wrapper.classList.add('playing');
       });
 
-      player.addEventListener('stalled', function() {
+      player.addEventListener('waiting', function() {
         play_control.classList.add('loading');
         control_wrapper.classList.remove('playing');
       });
@@ -95,20 +108,26 @@ cr.define('cr.view.publication', function() {
         control_wrapper.classList.remove('playing');
       });
 
-      player.addEventListener('durationchange', function(e) {
+      player.addEventListener('loadedmetadata', function(e) {
         node.querySelector('.podcast-time .podcast-duration').textContent = pad(~~(this.duration / 60), 2) + ':' + pad((~~(this.duration)) % 60, 2);
+        play_control.classList.add('loading');
+        control_wrapper.classList.remove('playing');
       });
 
       player.addEventListener('timeupdate', function(e) {
         played.textContent = pad(~~(this.currentTime / 60), 2) + ':' + pad((~~(this.currentTime)) % 60, 2);
       });
 
-      player.addEventListener('error', function() {
+      player.addEventListener('error', function(e) {
         if (player.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
           player.load();
         }
       });
+
       player.src = param.publication.ext_doc_url;
+      if (isIOS) {
+        play_control.classList.remove('loading');
+      }
     });
   }
 
