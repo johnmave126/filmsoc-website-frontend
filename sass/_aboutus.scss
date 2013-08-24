@@ -176,8 +176,8 @@
             background-color: rgba(255, 255, 255, .7);
             color: $black;
             @include transform(translateX(10%) scale(1.1));
-            @include transition-timing-function(.25, 1, .54, 1);
-            @include transition-timing-function(.25, 1.5, .54, 1);
+            @include transition-timing-function(cubic-bezier(.25, 1, .54, 1));
+            @include transition-timing-function(cubic-bezier(.25, 1.5, .54, 1));
             &:hover, &:active {
               @include transition-timing-function(ease-out);
               margin-top: 0.6em !important;
