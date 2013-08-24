@@ -22,9 +22,8 @@ sftp-config.json
 #project
 .htaccess
 A_LETTER_TO_HACKER
-asset/css/screen.css
-asset/css/ie.css
-asset/css/screen.css
-asset/css/print.css
-asset/js/application.min.js
-asset/js/backend.min.js
+/asset/css/screen.css
+/asset/css/ie.css
+/asset/css/print.css
+/asset/js/application.min.js
+/asset/js/backend.min.js
