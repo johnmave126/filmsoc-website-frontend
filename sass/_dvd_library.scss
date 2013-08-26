@@ -661,6 +661,7 @@
               .diskreview-entry {
                 padding: 0.5em;
                 border-bottom: 1px solid $dark-grey;
+                word-break: break-all;
                 @include opaque;
                 @include single-transition(opacity, 150ms);
                 .diskreview-time {
