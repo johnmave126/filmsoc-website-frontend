@@ -65,6 +65,9 @@ cr.define('cr', function() {
         }
       }).bind(this, i));
     }
+    if (entry.objects.length === 0) {
+      callback.call(this, objs);
+    }
   }
 
   /**

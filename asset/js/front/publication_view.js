@@ -261,7 +261,12 @@ cr.define('cr.view.publication', function() {
     elem.addEventListener('scroll', handleScroll);
     pager.load(load_items);
     function load_items(obj_list) {
-      if (obj_list.length === 0 || !this.has_next) {
+      if (obj_list.length === 0 && elem.first_load) {
+        elem.anchor_element.textContent = "No items at the time";
+        elem.removeEventListener('scroll', handleScroll);
+      }
+
+      if (!elem.first_load && !this.has_next) {
         elem.removeChild(elem.anchor_element);
         elem.removeEventListener('scroll', handleScroll);
       }

@@ -166,7 +166,11 @@ cr.define('cr.view.ticket', function() {
     list_wrapper.addEventListener('scroll', handleScroll);
     pager.load(load_tickets);
     function load_tickets(obj_list) {
-      if (obj_list.length === 0 || !this.has_next) {
+      if (obj_list.length === 0 && first_load) {
+        anchor_element.textContent = "No Ticket at the moment";
+        list_wrapper.removeEventListener('scroll', handleScroll);
+      }
+      if (!first_load && !this.has_next) {
         list_wrapper.removeChild(anchor_element);
         list_wrapper.removeEventListener('scroll', handleScroll);
       }
@@ -187,13 +191,7 @@ cr.define('cr.view.ticket', function() {
           ticket_switch(node, obj_list[i].id);
         }
       }
-      if (first_load) {
-        // Init
-        if (obj_list.length === 0) {
-          //TODO: Add some tips to note there is no ticket
-        }
-        first_load = false;
-      }
+      first_load = false;
       ajax_loading = false;
     }
 

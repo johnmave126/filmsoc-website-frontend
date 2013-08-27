@@ -92,7 +92,8 @@ cr.define('cr.view.news', function() {
       setTimeout(function() {
         node.classList.remove('loading');
       }, 0);
-      var news_loading = true,
+      var first_load = true,
+          news_loading = true,
           news_container = homepage.querySelector('.news-list'),
           anchor_element = news_container.querySelector('.anchor');
 
@@ -125,7 +126,6 @@ cr.define('cr.view.news', function() {
       }
 
       function disp_news(obj_list) {
-        //return;
         for (var i = 0; i < obj_list.length; i++) {
           var dateObj = new Date(toISODate(obj_list[i].create_log.created_at)),
               date = m_names[dateObj.getMonth()] + ' ' + pad(dateObj.getDate(), 2),
@@ -137,7 +137,12 @@ cr.define('cr.view.news', function() {
           }).bind(entry), 100 * i);
         }
 
-        if (!this.has_next) {
+        if (first_load && obj_list.length === 0) {
+          anchor_element.textContent = "No News at the time";
+          homepage.removeEventListener('scroll', news_scroll);
+        }
+
+        if (!first_load && !this.has_next) {
           //Remove anchor
           news_container.removeChild(anchor_element);
           //Remove scroll listener
@@ -145,6 +150,7 @@ cr.define('cr.view.news', function() {
         }
 
         news_loading = false;
+        first_load = false;
       }
 
       function news_scroll(e) {
