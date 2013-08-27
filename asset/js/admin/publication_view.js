@@ -52,17 +52,17 @@ cr.define('cr.view.publication', function() {
 
       this.querySelector('select[name="Type"]').addEventListener('change', function() {
         switch(this.value) {
-          case 'Magazine':
-            file_wrapper.removeAttribute('hidden');
-            link_wrapper.setAttribute('hidden', true);
-            file_wrapper.querySelector('input[name="doc_url"]').removeAttribute('disabled');
-            link_wrapper.querySelector('input[name="ext_doc_url"]').value = "";
-            break;
-          default:
+          case 'MicroMagazine':
             link_wrapper.removeAttribute('hidden');
             file_wrapper.setAttribute('hidden', true);
             link_wrapper.querySelector('input[name="ext_doc_url"]').removeAttribute('disabled');
             file_wrapper.querySelector('input[name="doc_url"]').value = "";
+            break;
+          default:
+            file_wrapper.removeAttribute('hidden');
+            link_wrapper.setAttribute('hidden', true);
+            file_wrapper.querySelector('input[name="doc_url"]').removeAttribute('disabled');
+            link_wrapper.querySelector('input[name="ext_doc_url"]').value = "";
         }
       });
     });

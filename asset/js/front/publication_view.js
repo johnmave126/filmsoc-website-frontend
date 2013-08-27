@@ -124,7 +124,7 @@ cr.define('cr.view.publication', function() {
         }
       });
 
-      player.src = param.publication.ext_doc_url;
+      player.src = param.base_url + param.publication.doc_url.url;
       if (isIOS) {
         play_control.classList.remove('loading');
       }

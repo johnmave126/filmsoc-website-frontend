@@ -27,7 +27,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="nocell publication-file" {{publication.Type?(publication.Type==='Magazine'?'':'hidden'):''|safe}}>
+	<div class="nocell publication-file" {{publication.Type?(publication.Type==='MicroMagazine'?'hidden':''):''|safe}}>
 		<div class="file-drop">
 			<div class="file-container">
 				<img src="../asset/css/square.png" alt="">
@@ -39,13 +39,13 @@
 			</div>
 			<span class="progressbar-progress" hidden></span>
 		</div>
-		<input type="hidden" name="doc_url" value="{{publication.doc_url?publication.doc_url.id:''|attr}}">
+		<input type="hidden" name="doc_url" value="{{publication.doc_url?publication.doc_url.id:''|attr}}" {{publication.Type?(publication.Type==='MicroMagazine'?'disabled':''):''|safe}}>
 		<a class="dn_link" href="{{base_url}}{{publication.doc_url?publication.doc_url.url:''|attr}}?force_download=true&dn_name={{publication.doc_url?publication.doc_url.name:''|attr}}" {{publication.doc_url?'':'hidden'|safe}}>Download</a>
 	</div>
-	<div class="nocell publication-link" {{publication.Type?(publication.Type==='Magazine'?'hidden':''):'hidden'|safe}}>
+	<div class="nocell publication-link" {{publication.Type?(publication.Type==='MicroMagazine'?'':'hidden'):'hidden'|safe}}>
 		<label>
 			<span>Direct URL:</span>
-			<input type="text" name="ext_doc_url" placeholder="The direct link to the content" value="{{publication.ext_doc_url|attr}}" {{publication.Type?(publication.Type==='Magazine'?'disabled':''):'disabled'|safe}}>
+			<input type="text" name="ext_doc_url" placeholder="The direct link to the content" value="{{publication.ext_doc_url|attr}}" {{publication.Type?(publication.Type==='MicroMagazine'?'':'disabled'):'disabled'|safe}}>
 		</label>
 	</div>
 </div>

@@ -4,7 +4,8 @@
 			{{publication.title}}
 		</h2>
 		<div class="publication-action">
-			<a href="{{publication.ext_doc_url|attr}}" target="_blank" alt="Open in New Window">Open in New Window</a>
+			<a href="{{base_url|attr}}{{publication.doc_url.url|attr}}?force_download=true&dn_name={{publication.doc_url.name|attr}}" alt="Download">Download</a>
+			<a href="{{base_url|attr}}{{publication.doc_url.url|attr}}" target="_blank" alt="Open in New Window">Open in New Window</a>
 		</div>
 	</header>
 	<div class="publication-content">
