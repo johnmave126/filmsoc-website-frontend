@@ -172,7 +172,7 @@ cr.define('cr.view.publication', function() {
             pub_item = cr.ui.template.render_template('pub_micromagazine.html', {publication: publication});
             break;
           case "Podcast":
-            pub_item = cr.ui.template.render_template('pub_podcast.html', {publication: publication});
+            pub_item = cr.ui.template.render_template('pub_podcast.html', {publication: publication, base_url: cr.settings.resource_base + 'upload/'});
             break;
         }
         detail_wrapper.appendChild(pub_item);
