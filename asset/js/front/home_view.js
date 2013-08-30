@@ -142,7 +142,7 @@ cr.define('cr.view.news', function() {
           homepage.removeEventListener('scroll', news_scroll);
         }
 
-        if (!first_load && !this.has_next) {
+        if ((!first_load || obj_list.length > 0) && !this.has_next) {
           //Remove anchor
           news_container.removeChild(anchor_element);
           //Remove scroll listener

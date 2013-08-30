@@ -170,7 +170,7 @@ cr.define('cr.view.ticket', function() {
         anchor_element.textContent = "No Ticket at the moment";
         list_wrapper.removeEventListener('scroll', handleScroll);
       }
-      if (!first_load && !this.has_next) {
+      if ((!first_load || obj_list.length > 0) && !this.has_next) {
         list_wrapper.removeChild(anchor_element);
         list_wrapper.removeEventListener('scroll', handleScroll);
       }

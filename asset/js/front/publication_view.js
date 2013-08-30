@@ -266,7 +266,7 @@ cr.define('cr.view.publication', function() {
         elem.removeEventListener('scroll', handleScroll);
       }
 
-      if (!elem.first_load && !this.has_next) {
+      if ((!elem.first_load || obj_list.length > 0) && !this.has_next) {
         elem.removeChild(elem.anchor_element);
         elem.removeEventListener('scroll', handleScroll);
       }
