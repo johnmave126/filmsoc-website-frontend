@@ -8,5 +8,6 @@ cr.define('cr.settings', function() {
     api_base: 'http://dma005.resnet.ust.hk:49000/film/api/',
     login_url: 'http://dma005.resnet.ust.hk:49000/film/member/login/',
     logout_url: 'http://dma005.resnet.ust.hk:49000/film/member/logout/',
+    url_base: '/~su_film/',
   }
 });

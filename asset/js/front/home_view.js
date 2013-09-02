@@ -85,6 +85,8 @@ cr.define('cr.view.news', function() {
         pager = new cr.Pager(cr.model.News, '/?limit=15'),
         cover = new Image(),
         cover_id = cr.model.SiteSettings.getField('header_image').value;
+    document.title = "Home | Film Society, HKUSTSU";
+    routerManager.markTracker();
     cover.onload = function() {
       var homepage = cr.ui.template.render_template("home_template.html", {url: this.src});
       skeleton.appendChild(homepage);
@@ -186,6 +188,8 @@ cr.define('cr.view.news', function() {
     var node = this,
         skeleton = this.querySelector('.news-content-wrapper');
     cr.model.News.get(id, function(news) {
+      document.title = news.title + " | Film Society, HKUSTSU";
+      routerManager.markTracker();
       var news_page = cr.ui.template.render_template("news_detail.html", {news: news});
       cr.ui.bbcode.handleHTML(news_page.querySelector('.news-content'));
       skeleton.appendChild(news_page);

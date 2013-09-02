@@ -368,6 +368,7 @@ cr.define('cr.view.library', function() {
         setTimeout(function() {
           nothing_found.classList.remove('loading');
         }, 0);
+        routerManager.markTracker();
       }
       else {
         //Set buttons
@@ -668,6 +669,7 @@ cr.define('cr.view.library', function() {
 
       //Set Titile
       document.title = disk.title_en + ' ' + disk.title_ch + ' | Film Society, HKUTSU';
+      routerManager.markTracker();
 
       //Get rate
       var r = new cr.APIRequest(cr.model.Disk, 'GET', '/' + id + '/rate/');

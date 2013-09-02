@@ -105,6 +105,7 @@ cr.define('cr.view.show', function() {
       cr.view.name = name;
       cr.ui.changeSelection(name);
       document.title = "Regular Film Show | Film Society, HKUSTSU";
+      routerManager.markTracker();
       if (cr.model.SiteSettings.getField('rfs_state').value !== "Open") {
         var error_template = cr.ui.template.render_template('error_page.html', {text: "Sorry, Regular Film Show is temporarily closed."});
         cr.ui.replaceContent(error_template);

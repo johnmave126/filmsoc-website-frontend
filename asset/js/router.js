@@ -154,6 +154,17 @@ cr.define('routerManager', function() {
     }
   }
 
+  /**
+   * Subscribe to ga.js
+   */
+  function markTracker() {
+    if (window.ga) {
+      ga('send', 'pageview', {
+        'page': cr.settings['url_base'] + getHash()
+      });
+    }
+  }
+
   return {
     globalInitialization: globalInitialization,
     encodeComponent: encodeComponent,
@@ -161,6 +172,7 @@ cr.define('routerManager', function() {
     pushState: pushState,
     register: register,
     parseHash: parseHash,
+    markTracker: markTracker,
     prefix: 0,
   };
 });

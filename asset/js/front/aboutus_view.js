@@ -34,6 +34,7 @@ cr.define('cr.view.about', function() {
         cr.ui.changeSelection(name);
         cr.view.name = name;
         document.title = "About Us | Film Society, HKUSTSU";
+        routerManager.markTracker();
         func.apply(this, a);
       }).bind(aboutus_template, arguments));
     };

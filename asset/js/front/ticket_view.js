@@ -113,6 +113,7 @@ cr.define('cr.view.ticket', function() {
           cr.ui.changeSelection(name);
           cr.view.name = name;
           document.title = "Preview Show Ticket | Film Society, HKUSTSU";
+          routerManager.markTracker();
         });
         return;
       }
@@ -121,6 +122,7 @@ cr.define('cr.view.ticket', function() {
         cr.ui.changeSelection(name);
         cr.view.name = name;
         document.title = "Preview Show Ticket | Film Society, HKUSTSU";
+        routerManager.markTracker();
         func.apply(this, a);
       }).bind(ticket_template, arguments));
     };

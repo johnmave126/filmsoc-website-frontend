@@ -36,6 +36,7 @@ cr.define('cr.view.sponsor', function() {
       cr.view.name = name;
       cr.ui.changeSelection(name);
       document.title = "Sponsor | Film Society, HKUSTSU";
+      routerManager.markTracker();
       var sponsor_template = cr.ui.template.render_template('sponsor_template.html');
       cr.ui.replaceContent(sponsor_template, (function(a) {
         func.apply(this, a);

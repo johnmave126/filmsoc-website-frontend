@@ -142,6 +142,8 @@ cr.define('cr.view.publication', function() {
       cr.ui.replaceContent(pub_template, (function(a) {
         cr.ui.changeSelection(name);
         cr.view.name = name;
+        document.title = "Publication | Film Society, HKUSTSU";
+        routerManager.markTracker();
         func.apply(this, a);
       }).bind(pub_template, arguments));
     };

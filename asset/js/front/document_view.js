@@ -26,6 +26,7 @@ cr.define('cr.view.document', function() {
       cr.view.name = name;
       cr.ui.changeSelection(name);
       document.title = "Document | Film Society, HKUSTSU";
+      routerManager.markTracker();
       var doc_template = cr.ui.template.render_template('doc_template.html');
       cr.ui.replaceContent(doc_template, (function(a) {
         func.apply(this, a);
