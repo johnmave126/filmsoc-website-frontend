@@ -81,9 +81,10 @@ cr.define('cr.view.ticket', function() {
         cr.ui.select.init(selects[i]);
       }
       //Hook on submit button
-      this.querySelector('button[controls="apply"]').addEventListener('click', function() {
+      this.querySelector('button[controls="apply"]').addEventListener('click', function(e) {
         var payload = Application.collectForm(node),
             r = new cr.APIRequest(cr.model.PreviewShowTicket, 'POST', '/' + param.ticket.id + '/application/');
+        cr.ui.swallowDoubleClick(e);
         payload['number'] = ~~(payload['number']);
         r.onload = function(e) {
           cr.ui.showNotification('Ticket applied', 'dismiss');
@@ -92,7 +93,7 @@ cr.define('cr.view.ticket', function() {
         r.onerror = function(e) {
           node.classList.remove('loading');
           cr.errorHandler(e);
-        }
+        };
         node.classList.add('loading');
         r.sendJSON(payload);
       });

@@ -64,6 +64,7 @@ cr.define('cr.view.about', function() {
           img.onload = (function(exco) {
             cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + exco.img_url.url + ')';
             panel.classList.remove('loading');
+            cr.ui.bbcode.handleHTML(exco_info.querySelector('.aboutus-descript'));
           }).bind(null, exco);
           img.onerror = function() {
             panel.classList.remove('loading');
