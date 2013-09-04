@@ -33,7 +33,7 @@ cr.define('cr.logger', function() {
    */
   function showLogger(title, filter, types) {
     //Copy types
-    types = types.slice(0);
+    types = types && types.slice(0);
     var model = filter.model,
         ref_id = filter.id,
         user_affected = filter.user,
