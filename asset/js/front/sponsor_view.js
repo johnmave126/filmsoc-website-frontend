@@ -62,7 +62,7 @@ cr.define('cr.view.sponsor', function() {
         item_setout.call(item, item.offset)
       }
       else {
-        item_setout.call(item, latency + item.offset);
+        item_setout.call(item, latency + item.offset - play_duration * 3 / 4);
       }
     };
     node.addEventListener('webkitAnimationEnd', item_reload);
