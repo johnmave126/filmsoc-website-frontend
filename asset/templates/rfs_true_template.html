@@ -1,12 +1,12 @@
 <div class="rfs-show {{show.state|attr}}">
 	<div class="rfs-film-strip {{show.film_1.avail_type|attr}}" refer="1">
 		<div class="vote-bar"></div>
-		<div class="rfs-cover">
+		<a class="rfs-cover button-link" href="#!library/{{show.film_1.id|attr}}/" alt="">
 			<div class="rfs-cover-title">
 				{{show.film_1.title_en}}<br>
 				{{show.film_1.title_ch}}
 			</div>
-		</div>
+		</a>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_1}} Vote<span {{show.vote_cnt_1>1?'':'hidden'|safe}}>s</span></div>
 			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>
@@ -14,12 +14,12 @@
 	</div>
 	<div class="rfs-film-strip {{show.film_2.avail_type|attr}}" refer="2">
 		<div class="vote-bar"></div>
-		<div class="rfs-cover">
+		<a class="rfs-cover button-link" href="#!library/{{show.film_2.id|attr}}/" alt="">
 			<div class="rfs-cover-title">
 				{{show.film_2.title_en}}<br>
 				{{show.film_2.title_ch}}
 			</div>
-		</div>
+		</a>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_2}} Vote<span {{show.vote_cnt_2>1?'':'hidden'|safe}}>s</span></div>
 			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>
@@ -27,12 +27,12 @@
 	</div>
 	<div class="rfs-film-strip {{show.film_3.avail_type|attr}}" refer="3">
 		<div class="vote-bar"></div>
-		<div class="rfs-cover">
+		<a class="rfs-cover button-link" href="#!library/{{show.film_3.id|attr}}/" alt="">
 			<div class="rfs-cover-title">
 				{{show.film_3.title_en}}<br>
 				{{show.film_3.title_ch}}
 			</div>
-		</div>
+		</a>
 		<div class="rfs-bottom">
 			<div class="rfs-vote-num">{{show.vote_cnt_3}} Vote<span {{show.vote_cnt_3>1?'':'hidden'|safe}}>s</span></div>
 			<button class="rfs-vote-button clear-button" controls="vote" {{show.state=='Open'&&user?'':'hidden'|safe}}>Vote</button>

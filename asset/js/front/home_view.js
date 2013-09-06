@@ -17,7 +17,8 @@ cr.define('cr.view.news', function() {
     cr.ui.template.register("news_template.html");
     cr.ui.template.register("home_template.html");
     cr.ui.template.register("home_news_item.html", function(param) {
-      this.addEventListener('click', (function(id) {
+      this.addEventListener('click', (function(id, e) {
+        e.preventDefault();
         routerManager.pushState('news/' + id + '/', false, true);
         home_switch(document.querySelector('.news-wrapper'), news_detail, [id]);
       }).bind(null, param.news.id));

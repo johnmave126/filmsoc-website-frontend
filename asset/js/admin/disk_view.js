@@ -40,6 +40,7 @@ cr.define('cr.view.liba', function() {
       this.querySelector('button[control="checkout"]').addEventListener('click', checkout_disk.bind(null, param.disk));
       this.querySelector('button[control="checkin"]').addEventListener('click', checkin_disk.bind(null, param.disk));
       this.querySelector('button[control="renew"]').addEventListener('click', renew_disk.bind(null, param.disk));
+      this.querySelector('button[control="clear"]').addEventListener('click', clear_disk.bind(null, param.disk));
       this.querySelector('button[control="delete"]').addEventListener('click', delete_disk.bind(null, param.disk));
     });
     cr.ui.template.register("admin/disk_edit.html", function(param) {
@@ -390,6 +391,34 @@ cr.define('cr.view.liba', function() {
           cr.ui.hideLoading();
           history.go();
           cr.ui.showNotification('Succeeded', 'dismiss');
+        };
+        r.onerror = cr.errorHandler;
+        r.send();
+      },
+      function() {
+        cr.dispatchSimpleEvent($('alertOverlay'), 'cancelOverlay');
+      });
+    cr.ui.overlay.showOverlay($('alertOverlay'));
+  }
+
+  /**
+   * Clear reservation for a disk.
+   * @param {Object} disk The disk object
+   */
+  function clear_disk(disk) {
+    alertOverlay.setValues(
+      'Confirm Clear Reservation Record',
+      'Really?',
+      'Clear',
+      'Cancel',
+      function() {
+        cr.dispatchSimpleEvent($('alertOverlay'), 'cancelOverlay');
+        cr.ui.showLoading();
+        var r = new cr.APIRequest(cr.model.Disk, 'DELETE', '/' + disk.id + '/reservation/');
+        r.onload = function() {
+          cr.ui.hideLoading();
+          history.go();
+          cr.ui.showNotification('Cleared', 'dismiss');
         };
         r.onerror = cr.errorHandler;
         r.send();

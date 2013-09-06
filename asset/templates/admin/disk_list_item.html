@@ -23,6 +23,7 @@
             <button class="custom-appearance list-inline-button" control="checkout" {{if(disk.avail_type!=='Available'&&disk.avail_type!=='Reserved'&&disk.avail_type!=='ReservedCounter')'hidden';|safe}}>Check Out</button>
             <button class="custom-appearance list-inline-button" control="checkin" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Check In</button>
             <button class="custom-appearance list-inline-button" control="renew" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Renew</button>
+            <button class="custom-appearance list-inline-button" control="clear" {{if(disk.avail_type==='Reserved')'';else if(disk.avail_type==='ReservedCounter')'';else 'hidden';|safe}}>Clear</button>
             <button class="custom-appearance list-inline-button" control="viewlog">View Reated Log</button>
             <button class="custom-appearance list-inline-button" control="delete">Delete</button>
         </div>

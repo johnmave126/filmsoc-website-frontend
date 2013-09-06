@@ -27,15 +27,18 @@ cr.define('cr.view.library', function() {
           liba_switch(node, liba_search, [{q: value}]);
         }
       });
-      this.querySelector('button[controls="random"]').addEventListener('click', function() {
+      this.querySelector('a[controls="random"]').addEventListener('click', function(e) {
+        e.preventDefault();
         routerManager.pushState('library/rand/', false, true);
         liba_switch(node, liba_rand);
       });
-      this.querySelector('button[controls="popular"]').addEventListener('click', function() {
+      this.querySelector('a[controls="popular"]').addEventListener('click', function(e) {
+        e.preventDefault();
         routerManager.pushState('library/?mode=popular', false, true);
         liba_switch(node, liba_list, [{mode: 'popular'}]);
       });
-      this.querySelector('button[controls="rank"]').addEventListener('click', function() {
+      this.querySelector('a[controls="rank"]').addEventListener('click', function(e) {
+        e.preventDefault();
         routerManager.pushState('library/?mode=rank', false, true);
         liba_switch(node, liba_list, [{mode: 'rank'}]);
       });
@@ -71,7 +74,8 @@ cr.define('cr.view.library', function() {
         cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'css/question.png)';
 
       //Detail button
-      button.addEventListener('click', (function(id) {
+      button.addEventListener('click', (function(id, e) {
+        e.preventDefault();
         routerManager.pushState('library/' + id + '/', false, true);
         liba_switch(document.querySelector('.library-wrapper'), liba_disk, [id]);
       }).bind(null, param.disk.id));

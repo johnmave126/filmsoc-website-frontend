@@ -22,9 +22,6 @@ cr.define('cr.ui.bbcode', function() {
         cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + param.disk.cover_url.url + ')';
       else
         cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'css/question.png)';
-      this.addEventListener('click', (function(id) {
-        routerManager.pushState('library/' + id + '/', false, false);
-      }).bind(null, param.disk.id));
     });
     cr.ui.template.register("richtext_rfs.html", function(param) {
       var items = this.querySelectorAll('.richtext-rfs-item');
@@ -37,10 +34,6 @@ cr.define('cr.ui.bbcode', function() {
           item.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + disk.cover_url.url + ')';
         else
           item.style.backgroundImage = 'url(' + cr.settings.resource_base + 'css/question.png)';
-
-        item.addEventListener('click', (function(id) {
-          routerManager.pushState('library/' + id + '/', false, false);
-        }).bind(null, disk.id));
       }
     });
     cr.ui.template.register("richtext_ticket.html", function(param) {
@@ -51,9 +44,6 @@ cr.define('cr.ui.bbcode', function() {
         cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + param.ticket.cover_url.url + ')';
       else
         cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'css/question.png)';
-      this.addEventListener('click', function() {
-        routerManager.pushState('ticket/', false, false);
-      });
     });
   }
 

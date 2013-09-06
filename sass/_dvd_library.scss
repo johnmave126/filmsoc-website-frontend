@@ -183,8 +183,8 @@
           border: none;
           background-color: darken($dark-grey, 20%);
           cursor: pointer;
-          height: 12%;
-          min-height: 50px;
+          height: 1.5em;
+          line-height: 1.5em;
           overflow: hidden;
           text-align: right;
           font-size: x-large;
@@ -193,8 +193,6 @@
           background-repeat: no-repeat;
           background-size: contain;
           @include background-origin(content-box);
-          /* hack width */
-          width: $actual-width;
           @include transition(background-color 120ms, opacity 250ms);
           opacity: 1;
           &:nth-of-type(1) {
@@ -319,6 +317,7 @@
                   padding: 5px;
                   left: 8px;
                   right: 8px;
+                  text-align: center;
                   @include border-radius(3px);
                   @include single-transition(background-color, 200ms, linear);
                 }

@@ -57,6 +57,15 @@ button.link, span.link, a {
   @include box-shadow(none);
 }
 
+a.button-link {
+  @include reset-box-model;
+  display: block;
+  @include link-colors(inherit, inherit, inherit, inherit, inherit);
+  &:hover, &:active {
+    text-decoration: none;
+  }
+}
+
 .custom-select {
   padding: 0.5em 2em 0.5em 0.5em;
   background-color: $light-grey;
