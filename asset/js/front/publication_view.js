@@ -4,7 +4,8 @@
 
 cr.define('cr.view.publication', function() {
   var name = 'publication',
-      isIOS = /(ipad|iphone|ipod)/i.exec(navigator.userAgent);
+      isIOS = /(ipad|iphone|ipod)/i.exec(navigator.userAgent),
+      idx = 0;
 
   /**
    * Initialization of this view.
@@ -178,6 +179,17 @@ cr.define('cr.view.publication', function() {
             break;
         }
         detail_wrapper.appendChild(pub_item);
+        if (publication.Type === 'Magazine') {
+          //Scribd
+          pub_item.querySelector('.publication-content').id = "embedded_pub_" + idx;
+          var scribd_doc = scribd.Document.getDocFromUrl(cr.settings.resource_base + 'upload/' + publication.doc_url.url, cr.settings.scribd_id);
+          scribd_doc.addParam('jsapi_version', 2);
+          scribd_doc.addParam('title', publication.title);
+          scribd_doc.write("embedded_pub_" + idx);
+          scribd_doc.addParam('public', true);
+          scribd_doc.addParam('mode', 'list');
+          idx++;
+        }
         detail_wrapper.removeAttribute('hidden');
         setTimeout(function() {
           panel.classList.remove('loading');

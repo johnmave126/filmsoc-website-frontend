@@ -9,5 +9,6 @@ cr.define('cr.settings', function() {
     login_url: 'http://dma005.resnet.ust.hk:49000/film/member/login/',
     logout_url: 'http://dma005.resnet.ust.hk:49000/film/member/logout/',
     url_base: '/~su_film/',
+    scribd_id: 'pub-51573345608846754358',
   }
 });
