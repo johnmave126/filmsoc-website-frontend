@@ -45,6 +45,9 @@
       & > img {
         height: 100%;
       }
+      &:hover {
+        z-index: 15 !important;
+      }
       &:after {
         @include transparent;
         @include single-transition(opacity, 150ms);
