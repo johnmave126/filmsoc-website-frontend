@@ -323,7 +323,7 @@
                 }
               }
 
-              &.hover {
+              &:hover {
                 .disk-cover {
                   left: 3%;
                   margin-top: 28%;
@@ -335,10 +335,6 @@
                   @include rotateY(0.01deg);
                   @include transition-delay(0, 0);
                 }
-              }
-
-              &:hover {
-                @extend .hover;
               }
             }
 
