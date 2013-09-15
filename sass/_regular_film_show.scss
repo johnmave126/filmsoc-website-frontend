@@ -125,7 +125,8 @@
         }
 
         .info-tab {
-          overflow: hidden;
+          overflow-x: hidden;
+          overflow-y: auto;
           height: 100%;
           padding: 1em;
           background-color: darken($dark-grey, 20%);
