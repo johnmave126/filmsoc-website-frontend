@@ -215,7 +215,7 @@ cr.define('cr.ui', function() {
 //Touch support
 (function() {
   if ("ontouchstart" in document.documentElement) {
-    document.addEventListener('touchstart', function(e) {
+    var listener = function(e) {
       var old = document.body.querySelectorAll('.hover');
       for (var i = 0; i < old.length; i++) {
         old[i].classList.remove('hover');
@@ -225,27 +225,19 @@ cr.define('cr.ui', function() {
           node.classList.add('hover');
         return !node.classList;
       });
-    }, true);
+    };
+    document.addEventListener('mouseover', listener, true);
+    document.addEventListener('touchstart', listener, true);
     try {
-      var ignore = /:hover/;
+      var ignore = ":hover",
+          orig = /:hover/g,
+          replace = ".hover";
       for (var i = 0; i < document.styleSheets.length; i++) {
         var sheet = document.styleSheets[i];
         for (var j = 0; sheet.cssRules && j < sheet.cssRules.length; j++) {
           var rule = sheet.cssRules[j];
-          if (rule.type === CSSRule.STYLE_RULE && ignore.test(rule.selectorText)) {
-            var selectorSet = rule.selectorText.split(','),
-                validSet = [];
-            for (var k = 0; k < selectorSet.length; k++) {
-              if (!ignore.test(selectorSet[k])) {
-                validSet.push(selectorSet[k]);
-              }
-            }
-            if (validSet.length === 0) {
-              sheet.deleteRule(j);
-            }
-            else {
-              rule.selectorText = validSet.join(',');
-            }
+          if (rule.type === CSSRule.STYLE_RULE && rule.selectorText.search(ignore) !== -1) {
+            rule.selectorText = rule.selectorText.replace(orig, replace);
           }
         }
       }
