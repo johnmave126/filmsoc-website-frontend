@@ -159,24 +159,17 @@ cr.define('cr.view.ticket', function() {
    */
   function ticket_list() {
     var node = this,
-        list_wrapper = this.querySelector('.left-panel .ticket-list-wrapper'),
+        left_panel = node.querySelector('.left-panel'),
+        list_wrapper = left_panel.querySelector('.ticket-list-wrapper'),
         anchor_element = list_wrapper.querySelector('.anchor'),
         panel = this.querySelector('.right-panel'),
         pager = new cr.Pager(cr.model.PreviewShowTicket, '/?limit=10'),
         ajax_loading = true,
         first_load = true;
 
-    list_wrapper.addEventListener('scroll', handleScroll);
+    left_panel.addEventListener('scroll', handleScroll);
     pager.load(load_tickets);
     function load_tickets(obj_list) {
-      if (obj_list.length === 0 && first_load) {
-        anchor_element.textContent = "No Ticket at the moment";
-        list_wrapper.removeEventListener('scroll', handleScroll);
-      }
-      if ((!first_load || obj_list.length > 0) && !this.has_next) {
-        list_wrapper.removeChild(anchor_element);
-        list_wrapper.removeEventListener('scroll', handleScroll);
-      }
       //Append to list
       for (var i = 0; i < obj_list.length; i++) {
         var entry = cr.ui.template.render_template('ticket_list_item.html', {ticket: obj_list[i]});
@@ -185,7 +178,7 @@ cr.define('cr.view.ticket', function() {
           ticket_switch(node, id);
           switch_selection(this);
         }).bind(entry, node, obj_list[i].id));
-        list_wrapper.appendChild(entry);
+        list_wrapper.insertBefore(entry, anchor_element);
         setTimeout((function() {
           this.classList.remove('loading');
         }).bind(entry), i * 100 + 400);
@@ -193,6 +186,14 @@ cr.define('cr.view.ticket', function() {
           switch_selection(entry);
           ticket_switch(node, obj_list[i].id);
         }
+      }
+      if (obj_list.length === 0 && first_load) {
+        anchor_element.textContent = "No Ticket at the moment";
+        left_panel.removeEventListener('scroll', handleScroll);
+      }
+      if ((!first_load || obj_list.length > 0) && !this.has_next) {
+        list_wrapper.removeChild(anchor_element);
+        left_panel.removeEventListener('scroll', handleScroll);
       }
       first_load = false;
       ajax_loading = false;
@@ -205,9 +206,9 @@ cr.define('cr.view.ticket', function() {
       e.preventDefault();
       e.stopImmediatePropagation();
 
-      var scrollTop = list_wrapper.scrollTop,
-          windowHeight = list_wrapper.clientHeight,
-          scrollHeight = list_wrapper.scrollHeight;
+      var scrollTop = this.scrollTop,
+          windowHeight = this.clientHeight,
+          scrollHeight = this.scrollHeight;
 
       if (scrollTop + windowHeight + 10 > scrollHeight) {
         //Trigger Loading

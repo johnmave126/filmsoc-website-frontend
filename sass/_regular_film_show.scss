@@ -127,6 +127,9 @@
         .info-tab {
           overflow-x: hidden;
           overflow-y: auto;
+          &.noscrollbar {
+            overflow: hidden;
+          }
           height: 100%;
           padding: 1em;
           background-color: darken($dark-grey, 20%);

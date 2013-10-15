@@ -63,6 +63,7 @@ cr.define('cr.view.show', function() {
         strips[i].querySelector('button[controls="vote"]').addEventListener('click', rfs_vote.bind(null, param.show.id, idx));
 
         strips[i].addEventListener('mouseover', (function(idx) {
+          board.classList.add('noscrollbar');
           var old = this.querySelectorAll('div[selected]');
           for (var i = 0; i < old.length; i++) {
             old[i].removeAttribute('selected');
@@ -70,6 +71,7 @@ cr.define('cr.view.show', function() {
           this.querySelector('.rfs-film-info[refer="' + idx + '"]').setAttribute('selected', true);
         }).bind(board, idx));
         strips[i].addEventListener('mouseout', (function() {
+          board.classList.remove('noscrollbar');
           var old = this.querySelectorAll('div[selected]');
           for (var i = 0; i < old.length; i++) {
             old[i].removeAttribute('selected');
@@ -134,6 +136,7 @@ cr.define('cr.view.show', function() {
         return;
       }
 
+      console.log({show: obj_list[0], user: cr.user, toshow: toShow(obj_list[0])});
       var template = cr.ui.template.render_template('rfs_true_template.html', {show: obj_list[0], user: cr.user, toshow: toShow(obj_list[0])});
       //Update disks
       cr.model.Disk.update(obj_list[0].film_1, 1);

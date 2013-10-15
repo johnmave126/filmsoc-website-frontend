@@ -219,7 +219,7 @@ cr.define('cr.view.publication', function() {
         entry.setAttribute('selected', true);
         publication_switch(node, id);
       }).bind(entry, item.id));
-      list_magazine_wrapper.appendChild(entry);
+      list_magazine_wrapper.insertBefore(entry, list_magazine_wrapper.anchor_element);
       setTimeout((function() {
         this.classList.remove('loading');
       }).bind(entry), 50 * idx + 1);
@@ -238,7 +238,7 @@ cr.define('cr.view.publication', function() {
         entry.setAttribute('selected', true);
         publication_switch(node, id);
       }).bind(entry, item.id));
-      list_micromagazine_wrapper.appendChild(entry);
+      list_micromagazine_wrapper.insertBefore(entry, list_micromagazine_wrapper.anchor_element);
       setTimeout((function() {
         this.classList.remove('loading');
       }).bind(entry), 50 * idx + 1);
@@ -253,7 +253,7 @@ cr.define('cr.view.publication', function() {
         entry.setAttribute('selected', true);
         publication_switch(node, id);
       }).bind(entry, item.id));
-      list_podcast_wrapper.appendChild(entry);
+      list_podcast_wrapper.insertBefore(entry, list_podcast_wrapper.anchor_element);
       setTimeout((function() {
         this.classList.remove('loading');
       }).bind(entry), 50 * idx + 1);
@@ -275,6 +275,11 @@ cr.define('cr.view.publication', function() {
     elem.addEventListener('scroll', handleScroll);
     pager.load(load_items);
     function load_items(obj_list) {
+      //Append to list
+      for (var i = 0; i < obj_list.length; i++) {
+        elem.item_cbk && elem.item_cbk(obj_list[i], i);
+      }
+
       if (obj_list.length === 0 && elem.first_load) {
         elem.anchor_element.textContent = "No items at the time";
         elem.removeEventListener('scroll', handleScroll);
@@ -284,10 +289,7 @@ cr.define('cr.view.publication', function() {
         elem.removeChild(elem.anchor_element);
         elem.removeEventListener('scroll', handleScroll);
       }
-      //Append to list
-      for (var i = 0; i < obj_list.length; i++) {
-        elem.item_cbk && elem.item_cbk(obj_list[i], i);
-      }
+
       elem.first_load = false;
       elem.ajax_loading = false;
     }

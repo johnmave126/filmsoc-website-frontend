@@ -68,8 +68,13 @@ cr.define('cr.view.liba', function() {
     });
     cr.ui.template.register("admin/disk_checkout.html", function(param) {
       var node = this;
-      this.querySelector('input[name="student_id"]').addEventListener('change', function() {
-        node.querySelector('input[name="id"]').value = 'relate';
+      this.querySelector('input[name="student_id"]').addEventListener('keyup', function() {
+        if(this.value) {
+          node.querySelector('input[name="id"]').value = 'relate';
+        }
+        else {
+          node.querySelector('input[name="id"]').value = null;
+        }
       });
       this.querySelector('input[name="university_id"]').addEventListener('keydown', function(e) {
         if (e.keyCode === 13) {
