@@ -97,8 +97,8 @@ cr.define('cr.ui.rotator', function() {
       };
     }
     return {
-      x: e.clientX + (document.body.scrollLeft - document.body.clientLeft),
-      y: e.clientY + (document.body.scrollTop - document.body.clientTop),
+      x: e.clientX + (document.documentElement.scrollLeft - document.documentElement.clientLeft),
+      y: e.clientY + (document.documentElement.scrollTop - document.documentElement.clientTop),
     };
   }
 

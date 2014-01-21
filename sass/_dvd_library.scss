@@ -17,7 +17,7 @@
           color: darken($green, 20%);
         }
       }
-      &.Reserved, &.ReservedCounter {
+      &.Reserved, &.ReservedCounter, &.OnDelivery {
         color: $blue;
         &.darken-state {
           color: darken($blue, 20%);

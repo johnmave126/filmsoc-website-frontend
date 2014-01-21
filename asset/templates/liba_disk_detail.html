@@ -28,7 +28,7 @@
 
 			<div><span class="key">Borrowed:</span> {{disk.borrow_cnt}} time<span {{disk.borrow_cnt>1?"":"hidden"|safe}}>s</span></div>
 
-			<div><span class="key">Disk State:</span> <span class="disk-state darken-state {{disk.avail_type|attr}}">{{disk.avail_type=="ReservedCounter"?"Reserved":disk.avail_type}}</span></div>
+			<div><span class="key">Disk State:</span> <span class="disk-state darken-state {{disk.avail_type|attr}}">{{!(disk.avail_type!=="ReservedCounter"&&disk.avail_type!=="OnDelivery")?"Reserved":disk.avail_type}}</span></div>
 
 			<div {{disk.avail_type==='Borrowed'?'':'hidden'|safe}}><span class="key">Due At:</span> {{disk.due_at}}</div>
 

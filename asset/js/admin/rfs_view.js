@@ -20,7 +20,14 @@ cr.define('cr.view.rfs', function() {
     if (obj.film_3.avail_type === 'Onshow') {
       return obj.film_3;
     }
-    return null;
+    var p = 1;
+    if(obj.vote_cnt_2 > obj.vote_cnt_1) {
+      p = 2;
+    }
+    if(obj.vote_cnt_3 > obj["vote_cnt_" + p]) {
+      p = 3;
+    }
+    return obj["film_" + p];
   }
 
   /**

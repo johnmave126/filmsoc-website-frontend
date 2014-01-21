@@ -30,6 +30,12 @@
             </div>
             <div class="filter">
                 <label>
+                    <input id="disk-filter-reserved" type="checkbox" filter="OnDelivery" {{filter.indexOf('OnDelivery') === -1?'':'checked'|safe}}>
+                    <span>OnDelivery</span>
+                </label>
+            </div>
+            <div class="filter">
+                <label>
                     <input id="disk-filter-reservedcounter" type="checkbox" filter="ReservedCounter" {{filter.indexOf('ReservedCounter') === -1?'':'checked'|safe}}>
                     <span>ReservedCounter</span>
                 </label>
@@ -63,8 +69,8 @@
                 <div class="name-column column">
                     <div class="static-text">Name</div>
                 </div>
-                <div class="year-column column">
-                    <div class="static-text">Year</div>
+                <div class="duedate-column column">
+                    <div class="static-text">Due Date</div>
                 </div>
                 <div class="availability-column column">
                     <div class="static-text">Availability</div>

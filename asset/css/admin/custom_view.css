@@ -100,11 +100,14 @@
 #main-container .liba-search-view .cover-column,
 #main-container .liba-list-view .callnumber-column,
 #main-container .liba-search-view .callnumber-column,
-#main-container .liba-list-view .year-column,
-#main-container .liba-search-view .year-column,
 #main-container .liba-list-view .holder-column,
 #main-container .liba-search-view .holder-column {
   width: 7%;
+}
+
+#main-container .liba-list-view .duedate-column,
+#main-container .liba-search-view .duedate-column {
+  width: 14%;
 }
 
 #main-container .liba-list-view .cover-column img,
@@ -118,7 +121,7 @@
 
 #main-container .liba-list-view .name-column,
 #main-container .liba-search-view .name-column {
-  width: 50%;
+  width: 43%;
 }
 
 #main-container .liba-list-view .availability-column,

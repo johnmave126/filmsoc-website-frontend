@@ -50,7 +50,7 @@ cr.define('cr.view.publication', function() {
         this.querySelector('input[name="doc_url"]').value = new_doc.id;
       }).bind(this));
 
-      this.querySelector('select[name="Type"]').addEventListener('change', function() {
+      this.querySelector('select[name="pub_type"]').addEventListener('change', function() {
         switch(this.value) {
           case 'MicroMagazine':
             link_wrapper.removeAttribute('hidden');

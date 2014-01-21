@@ -48,7 +48,7 @@ cr.define('cr.model', function() {
   Log.fields = [
     'id',
     'model',
-    'Type',
+    'log_type',
     'model_refer',
     'user_affected',
     'admin_involved',
@@ -153,7 +153,7 @@ cr.define('cr.model', function() {
 
   Publication.fields = [
     'id',
-    'Type',
+    'pub_type',
     'title',
     'cover_url',
     'doc_url',

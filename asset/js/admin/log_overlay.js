@@ -120,7 +120,7 @@ cr.define('cr.logger', function() {
         param.push('user_affected=' + encodeURIComponent(user_affected));
       }
       if (types) {
-        param.push('Type__in=' + encodeURIComponent(types.join(',')))
+        param.push('log_type__in=' + encodeURIComponent(types.join(',')))
       }
       return '/?' + param.join('&');
     }

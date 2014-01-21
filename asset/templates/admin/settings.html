@@ -9,8 +9,8 @@
         		<label>
         			<span>VCD/DVD Library</span>
         			<select name="liba_state">
-        				<option value="Open" {{model.getField('liba_state').value==='Open'?'selecteed':''|safe}}>Open</option>
-        				<option value="Closed" {{model.getField('liba_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+        				<option value="Open" {{model.getField('liba_state').value==='Open'?'selected':''|safe}}>Open</option>
+        				<option value="Closed" {{model.getField('liba_state').value==='Closed'?'selected':''|safe}}>Closed</option>
         			</select>
                 </label>
                 <button type="submit" control="liba_state">Submit</button>
@@ -19,8 +19,8 @@
                 <label>
                     <span>Regular Film Show</span>
                     <select name="rfs_state">
-                        <option value="Open" {{model.getField('rfs_state').value==='Open'?'selecteed':''|safe}}>Open</option>
-                        <option value="Closed" {{model.getField('rfs_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+                        <option value="Open" {{model.getField('rfs_state').value==='Open'?'selected':''|safe}}>Open</option>
+                        <option value="Closed" {{model.getField('rfs_state').value==='Closed'?'selected':''|safe}}>Closed</option>
                     </select>
                 </label>
                 <button type="submit" control="rfs_state">Submit</button>
@@ -29,8 +29,8 @@
                 <label>
                     <span>Preview Show Tickets</span>
                     <select name="pst_state">
-                        <option value="Open" {{model.getField('pst_state').value==='Open'?'selecteed':''|safe}}>Open</option>
-                        <option value="Closed" {{model.getField('pst_state').value==='Closed'?'selecteed':''|safe}}>Closed</option>
+                        <option value="Open" {{model.getField('pst_state').value==='Open'?'selected':''|safe}}>Open</option>
+                        <option value="Closed" {{model.getField('pst_state').value==='Closed'?'selected':''|safe}}>Closed</option>
                     </select>
                 </label>
                 <button type="submit" control="pst_state">Submit</button>

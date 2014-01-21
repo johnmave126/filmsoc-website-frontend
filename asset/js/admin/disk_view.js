@@ -468,7 +468,7 @@ cr.define('cr.view.liba', function() {
    */
   function liba_list(query) {
     var page = query.page || 1,
-        type_filter = query.type_filter ? query.type_filter.split(',') : ['Draft', 'Available', 'Borrowed', 'Reserved', 'ReservedCounter', 'Voting', 'Onshow'],
+        type_filter = query.type_filter ? query.type_filter.split(',') : ['Draft', 'Available', 'Borrowed', 'Reserved', 'OnDelivery', 'ReservedCounter', 'Voting', 'Onshow'],
         skeleton = cr.ui.template.render_template("admin/liba_list.html", {filter: type_filter});
     cr.ui.replaceContent(skeleton);
     //Load data

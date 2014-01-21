@@ -9,8 +9,8 @@
         <div class="name-column column">
             <div class="static-text">{{disk.title_en}}/{{disk.title_ch}}</div>
         </div>
-        <div class="year-column column">
-            <div class="static-text">{{disk.show_year}}</div>
+        <div class="duedate-column column">
+            <div class="static-text">{{disk.due_at}}</div>
         </div>
         <div class="availability-column column">
             <div class="static-text">{{disk.avail_type}}</div>
@@ -20,10 +20,10 @@
         </div>
         <div class="column-button">
             <button class="custom-appearance list-inline-button" control="edit">Edit</button>
-            <button class="custom-appearance list-inline-button" control="checkout" {{if(disk.avail_type!=='Available'&&disk.avail_type!=='Reserved'&&disk.avail_type!=='ReservedCounter')'hidden';|safe}}>Check Out</button>
+            <button class="custom-appearance list-inline-button" control="checkout" {{if(disk.avail_type!=='Available'&&disk.avail_type!=='OnDelivery'&&disk.avail_type!=='ReservedCounter'&&disk.avail_type!=='Reserved')'hidden';|safe}}>{{if(disk.avail_type=='Reserved')'Deliver';else 'Check Out';|safe}}</button>
             <button class="custom-appearance list-inline-button" control="checkin" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Check In</button>
             <button class="custom-appearance list-inline-button" control="renew" {{if(disk.avail_type!=='Borrowed')'hidden';|safe}}>Renew</button>
-            <button class="custom-appearance list-inline-button" control="clear" {{if(disk.avail_type==='Reserved')'';else if(disk.avail_type==='ReservedCounter')'';else 'hidden';|safe}}>Clear</button>
+            <button class="custom-appearance list-inline-button" control="clear" {{if(disk.avail_type!=='Reserved'&&disk.avail_type!=='ReservedCounter'&&disk.avail_type!=='OnDelivery')'hidden';|safe}}>Clear</button>
             <button class="custom-appearance list-inline-button" control="viewlog">View Reated Log</button>
             <button class="custom-appearance list-inline-button" control="delete">Delete</button>
         </div>

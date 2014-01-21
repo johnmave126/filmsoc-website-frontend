@@ -99,8 +99,15 @@
           @include transition-delay(400ms); 
         }
 
-        .aboutus-capital p:first-letter {
-          font-size: x-large;
+        .aboutus-capital p {
+          font-size: 1.2em;
+          font-family: 'Simonetta', inherit;
+
+          &:first-letter {
+            font-size: xx-large;
+            padding-right: 1px;
+            font-family: 'Parisienne', inherit;
+          }
         }
       }
 

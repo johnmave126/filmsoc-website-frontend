@@ -10,7 +10,7 @@
 				{{disk.title_ch}}
 			</div>
 			<div class="disk-state {{disk.avail_type|attr}}">
-				{{disk.avail_type=="ReservedCounter"?"Reserved":disk.avail_type}}
+				{{!(disk.avail_type!=="ReservedCounter"&&disk.avail_type!=="OnDelivery")?"Reserved":disk.avail_type}}
 			</div>
 			<a class="button-link disk-detail-button" href="#!library/{{disk.id|attr}}/" alt="View Detail">View Detail</a>
 		</div>

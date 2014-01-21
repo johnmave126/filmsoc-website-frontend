@@ -123,7 +123,7 @@ cr.define('cr.model', function() {
 
   Publication.fields = [
     'id',
-    'Type',
+    'pub_type',
     'title',
     'cover_url',
     'doc_url',

@@ -167,7 +167,7 @@ cr.define('cr.view.publication', function() {
           detail_wrapper.removeChild(detail_wrapper.firstChild);
         }
         var pub_item;
-        switch(publication.Type) {
+        switch(publication.pub_type) {
           case "Magazine":
             pub_item = cr.ui.template.render_template('pub_magazine.html', {publication: publication, base_url: cr.settings.resource_base + 'upload/'});
             break;
@@ -179,15 +179,15 @@ cr.define('cr.view.publication', function() {
             break;
         }
         detail_wrapper.appendChild(pub_item);
-        if (publication.Type === 'Magazine') {
+        if (publication.pub_type === 'Magazine') {
           //Scribd
           pub_item.querySelector('.publication-content').id = "embedded_pub_" + idx;
           var scribd_doc = scribd.Document.getDocFromUrl(cr.settings.resource_base + 'upload/' + publication.doc_url.url, cr.settings.scribd_id);
           scribd_doc.addParam('jsapi_version', 2);
           scribd_doc.addParam('title', publication.title);
-          scribd_doc.write("embedded_pub_" + idx);
           scribd_doc.addParam('public', true);
           scribd_doc.addParam('mode', 'list');
+          scribd_doc.write("embedded_pub_" + idx);
           idx++;
         }
         detail_wrapper.removeAttribute('hidden');
@@ -209,7 +209,7 @@ cr.define('cr.view.publication', function() {
         list_micromagazine_wrapper = left_panel.querySelector('.publication-micromagazine-list-wrapper'),
         list_podcast_wrapper = left_panel.querySelector('.publication-podcast-list-wrapper'),
         panel = node.querySelector('.right-panel');
-    pub_init_list(list_magazine_wrapper, new cr.Pager(cr.model.Publication, '/?Type=Magazine'), function(item, idx) {
+    pub_init_list(list_magazine_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=Magazine'), function(item, idx) {
       var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
       entry.addEventListener('click', (function(id) {
         var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
@@ -228,7 +228,7 @@ cr.define('cr.view.publication', function() {
         publication_switch(node, item.id);
       }
     });
-    pub_init_list(list_micromagazine_wrapper, new cr.Pager(cr.model.Publication, '/?Type=MicroMagazine'), function(item, idx) {
+    pub_init_list(list_micromagazine_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=MicroMagazine'), function(item, idx) {
       var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
       entry.addEventListener('click', (function(id) {
         var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
@@ -243,7 +243,7 @@ cr.define('cr.view.publication', function() {
         this.classList.remove('loading');
       }).bind(entry), 50 * idx + 1);
     });
-    pub_init_list(list_podcast_wrapper, new cr.Pager(cr.model.Publication, '/?Type=Podcast'), function(item, idx) {
+    pub_init_list(list_podcast_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=Podcast'), function(item, idx) {
       var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
       entry.addEventListener('click', (function(id) {
         var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');

@@ -18,12 +18,13 @@ def main():
 
     for k, v in config["jobs"].iteritems():
         v = map(lambda x: prefix + x, v)
-        command = "java -jar %s -o %s --type js" % (compressor, k)
+        command = "java -jar pl1 -o pl2 --type js".split(' ')
+        command[2] = compressor
+        command[4] = k
         print "Processing for %s" % k
-        print "Using: %s" % command
+        print "Using: %s" % ' '.join(command)
         sys.stdout.flush()
-        
-        p = subprocess.Popen(command.split(' '), stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
 
         lines = [0]
         cur_line = 0

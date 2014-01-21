@@ -760,6 +760,9 @@ cr.define('cr.view.library', function() {
               anchor_element.textContent = "Be the first one to comment";
             } 
           }
+          if(this.has_next) {
+            review_container.querySelector('.diskreview-entry-wrapper').addEventListener('scroll', review_scroll);
+          }
           //Add btn hooks
           var btn = review_container.querySelector('.diskreview-input-box button[controls="submit"]');
           btn.addEventListener('click', function() {
@@ -817,7 +820,7 @@ cr.define('cr.view.library', function() {
         if (scrollTop + windowHeight + 5 > scrollHeight) {
           //Trigger Loading
           review_loading = true;
-          pager.next(append_reviews);
+          review_pager.next(append_reviews);
         }
       }
     });

@@ -38,6 +38,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Tahoma, Arial, '\5FAE\8F6F\96C5\9ED1', '\9ED1\4F53', sans-serif;
+  text-rendering: optimizeLegibility;
   background-color: $light-grey;
   @include user-select(none);
 }
