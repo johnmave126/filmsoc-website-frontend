@@ -255,6 +255,16 @@ function toISODate(dateString) {
 }
 
 /**
+ * Stop a event from propagating.
+ * @param {Event} e The event to stop.
+ */
+function stopEvent(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+}
+
+/**
  * Deep copy an object.
  * @param {Object} obj The object to copy.
  * @return {Object} A new object copied.

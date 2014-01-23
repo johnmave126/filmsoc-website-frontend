@@ -88,17 +88,34 @@ cr.define('cr.view.news', function() {
         cover_id = cr.model.SiteSettings.getField('header_image').value;
     document.title = "Home | Film Society, HKUSTSU";
     routerManager.markTracker();
-    cover.onload = function() {
+
+    cover.onload = function(e) {
       var homepage = cr.ui.template.render_template("home_template.html", {url: this.src});
       skeleton.appendChild(homepage);
       skeleton.removeAttribute('hidden');
       setTimeout(function() {
         node.classList.remove('loading');
       }, 0);
-      var first_load = true,
-          news_loading = true,
-          news_container = homepage.querySelector('.news-list'),
-          anchor_element = news_container.querySelector('.anchor');
+      var news_container = homepage.querySelector('.news-list');
+      homepage.scrollList = new cr.ui.scrollList(news_container, homepage, pager, {
+        onfirstload: function(obj_list) {
+          if(obj_list.length == 0) {
+            this.anchor_element.textContent = "No News at the time";
+          }
+        },
+        onload: function(obj, idx) {
+          var dateObj = new Date(toISODate(obj.create_log.created_at)),
+              date = m_names[dateObj.getMonth()] + ' ' + pad(dateObj.getDate(), 2),
+              time = pad(dateObj.getHours(), 2) + ':' + pad(dateObj.getMinutes(), 2),
+              entry = cr.ui.template.render_template('home_news_item.html', {news: obj, date: date, time: time});
+          this.elem.insertBefore(entry, this.anchor_element);
+          setTimeout((function() {
+            this.classList.remove('loading');
+          }).bind(entry), 100 * idx);
+        },
+        deleteAnchor: false
+      });
+
 
       //Scroll Image
       var cHeight = skeleton.clientHeight,
@@ -112,66 +129,17 @@ cr.define('cr.view.news', function() {
         setTimeout(scroll_manager.scrollTo.bind(scroll_manager, 0, toY, 3000, function() {
           homepage.removeEventListener('scroll', preventer);
           homepage.removeEventListener('mousewheel', preventer);
-          homepage.addEventListener('scroll', news_scroll);
           homepage.classList.remove('scrolling');
-          pager.load(disp_news); 
+          homepage.scrollList.load();
         }, new cr.ui.UnitBezier(0.5, 0, 0.6, 1)), 700); //ease-out
       }
       else {
-        //Add scrolll hooks
-        pager.load(disp_news);
-        homepage.addEventListener('scroll', news_scroll);
+        homepage.scrollList.load();
       }
 
       function preventer(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
-      }
-
-      function disp_news(obj_list) {
-        for (var i = 0; i < obj_list.length; i++) {
-          var dateObj = new Date(toISODate(obj_list[i].create_log.created_at)),
-              date = m_names[dateObj.getMonth()] + ' ' + pad(dateObj.getDate(), 2),
-              time = pad(dateObj.getHours(), 2) + ':' + pad(dateObj.getMinutes(), 2),
-              entry = cr.ui.template.render_template('home_news_item.html', {news: obj_list[i], date: date, time: time});
-          news_container.insertBefore(entry, anchor_element);
-          setTimeout((function() {
-            this.classList.remove('loading');
-          }).bind(entry), 100 * i);
-        }
-
-        if (first_load && obj_list.length === 0) {
-          anchor_element.textContent = "No News at the time";
-          homepage.removeEventListener('scroll', news_scroll);
-        }
-
-        if ((!first_load || obj_list.length > 0) && !this.has_next) {
-          //Remove anchor
-          news_container.removeChild(anchor_element);
-          //Remove scroll listener
-          homepage.removeEventListener('scroll', news_scroll);
-        }
-
-        news_loading = false;
-        first_load = false;
-      }
-
-      function news_scroll(e) {
-        if (news_loading) {
-          return;
-        }
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
-        var scrollTop = homepage.scrollTop,
-            windowHeight = homepage.clientHeight,
-            scrollHeight = homepage.scrollHeight;
-
-        if (scrollTop + windowHeight + 10 > scrollHeight) {
-          //Trigger Loading
-          news_loading = true;
-          pager.next(disp_news);
-        }
       }
     };
     cover.onerror = function() {

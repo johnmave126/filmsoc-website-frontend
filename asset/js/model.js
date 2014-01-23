@@ -51,7 +51,6 @@ cr.define('cr', function() {
     this.xhr.onreadystatechange = (function() {
       if (this.xhr.readyState === 4) {
         //Loaded
-        var e;
         if(this.xhr.status === 200) {
           try {
             var obj = JSON.parse(this.xhr.responseText);

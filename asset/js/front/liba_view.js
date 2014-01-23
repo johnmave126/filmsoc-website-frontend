@@ -739,30 +739,23 @@ cr.define('cr.view.library', function() {
 
       //Get reviews
       var review_pager = new cr.Pager(cr.model.DiskReview, '/?disk=' + id),
-          review_first_start = true,
-          review_loading = true,
           review_none = false,
           review_container = skeleton.querySelector('.diskreview-wrapper'),
-          review_entries = review_container.querySelector('.diskreview-inner-wrapper'),
-          anchor_element = review_entries.querySelector('.anchor');
-      review_pager.load(append_reviews);
+          review_upper = review_container.querySelector('.diskreview-entry-wrapper'),
+          review_entries = review_upper.querySelector('.diskreview-inner-wrapper');
+      //review_pager.load(append_reviews);
 
-      function append_reviews(obj_list) {
-        if (review_first_start) {
-          //This is first load
-          review_first_start = false;
-          if (obj_list.length === 0) {
-            //Currently no entry
+
+      review_entries.scrollList = new cr.ui.scrollList(review_entries, review_upper, review_pager, {
+        onfirstload: function(obj_list) {
+          var that = this;
+              elem = that.elem;
+          console.log(that.anchor_element);
+          if(obj_list.length === 0) {
+            that.anchor_element.textContent = "Be the first one to comment";
             review_none = true;
+          }
 
-            //Change content
-            if (review_none) {
-              anchor_element.textContent = "Be the first one to comment";
-            } 
-          }
-          if(this.has_next) {
-            review_container.querySelector('.diskreview-entry-wrapper').addEventListener('scroll', review_scroll);
-          }
           //Add btn hooks
           var btn = review_container.querySelector('.diskreview-input-box button[controls="submit"]');
           btn.addEventListener('click', function() {
@@ -773,11 +766,11 @@ cr.define('cr.view.library', function() {
             }
             var payload = {disk: id, content: textarea.value};
             cr.model.DiskReview.post(payload, function(obj) {
-              var div_after = review_entries.querySelector('.diskreview-title').nextSibling,
+              var div_after = elem.querySelector('.diskreview-title').nextSibling,
                   new_entry = cr.ui.template.render_template('disk_review_entry.html', {review: obj});
-              review_entries.insertBefore(new_entry, div_after);
+              elem.insertBefore(new_entry, div_after);
               if (review_none) {
-                review_entries.removeChild(anchor_element);
+                elem.removeChild(that.anchor_element);
                 review_none = false;
               }
               setTimeout(function() {
@@ -785,44 +778,17 @@ cr.define('cr.view.library', function() {
               }, 0);
             });
           });
-        }
-
-        for (var i = 0; i < obj_list.length; i++) {
-          var entry = cr.ui.template.render_template('disk_review_entry.html', {review: obj_list[i]});
-          review_entries.insertBefore(entry, anchor_element);
+        },
+        onload: function(obj, idx) {
+          var entry = cr.ui.template.render_template('disk_review_entry.html', {review: obj});
+          this.elem.insertBefore(entry, this.anchor_element);
           setTimeout((function() {
             this.classList.remove('loading');
-          }).bind(entry), 50 * i);
-        }
-
-        if (!this.has_next && !review_none) {
-          //Remove anchor
-          review_entries.removeChild(anchor_element);
-
-          //Remove scroll listener
-          review_container.querySelector('.diskreview-entry-wrapper').removeEventListener('scroll', review_scroll);
-        }
-
-        review_loading = false;
-      }
-
-      function review_scroll(e) {
-        if (review_loading) {
-          return;
-        }
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
-        var scrollTop = review_container.scrollTop,
-            windowHeight = review_container.clientHeight,
-            scrollHeight = review_container.scrollHeight;
-
-        if (scrollTop + windowHeight + 5 > scrollHeight) {
-          //Trigger Loading
-          review_loading = true;
-          review_pager.next(append_reviews);
-        }
-      }
+          }).bind(entry), 50 * idx);
+        },
+        deleteAnchor: false
+      });
+      review_entries.scrollList.load();
     });
   }
 

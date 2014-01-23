@@ -31,6 +31,8 @@ def main():
         for in_f in v:
             for line in open(in_f, "r"):
                 p.stdin.write(line)
+                if not line.endswith('\n'):
+                    p.stdin.write('\n')
                 p.stdin.flush()
                 cur_line += 1
             lines.append(cur_line)
@@ -43,7 +45,7 @@ def main():
                 (ln, pos, after) = line.partition(':')
                 ln = int(ln.strip())
                 for i in xrange(1, len(lines) + 1):
-                    if ln < lines[i]:
+                    if ln <= lines[i]:
                         print "%s:%d:%s" % (v[i - 1], ln - lines[i - 1], after),
                         break;
                 parse = False

@@ -209,55 +209,79 @@ cr.define('cr.view.publication', function() {
         list_micromagazine_wrapper = left_panel.querySelector('.publication-micromagazine-list-wrapper'),
         list_podcast_wrapper = left_panel.querySelector('.publication-podcast-list-wrapper'),
         panel = node.querySelector('.right-panel');
-    pub_init_list(list_magazine_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=Magazine'), function(item, idx) {
-      var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
-      entry.addEventListener('click', (function(id) {
-        var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
-        for (var i = 0; i < activeElements.length; i++) {
-          activeElements[i].removeAttribute('selected');
+
+
+        function onload_f(item, idx) {
+          var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item}),
+              that = this;
+          entry.addEventListener('click', (function(id) {
+            var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
+            for (var i = 0; i < activeElements.length; i++) {
+              activeElements[i].removeAttribute('selected');
+            }
+            entry.setAttribute('selected', true);
+            publication_switch(node, id);
+          }).bind(entry, item.id));
+          that.elem.insertBefore(entry, that.anchor_element);
+          setTimeout((function() {
+            this.classList.remove('loading');
+          }).bind(entry), 50 * idx + 1);
         }
-        entry.setAttribute('selected', true);
-        publication_switch(node, id);
-      }).bind(entry, item.id));
-      list_magazine_wrapper.insertBefore(entry, list_magazine_wrapper.anchor_element);
-      setTimeout((function() {
-        this.classList.remove('loading');
-      }).bind(entry), 50 * idx + 1);
-      if (idx == 0 && list_magazine_wrapper.first_load) {
-        entry.setAttribute('selected', true);
-        publication_switch(node, item.id);
-      }
-    });
-    pub_init_list(list_micromagazine_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=MicroMagazine'), function(item, idx) {
-      var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
-      entry.addEventListener('click', (function(id) {
-        var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
-        for (var i = 0; i < activeElements.length; i++) {
-          activeElements[i].removeAttribute('selected');
+
+    list_magazine_wrapper.scrollList = new cr.ui.scrollList(list_magazine_wrapper, list_magazine_wrapper,
+                                                            new cr.Pager(cr.model.Publication, '/?pub_type=Magazine'), {
+      onfirstload: function(obj_list) {
+        if(obj_list.length === 0) {
+          this.anchor_element.textContent = "No items at the time";
         }
-        entry.setAttribute('selected', true);
-        publication_switch(node, id);
-      }).bind(entry, item.id));
-      list_micromagazine_wrapper.insertBefore(entry, list_micromagazine_wrapper.anchor_element);
-      setTimeout((function() {
-        this.classList.remove('loading');
-      }).bind(entry), 50 * idx + 1);
-    });
-    pub_init_list(list_podcast_wrapper, new cr.Pager(cr.model.Publication, '/?pub_type=Podcast'), function(item, idx) {
-      var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item});
-      entry.addEventListener('click', (function(id) {
-        var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
-        for (var i = 0; i < activeElements.length; i++) {
-          activeElements[i].removeAttribute('selected');
+      },
+      onload: function(item, idx) {
+        var entry = cr.ui.template.render_template('pub_list_item.html', {publication: item}),
+            that = this;
+        entry.addEventListener('click', (function(id) {
+          var activeElements = left_panel.querySelectorAll('.publication-list-item[selected]');
+          for (var i = 0; i < activeElements.length; i++) {
+            activeElements[i].removeAttribute('selected');
+          }
+          entry.setAttribute('selected', true);
+          publication_switch(node, id);
+        }).bind(entry, item.id));
+        that.elem.insertBefore(entry, that.anchor_element);
+        setTimeout((function() {
+          this.classList.remove('loading');
+        }).bind(entry), 50 * idx + 1);
+        if (idx === 0 && that.first_load) {
+          entry.setAttribute('selected', true);
+          publication_switch(node, item.id);
         }
-        entry.setAttribute('selected', true);
-        publication_switch(node, id);
-      }).bind(entry, item.id));
-      list_podcast_wrapper.insertBefore(entry, list_podcast_wrapper.anchor_element);
-      setTimeout((function() {
-        this.classList.remove('loading');
-      }).bind(entry), 50 * idx + 1);
+      },
+      deleteAnchor: false
     });
+    list_magazine_wrapper.scrollList.load();
+
+    list_micromagazine_wrapper.scrollList = new cr.ui.scrollList(list_micromagazine_wrapper, list_micromagazine_wrapper,
+                                                            new cr.Pager(cr.model.Publication, '/?pub_type=MicroMagazine'), {
+      onfirstload: function(obj_list) {
+        if(obj_list.length === 0) {
+          this.anchor_element.textContent = "No items at the time";
+        }
+      },
+      onload: onload_f,
+      deleteAnchor: false
+    });
+    list_micromagazine_wrapper.scrollList.load();
+
+    list_podcast_wrapper.scrollList = new cr.ui.scrollList(list_podcast_wrapper, list_podcast_wrapper,
+                                                            new cr.Pager(cr.model.Publication, '/?pub_type=Podcast'), {
+      onfirstload: function(obj_list) {
+        if(obj_list.length === 0) {
+          this.anchor_element.textContent = "No items at the time";
+        }
+      },
+      onload: onload_f,
+      deleteAnchor: false
+    });
+    list_podcast_wrapper.scrollList.load();
   }
 
   /**

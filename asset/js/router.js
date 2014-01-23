@@ -65,7 +65,6 @@ cr.define('routerManager', function() {
       //Call default
       //Replace to default route
       this.pushState(this.defaultRouter.url, true);
-      this.defaultRouter.callback.apply(this.defaultRouter, args);
       return;
     }
     if (hashString[hashString.length - 1] !== '/') {

@@ -4,7 +4,7 @@
 		"asset/js/backend.min.js": [
 			"util.js", "event_tracker.js", "cr.js", "event_target.js",
 			"settings.js", "template.js", "model.js", "pager.js", "router.js",
-			"ui.js", "notification.js", "custom_bbcode.js", "admin/bubble.js",
+			"ui.js", "display_list.js", "notification.js", "custom_bbcode.js", "admin/bubble.js",
 			"admin/overlay.js", "admin/admin_ui_control.js", "admin/alert_overlay.js",
 			"admin/drag_wrapper.js", "admin/richtext_editor.js", "admin/uploader.js",
 			"admin/admin_models.js", "admin/application.js", "admin/log_overlay.js",
@@ -17,7 +17,7 @@
 		"asset/js/application.min.js": [
 			"util.js", "event_tracker.js", "cr.js", "event_target.js",
 			"settings.js", "template.js", "model.js", "pager.js", "router.js",
-			"ui.js", "notification.js", "custom_bbcode.js", "front/front_models.js",
+			"ui.js", "display_list.js", "notification.js", "custom_bbcode.js", "front/front_models.js",
 			"front/ui_util.js", "front/custom_select.js", "front/rand_sentence.js",
 			"front/application.js", "front/liba_view.js", "front/rfs_view.js",
 			"front/ticket_view.js", "front/document_view.js", "front/sponsor_view.js",

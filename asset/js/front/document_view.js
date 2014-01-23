@@ -67,52 +67,23 @@ cr.define('cr.view.document', function() {
     var node = this,
         list_wrapper = this.querySelector('.left-panel .doc-list-wrapper'),
         anchor_element = list_wrapper.querySelector('.anchor'),
-        panel = this.querySelector('.right-panel'),
-        pager = new cr.Pager(cr.model.Document, '/'),
-        ajax_loading = true,
-        first_load = true;
+        pager = new cr.Pager(cr.model.Document, '/');
 
-    list_wrapper.addEventListener('scroll', handleScroll);
-    pager.load(load_tickets);
-    function load_tickets(obj_list) {
-      if (obj_list.length === 0 || !this.has_next) {
-        list_wrapper.removeChild(anchor_element);
-        list_wrapper.removeEventListener('scroll', handleScroll);
-      }
-      //Append to list
-      for (var i = 0; i < obj_list.length; i++) {
-        var entry = cr.ui.template.render_template('doc_list_item.html', {doc: obj_list[i]});
+    node.scrollList = new cr.ui.scrollList(list_wrapper, list_wrapper, pager, {
+      onload: function(obj, idx) {
+        var entry = cr.ui.template.render_template('doc_list_item.html', {doc: obj});
         //Hook
-        entry.addEventListener('click', doc_switch.bind(null, node, obj_list[i].id));
-        list_wrapper.appendChild(entry);
+        entry.addEventListener('click', doc_switch.bind(null, node, obj.id));
+        this.elem.insertBefore(entry, this.anchor_element);
         setTimeout((function() {
           this.classList.remove('loading');
-        }).bind(entry), i * 50);
-        if (first_load && i == 0) {
-          doc_switch(node, obj_list[i].id);
+        }).bind(entry), idx * 50);
+        if (this.first_load && idx == 0) {
+          doc_switch(node, obj.id);
         }
       }
-      first_load = false;
-      ajax_loading = false;
-    }
-
-    function handleScroll(e) {
-      if (ajax_loading) {
-        return;
-      }
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      var scrollTop = list_wrapper.scrollTop,
-          windowHeight = list_wrapper.clientHeight,
-          scrollHeight = list_wrapper.scrollHeight;
-
-      if (scrollTop + windowHeight + 10 > scrollHeight) {
-        //Trigger Loading
-        ajax_loading = true;
-        pager.next(load_tickets);
-      }
-    }
+    });
+    node.scrollList.load();
   }
 
   return {

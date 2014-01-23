@@ -40,6 +40,7 @@
         @include backface-visibility(hidden);
 
         .top-navigation {
+          line-height: 1.5em;
           margin-bottom: 1em;
           color: $black;
           font-weight: bold;
@@ -50,7 +51,7 @@
             background: transparent;
             cursor: pointer;
             color: $black;
-            font-weight: bold;
+            font-weight: bolder;
             vertical-align: middle;
             font-size: 100%;
           }

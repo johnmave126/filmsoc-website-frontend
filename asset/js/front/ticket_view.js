@@ -47,9 +47,9 @@ cr.define('cr.view.ticket', function() {
       var cover = this.querySelector('.ticket-brief .ticket-cover');
       //Cover
       if (param.ticket.cover_url)
-        cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'upload/' + param.ticket.cover_url.url + ')';
+        cover.style.backgroundImage = url(cr.settings.resource_base + 'upload/' + param.ticket.cover_url.url);
       else
-        cover.style.backgroundImage = 'url(' + cr.settings.resource_base + 'css/question.png)';
+        cover.style.backgroundImage = url(cr.settings.resource_base + 'css/question.png');
 
       //Hooks on apply button
       this.querySelector('button[controls="apply"]').addEventListener('click', function() {
@@ -161,61 +161,34 @@ cr.define('cr.view.ticket', function() {
     var node = this,
         left_panel = node.querySelector('.left-panel'),
         list_wrapper = left_panel.querySelector('.ticket-list-wrapper'),
-        anchor_element = list_wrapper.querySelector('.anchor'),
         panel = this.querySelector('.right-panel'),
-        pager = new cr.Pager(cr.model.PreviewShowTicket, '/?limit=10'),
-        ajax_loading = true,
-        first_load = true;
+        pager = new cr.Pager(cr.model.PreviewShowTicket, '/?limit=10');
 
-    left_panel.addEventListener('scroll', handleScroll);
-    pager.load(load_tickets);
-    function load_tickets(obj_list) {
-      //Append to list
-      for (var i = 0; i < obj_list.length; i++) {
-        var entry = cr.ui.template.render_template('ticket_list_item.html', {ticket: obj_list[i]});
+    node.scrollList = new cr.ui.scrollList(list_wrapper, left_panel, pager, {
+      onfirstload: function(obj_list) {
+        if(obj_list.length == 0) {
+          this.anchor_element.textContent = "No Ticket at the time";
+        }
+      },
+      onload: function(obj, idx) {
+        var entry = cr.ui.template.render_template('ticket_list_item.html', {ticket: obj});
         //Hook
         entry.addEventListener('click', (function(node, id, e) {
           ticket_switch(node, id);
           switch_selection(this);
-        }).bind(entry, node, obj_list[i].id));
-        list_wrapper.insertBefore(entry, anchor_element);
+        }).bind(entry, node, obj.id));
+        this.elem.insertBefore(entry, this.anchor_element);
         setTimeout((function() {
           this.classList.remove('loading');
-        }).bind(entry), i * 100 + 400);
-        if (first_load && i == 0) {
+        }).bind(entry), idx * 100 + 400);
+        if (this.first_load && idx == 0) {
           switch_selection(entry);
-          ticket_switch(node, obj_list[i].id);
+          ticket_switch(node, obj.id);
         }
-      }
-      if (obj_list.length === 0 && first_load) {
-        anchor_element.textContent = "No Ticket at the moment";
-        left_panel.removeEventListener('scroll', handleScroll);
-      }
-      if ((!first_load || obj_list.length > 0) && !this.has_next) {
-        list_wrapper.removeChild(anchor_element);
-        left_panel.removeEventListener('scroll', handleScroll);
-      }
-      first_load = false;
-      ajax_loading = false;
-    }
-
-    function handleScroll(e) {
-      if (ajax_loading) {
-        return;
-      }
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      var scrollTop = this.scrollTop,
-          windowHeight = this.clientHeight,
-          scrollHeight = this.scrollHeight;
-
-      if (scrollTop + windowHeight + 10 > scrollHeight) {
-        //Trigger Loading
-        ajax_loading = true;
-        pager.next(load_tickets);
-      }
-    }
+      },
+      deleteAnchor: false
+    });
+    node.scrollList.load();
 
     function switch_selection(node) {
       var selected = list_wrapper.querySelectorAll('[selected]');
