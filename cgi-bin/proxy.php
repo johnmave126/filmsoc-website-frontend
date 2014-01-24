@@ -49,12 +49,13 @@ $port = "49000";
 $path_prefix = "/film/static/";
 $path = $path_prefix . urldecode($_GET["_escaped_fragment_"]);
 $path_canonical = false;
+
 do {
 	$oldpath = $path;
 	$path = str_replace(" ", "%20", $path);
-	$path = str_replace("/../", "/", $path);
-	$path = str_replace("/./", "/", $path);
-    $path = preg_replace("/\/..$/", "/", $path);
+	$path = str_replace("/\.\./", "/", $path);
+	$path = str_replace("/\./", "/", $path);
+    $path = preg_replace("/\/\.\.$/", "/", $path);
 	$path = preg_replace("/\/{2,}/", "/", $path);
 }while($path != $oldpath);
 if (substr($path, -1) !== "/" && strpos($path, "?") == false) {
