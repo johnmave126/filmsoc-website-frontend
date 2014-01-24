@@ -47,9 +47,9 @@ cr.define('cr.view.ticket', function() {
       var cover = this.querySelector('.ticket-brief .ticket-cover');
       //Cover
       if (param.ticket.cover_url)
-        cover.style.backgroundImage = url(cr.settings.resource_base + 'upload/' + param.ticket.cover_url.url);
+        cover.style.backgroundImage = cssurl(cr.settings.resource_base + 'upload/' + param.ticket.cover_url.url);
       else
-        cover.style.backgroundImage = url(cr.settings.resource_base + 'css/question.png');
+        cover.style.backgroundImage = cssurl(cr.settings.resource_base + 'css/question.png');
 
       //Hooks on apply button
       this.querySelector('button[controls="apply"]').addEventListener('click', function() {

@@ -24,7 +24,7 @@ cr.define('cr', function() {
    * @param {Object} model The model to call on.
    * @param {string} method The method to use.
    * @param {string} api The API to call.
-   * @param {boolean} async If true, send request in async favour.
+   * @param {boolean} force_new If true, bypass any cache.
    * @constructor
    */
   function APIRequest(model, method, api, force_new) {

@@ -137,6 +137,7 @@ cr.define('cr.view.show', function() {
       }
 
       var template = cr.ui.template.render_template('rfs_true_template.html', {show: obj_list[0], user: cr.user, toshow: toShow(obj_list[0])});
+      console.log(obj_list[0], toShow(obj_list[0]));
       //Update disks
       cr.model.Disk.update(obj_list[0].film_1, 1);
       cr.model.Disk.update(obj_list[0].film_2, 1);

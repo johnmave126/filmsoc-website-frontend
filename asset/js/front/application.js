@@ -33,6 +33,9 @@ cr.define('Application', function() {
           //Do the jump
           location.href = url;
         });
+        user_panel.querySelector('.link-info').addEventListener('click', function() {
+          routerManager.pushState('userinfo/');
+        });
         user_panel.querySelector('.link-admin').addEventListener('click', function() {
           window.open('admin/');
         });
@@ -84,6 +87,48 @@ cr.define('Application', function() {
 
     //Set router
     routerManager.prefix = 1;
+    routerManager.register(/userinfo\//, false, userInfo);
+  }
+
+
+  /**
+   * View of user information
+   */
+  function userInfo() {
+    cr.view.name = "userinfo";
+    document.title = "User Information | Film Society, HKUSTSU";
+    var user_template = cr.ui.template.render_template('user_template.html');
+    cr.ui.replaceContent(user_template, (function() {
+      var node = this,
+          r = new cr.APIRequest(cr.model.User, 'GET', '/current_user/', true);
+
+      r.onload = function(ev) {
+        cr.define("cr", function() { return {user: deepCopy(ev.recObj)}; });
+        var user_container = cr.ui.template.render_template('user_info.html', {user: cr.user, table: membership_table});
+        node.querySelector('.user-content-wrapper').appendChild(user_container);
+        user_container.removeAttribute('hidden');
+        node.classList.remove('loading');
+        setTimeout(function() {
+          user_container.classList.remove('loading');
+        }, 0);
+      };
+      r.onerror = function(ev) {
+        if (ev.recObj.errno === 2) {
+          //Not login
+          //Jump to login
+          var next = location.hash.substr(1),
+              url = cr.settings.login_url + (next ? '?next=' + next : ''),
+              redirect = 'https://cas.ust.hk/cas/login?service=' + encodeURIComponent(url);
+          //Do the jump
+          location.href = redirect;
+        }
+        else {
+          //Give it to error handler
+          errorHandler(ev);
+        }
+      };
+      r.send();
+    }).bind(user_template));
   }
 
   /**
@@ -148,3 +193,39 @@ cr.define('Application', function() {
 document.addEventListener('DOMContentLoaded', Application.initialization);
 cr.ui.template.register("user_panel.html");
 cr.ui.template.register("error_page.html");
+cr.ui.template.register("user_template.html");
+cr.ui.template.register("user_info.html", function(param) {
+  function generateEntry(disk) {
+    var entry = createElementWithClassName('a', "user-disk-entry");
+    entry.title = disk.title_en + "/" + disk.title_ch;
+    entry.href = "#!library/" + disk.id + "/";
+    entry.disk_id = disk.id;
+    if (disk.cover_url)
+      entry.style.backgroundImage = cssurl(cr.settings.resource_base + 'upload/' + disk.cover_url);
+    else
+      entry.style.backgroundImage = cssurl(cr.settings.resource_base + 'css/question.png');
+
+    entry.addEventListener('click', function(e) {
+      stopEvent(e);
+      routerManager.pushState("library/" + this.disk_id + "/");
+    });
+    return entry;
+  }
+
+  //Borrow
+  var borrow_list = this.querySelector(".user-borrowed .user-disk-list"),
+      reserve_list = this.querySelector(".user-reserved .user-disk-list"),
+      history_list = this.querySelector(".user-history .user-disk-list"),
+      user = param.user;
+  for(var i = 0; i < user.borrowed.length; i++) {
+    borrow_list.appendChild(generateEntry(user.borrowed[i]));
+  }
+
+  for(var i = 0; i < user.reserved.length; i++) {
+    reserve_list.appendChild(generateEntry(user.reserved[i]));
+  }
+
+  for(var i = 0; i < user.borrow_history.length; i++) {
+    history_list.appendChild(generateEntry(user.borrow_history[i]));
+  }
+});

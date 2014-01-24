@@ -1,0 +1,39 @@
+<div>
+	<div class="left-col">
+		<div class="user-name">{{user.full_name}}</div>
+		<div class="user-type">{{table[user.member_type]}}</div>
+		<div class="user-info">
+			<div class="entry">Join at {{user.join_at}}</div>
+			<div class="entry">Membership till: {{user.expire_at}}</div>
+			<div class="entry">Attend {{user.rfs_count}} Regular Film Shows</div>
+			<div class="entry">Last Login at {{user.last_login}}</div>
+			<div class="entry">Login {{user.login_count}} times</div>
+		</div>
+	</div>
+	<div class="right-col">
+		<div class="user-disk user-borrowed">
+			<header>You borrow ...</header>
+			{{if(user.borrowed.length === 0)"None at the moment"}}
+			<div class="user-disk-list">
+			</div>
+		</div>
+		<div class="user-disk user-reserved">
+			<header>You reserve ...</header>
+			{{if(user.reserved.length === 0)"None at the moment"}}
+			<div class="user-disk-list">
+			</div>
+		</div>
+		<div class="user-disk user-history">
+			<header>You recently borrowed ...</header>
+			{{if(user.borrow_history.length === 0)"None at the moment"}}
+			<div class="user-disk-list">
+			</div>
+		</div>
+		<div class="user-disk user-recommend">
+			<header>We recommend ...</header>
+			Coming soon...
+			<div class="user-disk-list">
+			</div>
+		</div>
+	</div>
+</div>

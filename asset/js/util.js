@@ -67,7 +67,7 @@ function pad(n, width, z) {
  * @param {string} s The URL to generate the CSS url for.
  * @return {string} The CSS url string.
  */
-function url(s) {
+function cssurl(s) {
   // http://www.w3.org/TR/css3-values/#uris
   // Parentheses, commas, whitespace characters, single quotes (') and double
   // quotes (") appearing in a URI must be escaped with a backslash
@@ -83,10 +83,10 @@ function url(s) {
 
 /**
  * Parses query parameters from Location.
- * @param {string} location The URL to generate the CSS url for.
+ * @param {string} location The location object.
  * @return {object} Dictionary containing name value pairs for URL
  */
-function parseQueryParams(location) {
+function parseLocationParams(location) {
   var params = {};
   var query = unescape(location.search.substring(1));
   var vars = query.split('&');

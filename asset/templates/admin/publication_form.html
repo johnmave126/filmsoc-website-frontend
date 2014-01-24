@@ -19,15 +19,15 @@
 			</label>
 			<label>
 				<span>Type: </span>
-				<select name="Type">
-					<option value="Magazine" {{publication.Type?(publication.Type==='Magazine'?'selected':''):'selected'|safe}}>Magazine</option>
-					<option value="MicroMagazine" {{publication.Type==='MicroMagazine'?'selected':''|safe}}>Micro Magazine</option>
-					<option value="Podcast" {{publication.Type==='Podcast'?'selected':''|safe}}>Podcast</option>
+				<select name="pub_type">
+					<option value="Magazine" {{publication.pub_type?(publication.pub_type==='Magazine'?'selected':''):'selected'|safe}}>Magazine</option>
+					<option value="MicroMagazine" {{publication.pub_type==='MicroMagazine'?'selected':''|safe}}>Micro Magazine</option>
+					<option value="Podcast" {{publication.pub_type==='Podcast'?'selected':''|safe}}>Podcast</option>
 				</select>
 			</label>
 		</div>
 	</div>
-	<div class="nocell publication-file" {{publication.Type?(publication.Type==='MicroMagazine'?'hidden':''):''|safe}}>
+	<div class="nocell publication-file" {{publication.pub_type?(publication.pub_type==='MicroMagazine'?'hidden':''):''|safe}}>
 		<div class="file-drop">
 			<div class="file-container">
 				<img src="../asset/css/square.png" alt="">
@@ -39,13 +39,13 @@
 			</div>
 			<span class="progressbar-progress" hidden></span>
 		</div>
-		<input type="hidden" name="doc_url" value="{{publication.doc_url?publication.doc_url.id:''|attr}}" {{publication.Type?(publication.Type==='MicroMagazine'?'disabled':''):''|safe}}>
+		<input type="hidden" name="doc_url" value="{{publication.doc_url?publication.doc_url.id:''|attr}}" {{publication.pub_type?(publication.pub_type==='MicroMagazine'?'disabled':''):''|safe}}>
 		<a class="dn_link" href="{{base_url}}{{publication.doc_url?publication.doc_url.url:''|attr}}?force_download=true&dn_name={{publication.doc_url?publication.doc_url.name:''|attr}}" {{publication.doc_url?'':'hidden'|safe}}>Download</a>
 	</div>
-	<div class="nocell publication-link" {{publication.Type?(publication.Type==='MicroMagazine'?'':'hidden'):'hidden'|safe}}>
+	<div class="nocell publication-link" {{publication.pub_type?(publication.pub_type==='MicroMagazine'?'':'hidden'):'hidden'|safe}}>
 		<label>
 			<span>Direct URL:</span>
-			<input type="text" name="ext_doc_url" placeholder="The direct link to the content" value="{{publication.ext_doc_url|attr}}" {{publication.Type?(publication.Type==='MicroMagazine'?'':'disabled'):'disabled'|safe}}>
+			<input type="text" name="ext_doc_url" placeholder="The direct link to the content" value="{{publication.ext_doc_url|attr}}" {{publication.pub_type?(publication.pub_type==='MicroMagazine'?'':'disabled'):'disabled'|safe}}>
 		</label>
 	</div>
 </div>

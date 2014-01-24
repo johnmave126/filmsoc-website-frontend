@@ -403,10 +403,12 @@ cr.define('cr.view.library', function() {
       //Remove previous objects
       setTimeout(function() {
         for (var i = 0; i < current_disks.length; i++) {
-          content.removeChild(current_disks[i]);
+          if(current_disks[i].parentNode === content)
+            content.removeChild(current_disks[i]);
         }
         for (var i = 0; i < notfounder.length; i++) {
-          content.removeChild(notfounder[i]);
+          if(notfounder[i].parentNode === content)
+            content.removeChild(notfounder[i]);
         }
       }, 410);
     }
@@ -750,7 +752,6 @@ cr.define('cr.view.library', function() {
         onfirstload: function(obj_list) {
           var that = this;
               elem = that.elem;
-          console.log(that.anchor_element);
           if(obj_list.length === 0) {
             that.anchor_element.textContent = "Be the first one to comment";
             review_none = true;
