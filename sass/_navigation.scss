@@ -3,6 +3,7 @@
  */
 
 $current-width: 19.5%;
+$num-of-block: 7;
 
 @include sticky-footer($footer-height, "#wrapper", "#footer-helper", "#footer");
 #footer {
@@ -38,7 +39,7 @@ $current-width: 19.5%;
   }
   .navigator {
     @extend .navigator_base;
-    width: (100% - $current-width) / 7;
+    width: (100% - $current-width) / $num-of-block;
     float: left;
     border-right: 1px solid darken($dark-grey, 20%);
     &:hover {
@@ -53,6 +54,6 @@ $current-width: 19.5%;
     width: $current-width;
   }
   &:hover > .navigator.selected {
-    width: (100% - $current-width) / 7;
+    width: (100% - $current-width) / $num-of-block;
   }
 }

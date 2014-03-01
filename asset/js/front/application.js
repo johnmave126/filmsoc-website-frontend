@@ -79,7 +79,11 @@ cr.define('Application', function() {
     //Hook navigations
     $('footer').addEventListener('click', function(e) {
       //Use proxy
-      var control = e.target.getAttribute('href').substr(2);
+      var target = e.target,
+          control = target.getAttribute('href').substr(2);
+      if(target.getAttribute('eternal') == "true") {
+        return;
+      }
       routerManager.pushState(control, false, false);
       e.preventDefault();
       e.stopPropagation();
