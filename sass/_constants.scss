@@ -282,6 +282,7 @@ $experimental-support-for-microsoft: false;
     position: relative;
     background-color: darken($dark-grey, 20%);
     color: white;
+    display: block;
     @include user-select(none);
     @include opaque;
     @include border-radius(5px);

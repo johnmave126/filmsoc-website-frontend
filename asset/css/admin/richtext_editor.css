@@ -146,6 +146,7 @@
   border-radius: 5px;
   background-color: #888;
   color: white;
+  display: block;
 
   -webkit-transition: background-color 200ms;
   -moz-transition: background-color 200ms;
