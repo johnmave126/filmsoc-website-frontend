@@ -107,7 +107,7 @@ cr.define('cr.view.about', function() {
 
     function load_excos(obj_list) {
       //Add Society Intro first
-      var soc_entry = cr.ui.template.render_template('aboutus_list_item.html', {exco: {position: "Film Society, HKUSTSU", name_ch: "Session 2013-2014"}});
+      var soc_entry = cr.ui.template.render_template('aboutus_list_item.html', {exco: {position: "Film Society, HKUSTSU", name_ch: cr.settings.session}});
       list_wrapper.appendChild(soc_entry);
       soc_entry.addEventListener('click', (function(node) {
         about_switch(node, 0);
